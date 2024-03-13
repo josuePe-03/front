@@ -36,7 +36,7 @@ export const LoginPage = () => {
             return;
         }
 
-        startRegister({ name: registerName, email: registerEmail, password: registerPassword });
+        startRegister({ name: registerName, email: registerEmail, password: registerPassword,rol:1 });
     }
 
 
