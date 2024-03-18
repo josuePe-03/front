@@ -4,7 +4,7 @@ import { AppRouter } from './router';
 import { store } from './store';
 
 
-export const CalendarApp = () => {
+export const App = () => {
   return (
     <Provider store={ store }>
       <BrowserRouter>

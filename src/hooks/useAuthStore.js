@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { calendarApi } from '../api';
 import { clearErrorMessage, onChecking, onLogin, onLogout, onLogoutCalendar } from '../store';
+import Swal from 'sweetalert2';
 
 
 export const useAuthStore = () => {
@@ -57,9 +58,20 @@ export const useAuthStore = () => {
     }
 
     const startLogout = () => {
-        localStorage.clear();
-        dispatch( onLogoutCalendar() );
-        dispatch( onLogout() );
+        Swal.fire({
+            title: "¿Deseas cerrar sesion?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, cerrar sesion."
+          }).then((result) => {
+            if (result.isConfirmed) {
+                localStorage.clear();
+                dispatch( onLogoutCalendar() );
+                dispatch( onLogout() );
+            }
+          });
     }
 
 

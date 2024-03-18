@@ -3,8 +3,8 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { LoginPage } from '../auth';
 import { CalendarPage } from '../calendar';
-import {HomePage} from '../home'
 import { useAuthStore } from '../hooks';
+import { AdminPage } from '../admin';
 
 
 export const AppRouter = () => {
@@ -13,7 +13,6 @@ export const AppRouter = () => {
     // const authStatus = 'not-authenticated'; // 'authenticated'; // 'not-authenticated';
 
 
-    console.log(user.rol)
 
     useEffect(() => {
         checkAuthToken();
@@ -38,13 +37,21 @@ export const AppRouter = () => {
                             <Route path="/*" element={ <Navigate to="/auth/login" /> } />
                         </>
                     )
-                    : (
+                 : (status === 'authenticated' && user.rol == 3 )? (
+
+                    // ADMIN
                         <>
-                            <Route path="/" element={ <CalendarPage /> } />
-                            <Route path="/home" element={ <HomePage /> } />
+                            <Route path="/calendario" element={ <CalendarPage /> } />
+                            <Route path="/" element={ <AdminPage /> } />
                             <Route path="/*" element={ <Navigate to="/" /> } />
                         </>
                     )
+                  : (
+                    <>
+                        <Route path="/auth/*" element={ <LoginPage /> } />
+                        <Route path="/*" element={ <Navigate to="/auth/login" /> } />
+                    </>
+                  )  
             }
 
         </Routes>
