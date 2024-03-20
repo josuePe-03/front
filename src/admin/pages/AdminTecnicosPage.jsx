@@ -4,10 +4,10 @@ import {
   Navbar,
   Titulo,
   Usuarios,
+  TrUsuarios
 } from "../components";
 import { useTecnicoStore, useUiStore } from "../../hooks";
 import { useEffect } from "react";
-import TrUsuarios from "../components/ui/TrUsuarios";
 
 export default function AdminOperadoresPage() {
   const { openDateModal } = useUiStore();

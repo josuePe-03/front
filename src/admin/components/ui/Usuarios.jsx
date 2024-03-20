@@ -1,4 +1,4 @@
-import ModalUpdateUser from "./ModalUpdateUser";
+import ModalUpdateUser from "./Modals/ModalUpdateUser";
 import { IconTrash } from "@tabler/icons-react";
 import Swal from "sweetalert2";
 import { useOperadorStore, useTecnicoStore } from "../../../hooks";

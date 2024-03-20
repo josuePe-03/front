@@ -1,43 +1,73 @@
-import { Navbar, Titulo } from "../components";
-export default function AdminEquiposPage() {
+import {
+  ModalAddEquipo,
+  Navbar,
+  Titulo,
+  TrEquipos,
+  Equipos,
+} from "../components";
+import { useEquipoStore, useUiStore } from "../../hooks";
+import { useEffect } from "react";
+
+export default function AdminOperadoresPage() {
+  const { equipos, startLoadingEquipos } = useEquipoStore();
+
+  useEffect(() => {
+    startLoadingEquipos();
+    // Función que se ejecutará cada 5 segundos
+    const interval = setInterval(() => {
+      startLoadingEquipos();
+    }, 5000); // 5000 milisegundos = 5 segundos
+
+    // Función de limpieza que se ejecutará cuando el componente se desmonte
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="w-full h-screen  bg-gray-200">
       <Navbar />
 
       <div className="w-full sm:pl-[3rem] pt-[2rem] sm:pt-0 ">
-        <div className="px-12 pt-4 ">
+        <div className="px-12 pt-4  ">
           <div className="h-[10vh]">
             <Titulo texto={"Administrador de Equipos"} />
           </div>
-
-          <section className="bg-white rounded-xl p-3 shadow ">
-            <div className="relative overflow-x-auto  rounded-xl">
-              <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
-                <thead className="text-xs text-gray-400   ">
-                  <tr>
-                    <th scope="col" className="px-6 py-3">
-                      Product name
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Color
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Category
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Price
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="text-xs border-b text-gray-900 font-medium">
-                    <td className="px-6 py-4 ">Apple MacBook Pro 17"</td>
-                    <td className="px-6 py-4">Silver</td>
-                    <td className="px-6 py-4">Laptop</td>
-                    <td className="px-6 py-4">$2999</td>
-                  </tr>
-                </tbody>
-              </table>
+          <section className="h-[85vh] w-full">
+            <div className="grid grid-cols-1  gap-3">
+              <div className=" flex justify-end gap-2">
+                <ModalAddEquipo />
+                <input
+                  type="search"
+                  id="search-dropdown"
+                  className="pl-5 pr-2 py-2 border-2 border-gray-400 w-full sm:w-fit z-20 text-sm text-gray-900 bg-gray-50 rounded-lg "
+                  placeholder="Busca Operador"
+                  // value={busqueda || ""}
+                  // onChange={handleChange}
+                />
+              </div>
+              <div className=" ">
+                <section className="bg-white rounded-xl p-3 shadow ">
+                  <div className="relative overflow-x-auto  rounded-xl">
+                    <table className="w-full text-xs text-left rtl:text-right text-gray-500 ">
+                      <thead className="text-xs text-gray-400   ">
+                        <TrEquipos />
+                      </thead>
+                      <tbody>
+                        {equipos === "Sin equipos existentes" ? (
+                          <tr>
+                            <td className="px-6 py-4 text-center " colSpan={7}>
+                              {equipos}
+                            </td>
+                          </tr>
+                        ) : (
+                          equipos.map((items, i) => (
+                            <Equipos key={i} items={items} />
+                          ))
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </div>
             </div>
           </section>
         </div>

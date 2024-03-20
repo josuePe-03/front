@@ -4,6 +4,7 @@ import {
   Navbar,
   Titulo,
   Usuarios,
+  TrUsuarios
 } from "../components";
 import { useOperadorStore, useUiStore } from "../../hooks";
 import { useEffect } from "react";
@@ -65,29 +66,7 @@ export default function AdminOperadoresPage() {
                   <div className="relative overflow-x-auto  rounded-xl">
                     <table className="w-full text-xs text-left rtl:text-right text-gray-500 ">
                       <thead className="text-xs text-gray-400   ">
-                        <tr>
-                          <th scope="col" className="px-6 py-3">
-                            Id
-                          </th>
-                          <th scope="col" className="px-6 py-3">
-                            Nombre
-                          </th>
-                          <th scope="col" className="px-6 py-3">
-                            Apellidos
-                          </th>
-                          <th scope="col" className="px-6 py-3">
-                            Direccion
-                          </th>
-                          <th scope="col" className="px-6 py-3">
-                            Edad
-                          </th>
-                          <th scope="col" className="px-6 py-3">
-                            Unidad Medica
-                          </th>
-                          <th scope="col" className="px-6 py-3">
-                            Opciones
-                          </th>
-                        </tr>
+                      <TrUsuarios/>
                       </thead>
                       <tbody>
                         {operadores === "Sin operadores existentes" ? (
@@ -98,7 +77,7 @@ export default function AdminOperadoresPage() {
                           </tr>
                         ) : (
                           operadores.map((items, i) => (
-                            <Usuarios key={i} items={items}/>
+                            <Usuarios tecnico={false} key={i} items={items}/>
                             ))
                         )}
                       </tbody>

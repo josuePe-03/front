@@ -3,9 +3,14 @@
 export * from './useAuthStore';
 export * from './useCalendarStore';
 export * from './useForm';
-export * from './useUiStore';
-export * from './useUiNavbarStore';
+
+//Admin
 export * from './admin/useOperadorStore';
 export * from './admin/useTecnicoStore';
+export * from './admin/useEquipoStore';
+
+//Ui
+export * from './useUiStore';
+export * from './useUiNavbarStore';
 export * from './useUiModalAddStore';
 

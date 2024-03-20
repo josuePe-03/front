@@ -1,27 +1,28 @@
 import React from "react";
 
-export default function TrUsuarios({ tecnico }) {
+export default function TrEquipos() {
   return (
     <tr>
       <th scope="col" className="px-6 py-3">
-        Id
+        No Sere
       </th>
       <th scope="col" className="px-6 py-3">
-        Nombre
+        Marca
       </th>
       <th scope="col" className="px-6 py-3">
-        Apellidos
+        Modelo
       </th>
       <th scope="col" className="px-6 py-3">
-        Direccion
+        Categoria
       </th>
       <th scope="col" className="px-6 py-3">
-        Edad
+        Fecha Agregado
       </th>
-
-      {tecnico ? (<th scope="col" className="px-6 py-3">Area</th>) : ("")}
       <th scope="col" className="px-6 py-3">
-        Unidad Medica
+        Fecha Fabricacion
+      </th>
+      <th scope="col" className="px-6 py-3">
+        Fecha Instalacion
       </th>
       <th scope="col" className="px-6 py-3">
         Opciones
