@@ -32,6 +32,7 @@ export default function Usuarios({ items, tecnico }) {
       <td className="px-6 py-4 ">{items.nombre}</td>
       <td className="px-6 py-4">{items.apellidos}</td>
       <td className="px-6 py-4">{items.direccion}</td>
+      <td className="px-6 py-4">{items.user.email}</td>
       <td className="px-6 py-4">{items.edad}</td>
 
       {tecnico ? <td className="px-6 py-4">{items.area}</td> : ""}

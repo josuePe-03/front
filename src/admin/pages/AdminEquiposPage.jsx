@@ -39,7 +39,7 @@ export default function AdminOperadoresPage() {
                   type="search"
                   id="search-dropdown"
                   className="pl-5 pr-2 py-2 border-2 border-gray-400 w-full sm:w-fit z-20 text-sm text-gray-900 bg-gray-50 rounded-lg "
-                  placeholder="Busca Operador"
+                  placeholder="Busca Equipo"
                   // value={busqueda || ""}
                   // onChange={handleChange}
                 />

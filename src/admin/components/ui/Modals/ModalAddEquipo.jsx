@@ -89,7 +89,6 @@ export default function ModalAddEquipo({ tecnico }) {
         isOpen={isEquipoAddModalOpen}
         onRequestClose={onCloseModal}
         style={customStyles}
-        className="modal"
         overlayClassName="modal-fondo"
         closeTimeoutMS={200}
       >
@@ -98,7 +97,7 @@ export default function ModalAddEquipo({ tecnico }) {
             Agregar Equipo
           </h3>
           <form onSubmit={formik.handleSubmit}>
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-3">
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   No Serie
@@ -179,6 +178,7 @@ export default function ModalAddEquipo({ tecnico }) {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Fecha Fabricacion
                 </label>
+                
                 <input
                   id="fecha_fabricacion"
                   type="datetime-local"

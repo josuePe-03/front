@@ -71,7 +71,7 @@ export default function AdminOperadoresPage() {
                       <tbody>
                         {operadores === "Sin operadores existentes" ? (
                           <tr>
-                            <td className="px-6 py-4 text-center " colSpan={7}>
+                            <td className="px-6 py-4 text-center " colSpan={8}>
                               {operadores}
                             </td>
                           </tr>

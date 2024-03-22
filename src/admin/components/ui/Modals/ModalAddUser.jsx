@@ -52,6 +52,7 @@ export default function ModalAddUser({ tecnico }) {
     email: "" + "@example.com",
     password: "123456",
     rol: "",
+    area:"",
     unidad_medica: "Monterrey",
     is_delete: false,
   });
@@ -63,20 +64,18 @@ export default function ModalAddUser({ tecnico }) {
       try {
         if (tecnico) {
           const rol = 2;
-          const area = "Electricista";
-          const email = values.nombre + values.edad + "@example.com";
+          const email = values.nombre +values.apellidos.slice(0,2) + values.edad   + "@example.com";
           // Create a new object that includes all the existing values and the new email
           const updatedValues = {
             ...values,
             email: email, // Add the dynamically generated email
             rol: rol,
-            area: area,
           };
           // TODO:
           await startSavingTecnico(updatedValues);
         } else {
           const rol = 1;
-          const email = values.nombre + values.edad + "@example.com";
+          const email = values.nombre +values.apellidos.slice(0,2) + values.edad   + "@example.com";
           // Create a new object that includes all the existing values and the new email
           const updatedValues = {
             ...values,
@@ -114,7 +113,6 @@ export default function ModalAddUser({ tecnico }) {
         isOpen={isUserAddModalOpen}
         onRequestClose={onCloseModal}
         style={customStyles}
-        className="modal"
         overlayClassName="modal-fondo"
         closeTimeoutMS={200}
       >
@@ -123,7 +121,7 @@ export default function ModalAddUser({ tecnico }) {
             {tecnico ? "Agregar Tecnico" : "Agregar Operador"}
           </h3>
           <form onSubmit={formik.handleSubmit}>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 gap-3">
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Nombre
@@ -149,11 +147,47 @@ export default function ModalAddUser({ tecnico }) {
                   value={formik.values.apellidos}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  placeholder="Apellido Materno"
+                  placeholder="Apellidos"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 />
               </div>
+
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Edad
+                </label>
+                <input
+                  id="edad"
+                  type="text"
+                  value={formik.values.edad}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  placeholder="Edad"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required
+                />
+              </div>
+              
+              {tecnico ? (
+                <div className="">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Area
+                  </label>
+                  <input
+                    id="area"
+                    type="text"
+                    value={formik.values.area}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    placeholder="Area Tecnica"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required
+                  />
+                </div>
+              ) : (
+                ""
+              )}
               <div className="md:col-span-2">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Direccion
@@ -169,27 +203,13 @@ export default function ModalAddUser({ tecnico }) {
                   required
                 />
               </div>
-              <div>
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Edad
-                </label>
-                <input
-                  id="edad"
-                  type="number"
-                  value={formik.values.edad}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  placeholder="Edad"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  required
-                />
-              </div>
+
             </div>
             <button
               type="submit "
               className="mt-5 w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
             >
-              {tecnico ? "Agregar Tecnico" : "Agregar Operador"}
+              Editar Operador
             </button>
           </form>
         </div>

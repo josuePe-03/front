@@ -119,7 +119,6 @@ export default function ModalUpdateUser({ items, tecnico: tecnicoTrue }) {
         isOpen={isUserModalOpen}
         onRequestClose={onCloseModal}
         style={customStyles}
-        className="modal"
         overlayClassName="modal-fondo"
         closeTimeoutMS={200}
       >
@@ -130,7 +129,7 @@ export default function ModalUpdateUser({ items, tecnico: tecnicoTrue }) {
             }
           </h3>
           <form onSubmit={formik.handleSubmit}>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 gap-3">
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Nombre
@@ -161,6 +160,23 @@ export default function ModalUpdateUser({ items, tecnico: tecnicoTrue }) {
                   required
                 />
               </div>
+
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Edad
+                </label>
+                <input
+                  id="edad"
+                  type="text"
+                  value={formik.values.edad}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  placeholder="Edad"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required
+                />
+              </div>
+              
               {tecnicoTrue ? (
                 <div className="">
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -195,21 +211,7 @@ export default function ModalUpdateUser({ items, tecnico: tecnicoTrue }) {
                   required
                 />
               </div>
-              <div>
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Edad
-                </label>
-                <input
-                  id="edad"
-                  type="text"
-                  value={formik.values.edad}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  placeholder="Edad"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  required
-                />
-              </div>
+
             </div>
             <div className="mt-1">
               <h2 className="text-sm text-red-900">

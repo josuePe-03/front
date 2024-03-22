@@ -16,6 +16,9 @@ export default function TrUsuarios({ tecnico }) {
         Direccion
       </th>
       <th scope="col" className="px-6 py-3">
+        Correo Electronico
+      </th>
+      <th scope="col" className="px-6 py-3">
         Edad
       </th>
 

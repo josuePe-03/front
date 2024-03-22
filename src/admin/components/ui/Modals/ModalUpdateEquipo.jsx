@@ -104,13 +104,12 @@ export default function ModalUpdateEquipo({ items }) {
         isOpen={isEquipoModalOpen}
         onRequestClose={onCloseModal}
         style={customStyles}
-        className="modal"
         overlayClassName="modal-fondo"
         closeTimeoutMS={200}
       >
-        <div className="space-y-6">
+        <div className="space-y-4">
           <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Agregar Equipo
+           Editar Equipo
           </h3>
           <form onSubmit={formik.handleSubmit}>
             <div className="grid md:grid-cols-2 gap-4">
@@ -126,7 +125,7 @@ export default function ModalUpdateEquipo({ items }) {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   placeholder="No Serie"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 />
               </div>
