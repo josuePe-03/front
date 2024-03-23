@@ -1,0 +1,1 @@
+export {default as TecnicoPage } from './pages/TecnicoPage'
