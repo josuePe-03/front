@@ -1,4 +1,3 @@
-import { useAuthStore } from "../../hooks/useAuthStore";
 import { useState } from "react";
 import { useUiNavbarStore } from "../../hooks";
 import {ButtonHamburger , ButtonClose , ButtonLogoutNavbar,LinksOperador} from "./"
@@ -31,7 +30,7 @@ export default function Navbar() {
             <ul className="  space-y-5 font-medium flex flex-col items-center">
               <li className="flex justify-center mt-5">
                 <div className="w-full">
-                  <img src="./logo.png" className="w-10" alt="" />
+                  <img src="../logo.png" className="w-10" alt="" />
                 </div>
               </li>
 

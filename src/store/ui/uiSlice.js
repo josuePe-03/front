@@ -9,9 +9,9 @@ export const uiSlice = createSlice({
     //Modal Operador
     isUserModalOpen: false,
     isUserAddModalOpen: false,
-    //Modal Equipo
-    isTecnicoModalOpen: false,
-    isTecnicoAddModalOpen: false,
+    //Modam Add Incidencia
+    isIncidenciaModalOpen: false,
+
   },
   reducers: {
     //EQUIPO
@@ -28,7 +28,6 @@ export const uiSlice = createSlice({
       state.isEquipoAddModalOpen = false;
     },
     //USER
-    //EQUIPO
     onOpenUserModal: (state) => {
       state.isUserModalOpen = true;
     },
@@ -40,6 +39,14 @@ export const uiSlice = createSlice({
     },
     onCloseUserAddModal: (state) => {
       state.isUserAddModalOpen = false;
+    },
+
+    //INCIDENCIA
+    onOpenIncidenciaModal: (state) => {
+      state.isIncidenciaModalOpen = true;
+    },
+    onCloseIncidenciaModal: (state) => {
+      state.isIncidenciaModalOpen = false;
     },
   },
 });
@@ -55,5 +62,8 @@ export const {
   onOpenUserAddModal,
   onCloseUserAddModal,
   onCloseUserModal,
-  onOpenUserModal
+  onOpenUserModal,
+  //INCIDENCIA
+  onOpenIncidenciaModal,
+  onCloseIncidenciaModal
 } = uiSlice.actions;

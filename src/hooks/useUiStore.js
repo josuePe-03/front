@@ -10,6 +10,9 @@ import {
   onCloseUserAddModal,
   onOpenUserModal,
   onCloseUserModal,
+  //INCIDENCIA
+  onOpenIncidenciaModal,
+  onCloseIncidenciaModal
 } from "../store";
 
 export const useUiStore = () => {
@@ -21,6 +24,7 @@ export const useUiStore = () => {
     isEquipoAddModalOpen,
     isUserAddModalOpen,
     isUserModalOpen,
+    isIncidenciaModalOpen,
   } = useSelector((state) => state.ui);
 
   //EQUIPO
@@ -50,8 +54,13 @@ export const useUiStore = () => {
     dispatch(onCloseUserAddModal());
   };
 
-
-
+  //INCIDENCIA
+  const openIncidenciaModal = () => {
+    dispatch(onOpenIncidenciaModal());
+  };
+  const closeIncidenciaModal = () => {
+    dispatch(onCloseIncidenciaModal());
+  };
 
   return {
     //* Propiedades
@@ -60,6 +69,8 @@ export const useUiStore = () => {
     //USER
     isUserModalOpen,
     isUserAddModalOpen,
+    //INCIDENCIA
+    isIncidenciaModalOpen,
 
     //* Métodos
     //equipo
@@ -72,5 +83,8 @@ export const useUiStore = () => {
     openUserAddModal,
     closeUserModal,
     closeUserAddModal,
+    //INCIDENCIA
+    openIncidenciaModal,
+    closeIncidenciaModal
   };
 };

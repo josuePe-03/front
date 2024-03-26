@@ -5,6 +5,24 @@ export {default as ButtonClose} from './ui/ButtonClose'
 export {default as ButtonLogoutNavbar} from './ui/ButtonLogoutNavbar'
 
 export {default as LinksOperador} from './ui/LinksOperador'
+export {default as TrEquipos} from './ui/Tr/TrEquipos'
+export {default as Equipos} from './ui/Equipos'
+
+//MODALS
+export {default as ModalAddIncidencia} from './ui/Modals/ModalAddIncidencia'
+
+export {default as Incidencias} from './ui/Incidencias'
+export {default as TrIncidencia} from './ui/Tr/TrIncidencia'
+export {default as TrIncidenciasEquipo} from './ui/Tr/TrIncidenciasEquipo'
+export {default as IncidenciasEquipo} from './ui/IncidenciasEquipo'
+
+
+
+
+
+
+
+
 
 
 

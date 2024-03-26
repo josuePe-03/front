@@ -1,218 +1,147 @@
 import { Navbar, Titulo } from "../components";
 import { useAuthStore } from "../../hooks/useAuthStore";
-import { IconLogout2, IconMapPin2 } from "@tabler/icons-react";
+import { IconLogout2, IconMapPin2 ,IconArrowRight} from "@tabler/icons-react";
 import Swal from "sweetalert2";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  Rectangle,
-  AreaChart,
-  Area,
-} from "recharts";
+import { Link } from "react-router-dom";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+
 
 export default function OperadorPage() {
   const { startLogout } = useAuthStore();
 
   return (
-    <div className="w-full h-screen bg-gray-200 ">
-      <Navbar />
+    <div className="w-full  md:h-screen sm:flex bg-gray-200 ">
+      <Navbar mensaje={true} />
 
-      <div className="w-full sm:pl-[3rem]  lg:pr-[20rem] pt-[2rem] sm:pt-0">
-        <div className="p-4 lg:pr-[20rem]">
-          <div className="h-[10vh]">
-            <Titulo texto={"Dashboard Operador"} />
-          </div>
-          <section className="h-[85vh] w-full relative z-20">
-            <div className="lg:grid lg:grid-rows-2 lg:grid-cols-2 lg:h-full space-y-4 lg:space-y-none lg:gap-y-6 pb-8">
-              <div className="col-span-1 h-[20rem] lg:h-full flex justify-center items-center px-6 pb-8 lg:m-4 bg-white shadow shadow-gray-300 rounded-xl">
-                <ResponsiveContainer width="100%" height="80%" className="">
-                  <h1 className="font-medium text-gray-400 text-xl mb-4">
-                    Equipo con mas incidencias
-                  </h1>
-                  <LineChart
-                    width={500}
-                    height={300}
-                    data={data}
-                    margin={{
-                      top: 5,
-                      right: 30,
-                      left: 20,
-                      bottom: 5,
-                    }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line
-                      type="monotone"
-                      dataKey="pv"
-                      stroke="#8884d8"
-                      strokeDasharray="5 5"
-                    />
-                    <Line
-                      type="monotone"
-                      dataKey="uv"
-                      stroke="#82ca9d"
-                      strokeDasharray="3 4 5 2"
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-              <div className="col-span-1 h-[20rem] lg:h-full flex justify-center items-center px-6 pb-8 lg:m-4 bg-white shadow shadow-gray-200 rounded-xl">
-                <ResponsiveContainer width="100%" height="80%">
-                  <h1 className="font-medium text-gray-400 text-xl mb-4">
-                    Incidencias por mes
-                  </h1>
-                  <BarChart
-                    width={500}
-                    height={300}
-                    data={data}
-                    margin={{
-                      top: 5,
-                      right: 30,
-                      left: 20,
-                      bottom: 5,
-                    }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar
-                      dataKey="pv"
-                      fill="#8884d8"
-                      activeBar={<Rectangle fill="pink" stroke="blue" />}
-                    />
-                    <Bar
-                      dataKey="uv"
-                      fill="#82ca9d"
-                      activeBar={<Rectangle fill="gold" stroke="purple" />}
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-              <div className="col-span-2 h-[20rem] lg:h-full flex justify-center items-center  px-6 pb-8 lg:m-4 bg-white rounded-xl shadow shadow-gray-200">
-                <ResponsiveContainer width="100%" height="80%">
-                  <h1 className="font-medium text-gray-400 text-xl mb-4">
-                    Control de Viáticos
-                  </h1>
-                  <AreaChart
-                    width={500}
-                    height={200}
-                    data={data}
-                    syncId="anyId"
-                    margin={{
-                      top: 10,
-                      right: 30,
-                      left: 0,
-                      bottom: 0,
-                    }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Area
-                      type="monotone"
-                      dataKey="uv"
-                      stroke="#8884d8"
-                      fill="#8884d8"
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </section>
-        </div>
+      <div className="w-full sm:pl-[3.9rem] lg:pr-[20rem]">
+        <div className="w-full font-semibold">
+          <div className="w-full flex ">
+            <div className=" w-full  ">
+              <div className="mt-8 sm:mt-0 p-6 lg:pt-5 w-full">
+                <div className="w-full">
+                  <div className="pt-3 pb-1 grid lg:grid-cols-2 lg:mb-2">
+                    <div className="lg:flex items-center lg:items-start xl:flex-col xl:w-6/12">
+                      <div className="lg:mr-2 xl:mr-0  xl:mb-2 ">
+                        <h1 className="text-4xl font-semibold">Dashboard</h1>
+                      </div>
+                    </div>
+                  </div>
 
-        {/* UBICACION */}
-        <div className="w-[20rem] h-screen fixed top-0 right-0 bg-white hidden lg:flex justify-end flex-col shadow shadow-gray-300">
-          <div className="rounded-xl flex justify-end mb-16">
-            <img
-              src="./angeles-monterrey.JPG"
-              className="w-[17rem] rounded-s-lg"
-              alt=""
-            />
-          </div>
-          <div className="h-[10rem] flex px-16">
-            <div>
-              <div className="flex">
-                <IconMapPin2 className="-ml-10 mr-4" />
-                <p className="text-gray-500 text-sm mb-2">Ubicacion</p>
+                  {/* Incidencias proximas */}
+                  <div className="">
+                    <h1 className="text-xl text-gray-400 font-bold mb-2">
+                      Visitas Tecnicas Proximas
+                    </h1>
+                    <div className="p-4  bg-white shadow-xl shadow-gray-300 rounded-3xl">
+                      <div>
+                        {/* {incidencia.length
+                          ? incidencia.map((items, i) => (
+                              <VisitaTecnica key={i} incidencia={items} />
+                            ))
+                          : "Sin visitas proximas"} */}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Equipos */}
+                  <div className="mt-4">
+                    <div className="flex justify-between  my-10">
+                      <h1 className="text-xl text-gray-400 font-bold">
+                        Equipos Medicos
+                      </h1>
+                      <Link to="/equipos" className="text-gray-600  flex">
+                        Ver Equipos <IconArrowRight className="ml-1" />
+                      </Link>
+                    </div>
+                    <div className="grid lg:grid-cols-4 gap-4">
+                      <div className="p-5 flex flex-col h-[14rem] justify-between items-center  bg-white rounded-xl">
+                        <div>imagen</div>
+                        <div>
+                          <p>Mastografos</p>
+                        </div>
+                      </div>
+                      <div className="p-5 flex flex-col h-[14rem] justify-between items-center  bg-white rounded-xl">
+                        <div>imagen</div>
+                        <div>
+                          <p>Tomografo</p>
+                        </div>
+                      </div>
+                      <div className="p-5 flex flex-col h-[14rem] justify-between items-center  bg-white rounded-xl">
+                        <div>imagen</div>
+                        <div>
+                          <p>Ultrasonido</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <div className="lg:grid lg:grid-rows-3 lg:grid-cols-3  lg:grid-flow-col gap-4 mt-2 lg:mt-0">
+                    <div className="h-[15rem] lg:h-full row-span-3 col-span-2 relative  p-4 shadow-xl bg-gradient-to-l from-[#76c2ff] to-[#76c2ff] shadow-gray-300 rounded-3xl">
+
+                    </div>
+                    <div className="row-span-1 col-span-1 my-4 lg:my-0">
+                      <Link
+                        to="/ver-equipos"
+                        className=" shadow-xl  shadow-gray-300 rounded-3xl bg-gradient-to-r from-[#b6ddff] to-[#2da3ff] p-3 flex items-center"
+                      >
+                        <div className="p-2 rounded-2xl backdrop-blur-xl bg-white/40 border-1">
+                          <IconTool size={40} color="#0054aa" />
+                        </div>
+                        <div className="ml-4 text-2xl font-bold text-gray-600 ">
+                          Ver Equipos
+                        </div>
+                      </Link>
+                    </div>
+                  </div> */}
+                </div>
               </div>
-              <p className="text-gray-500 text-bassic">
-                Av. Cto. Frida Kahlo 180, Valle Oriente, 66260 San Pedro Garza
-                García, N.L.
-              </p>
+            </div>
+
+            {/* MENSAJES */}
+            <div className="w-[20rem] h-screen fixed right-0 bg-white hidden lg:flex justify-end flex-col shadow shadow-gray-300">
+              <div className="rounded-xl flex justify-end mb-16">
+                <img
+                  src="./angeles-monterrey.JPG"
+                  className="w-[17rem] rounded-s-lg"
+                  alt=""
+                />
+              </div>
+              <div className="h-[10rem] flex px-16">
+                <div>
+                  <div className="flex">
+                    <IconMapPin2 className="-ml-10 mr-4" />
+                    <p className="text-gray-500 text-sm mb-2">Ubicacion</p>
+                  </div>
+                  <p className="text-gray-500 text-bassic">
+                    Av. Cto. Frida Kahlo 180, Valle Oriente, 66260 San Pedro
+                    Garza García, N.L.
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => {
+                  Swal.fire({
+                    title: "Deseas Cerrar Sesion?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Si, cierra sesion!",
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      logout();
+                    }
+                  });
+                }}
+                className="h-20 bg-gray-300 text-gray-400 w-full flex items-center justify-center space-x-2"
+              >
+                <div>Cerrar Sesion</div>
+                <div>
+                  <IconLogout2 />
+                </div>
+              </button>
             </div>
           </div>
-          <button
-            onClick={()=>{startLogout()}}
-            className="h-20 bg-gray-300 text-gray-400 w-full flex items-center justify-center space-x-2"
-          >
-            <div>
-              <p className="font-medium">Cerrar Sesion</p>
-            </div>
-            <div>
-              <IconLogout2 />
-            </div>
-          </button>
         </div>
       </div>
     </div>

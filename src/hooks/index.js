@@ -14,3 +14,7 @@ export * from './useUiStore';
 export * from './useUiNavbarStore';
 export * from './useUiModalAddStore';
 
+//incidencia
+export * from './operador/useIncidenciaStore';
+
+
