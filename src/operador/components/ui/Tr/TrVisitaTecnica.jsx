@@ -1,37 +1,34 @@
 import React from "react";
 
-export default function TrIncidencia() {
+export default function TrVisitaTecnica() {
   return (
     <tr>
       <th scope="col" className="px-3 py-3">
-        No Incidencia
+        Id Visita
       </th>
       <th scope="col" className="px-3 py-3">
-        No Serie
+        Tecnico Asignado
       </th>
       <th scope="col" className="px-3 py-3">
-        Marca
+        Id Incidencia
       </th>
       <th scope="col" className="px-3 py-3">
-        Modelo
+        Tipo Incidencia
       </th>
       <th scope="col" className="px-3 py-3">
-        Unidad
+        Status
+      </th>
+      <th scope="col" className="px-3 py-3">
+        Fecha Revisada
+      </th>
+      <th scope="col" className="px-3 py-3">
+        Fecha Visita Proxima
       </th>
       <th scope="col" className="px-3 py-3">
         Observacion
       </th>
       <th scope="col" className="px-3 py-3">
-        Fecha Incidencia
-      </th>
-      <th scope="col" className="px-3 py-3">
-        Tipo Visita
-      </th>
-      <th scope="col" className="px-3 py-3">
         Estado
-      </th>
-      <th scope="col" className="px-3 py-3">
-        Visitas
       </th>
     </tr>
   );

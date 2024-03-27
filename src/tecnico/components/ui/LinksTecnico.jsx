@@ -1,8 +1,8 @@
-import {  IconUsers,IconDeviceImac,IconTools,IconCalendarEvent, IconSettings} from "@tabler/icons-react";
+import {  IconUsers,IconDeviceImac,IconTools,IconCalendarEvent, IconSettings, IconMapPin, IconMapPin2} from "@tabler/icons-react";
 import { ButtonLink } from "./ButtonLink";
 import { useUiNavbarStore } from "../../../hooks";
 
-export default function LinksOperador() {
+export default function LinksTecnico() {
 
   const { closeNavbar } = useUiNavbarStore();
 
@@ -35,6 +35,11 @@ export default function LinksOperador() {
       <li>
         <ButtonLink  onToggle={closeNavbar} to="/agenda">
           <IconCalendarEvent   className="text-gray-600"size={20} />
+        </ButtonLink>
+      </li>
+      <li>
+        <ButtonLink  onToggle={closeNavbar} to="/visitas">
+          <IconMapPin2   className="text-gray-600"size={20} />
         </ButtonLink>
       </li>
     </>

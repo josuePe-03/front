@@ -17,4 +17,8 @@ export * from './useUiModalAddStore';
 //incidencia
 export * from './operador/useIncidenciaStore';
 
+//VISITAS TECNICAS
+export * from './tecnico/useVisitaTecnicaStore';
+
+
 

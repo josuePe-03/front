@@ -4,7 +4,7 @@ export {default as ButtonHamburger} from './ui/ButtonHamburger'
 export {default as ButtonClose} from './ui/ButtonClose'
 export {default as ButtonLogoutNavbar} from './ui/ButtonLogoutNavbar'
 
-export {default as LinksOperador} from './ui/LinksOperador'
+export {default as LinksTecnico} from './ui/LinksTecnico'
 
 
 

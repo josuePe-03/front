@@ -10,5 +10,7 @@ export * from './admin/tecnicoSlice'
 export * from './admin/equipoSlice';;
 export * from './ui/uiModalAddUser';
 export * from './operador/incidenciaSlice';
+export * from './tecnico/visitaTecnicaSlice';
+
 
 export * from './store';

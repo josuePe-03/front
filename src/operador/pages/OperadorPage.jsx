@@ -1,13 +1,26 @@
-import { Navbar, Titulo } from "../components";
-import { useAuthStore } from "../../hooks/useAuthStore";
-import { IconLogout2, IconMapPin2 ,IconArrowRight} from "@tabler/icons-react";
+import { Navbar, ProximaVisita } from "../components";
+import { useAuthStore, useVisitaTecnicaStore } from "../../hooks";
+import { IconLogout2, IconMapPin2, IconArrowRight } from "@tabler/icons-react";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-
-
+import { useEffect } from "react";
 
 export default function OperadorPage() {
-  const { startLogout } = useAuthStore();
+  const { startLogout, user } = useAuthStore();
+
+  const { visitaProxima, startLoadingVisitasTecnicasProxima } =
+    useVisitaTecnicaStore();
+
+  useEffect(() => {
+    startLoadingVisitasTecnicasProxima(user.uid);
+    // Función que se ejecutará cada 5 segundos
+    const interval = setInterval(() => {
+      startLoadingVisitasTecnicasProxima(user.uid);
+    }, 5000); // 5000 milisegundos = 5 segundos
+
+    // Función de limpieza que se ejecutará cuando el componente se desmonte
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="w-full  md:h-screen sm:flex bg-gray-200 ">
@@ -34,11 +47,11 @@ export default function OperadorPage() {
                     </h1>
                     <div className="p-4  bg-white shadow-xl shadow-gray-300 rounded-3xl">
                       <div>
-                        {/* {incidencia.length
-                          ? incidencia.map((items, i) => (
-                              <VisitaTecnica key={i} incidencia={items} />
+                         {visitaProxima
+                          ? visitaProxima.map((items, i) => (
+                              <ProximaVisita key={i} items={items} />
                             ))
-                          : "Sin visitas proximas"} */}
+                          : "Sin visitas proximas"} 
                       </div>
                     </div>
                   </div>
@@ -74,25 +87,6 @@ export default function OperadorPage() {
                       </div>
                     </div>
                   </div>
-
-                  {/* <div className="lg:grid lg:grid-rows-3 lg:grid-cols-3  lg:grid-flow-col gap-4 mt-2 lg:mt-0">
-                    <div className="h-[15rem] lg:h-full row-span-3 col-span-2 relative  p-4 shadow-xl bg-gradient-to-l from-[#76c2ff] to-[#76c2ff] shadow-gray-300 rounded-3xl">
-
-                    </div>
-                    <div className="row-span-1 col-span-1 my-4 lg:my-0">
-                      <Link
-                        to="/ver-equipos"
-                        className=" shadow-xl  shadow-gray-300 rounded-3xl bg-gradient-to-r from-[#b6ddff] to-[#2da3ff] p-3 flex items-center"
-                      >
-                        <div className="p-2 rounded-2xl backdrop-blur-xl bg-white/40 border-1">
-                          <IconTool size={40} color="#0054aa" />
-                        </div>
-                        <div className="ml-4 text-2xl font-bold text-gray-600 ">
-                          Ver Equipos
-                        </div>
-                      </Link>
-                    </div>
-                  </div> */}
                 </div>
               </div>
             </div>

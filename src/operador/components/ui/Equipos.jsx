@@ -13,8 +13,7 @@ export default function Equipos({ items }) {
       <td className="px-3 py-4">{items.fecha_fabricacion}</td>
       <td className="px-3 py-4">{items.fecha_instalacion}</td>
       <td className="px-3 py-4 flex justify-center">
-
-        <ModalAddIncidencia/>
+        <ModalAddIncidencia items={items}/>
       </td>
       <td className="px-3 py-4  ">
         <Link

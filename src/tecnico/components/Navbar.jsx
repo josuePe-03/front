@@ -1,7 +1,7 @@
 import { useAuthStore } from "../../hooks/useAuthStore";
 import { useState } from "react";
 import { useUiNavbarStore } from "../../hooks";
-import {ButtonHamburger , ButtonClose , ButtonLogoutNavbar,LinksOperador} from "./"
+import {ButtonHamburger , ButtonClose , ButtonLogoutNavbar,LinksTecnico} from "./"
 
 export default function Navbar() {
 
@@ -35,7 +35,7 @@ export default function Navbar() {
                 </div>
               </li>
 
-              <LinksOperador onToggle={toggleSidebar} />
+              <LinksTecnico onToggle={toggleSidebar} />
 
               <li>
                  <ButtonClose  /> 

@@ -25,14 +25,14 @@ export const useIncidenciaStore = () => {
     dispatch(onSetActiveIncidencia(calendarEvent));
   };
 
-  const startSavingIncidencia = async (tecnico) => {
+  const startSavingIncidencia = async (incidencia) => {
     try {
       // Creando
       const { data } = await clienteAxios.post(
-        "/admin/tecnico/agregar-tecnico",
-        tecnico
+        "/operador/incidencia/agregar-incidencia",
+        incidencia
       );
-      dispatch(onAddNewIncidencia({ ...tecnico }));
+      dispatch(onAddNewIncidencia({ ...incidencia }));
       startLoadingIncidencias();
 
     } catch (error) {
@@ -88,7 +88,6 @@ export const useIncidenciaStore = () => {
         `/operador/incidencia/obtener-incidencia/${incidencia}`,
       );
       dispatch(onLoadIncidencia(data.incidencia));
-      dispatch(onLogo(data.incidencia));
 
 
       if (!data.ok) return dispatch(onLoadIncidencias(data.msg));

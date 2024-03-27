@@ -15,6 +15,13 @@ export {default as Incidencias} from './ui/Incidencias'
 export {default as TrIncidencia} from './ui/Tr/TrIncidencia'
 export {default as TrIncidenciasEquipo} from './ui/Tr/TrIncidenciasEquipo'
 export {default as IncidenciasEquipo} from './ui/IncidenciasEquipo'
+export {default as TrVisitaTecnica} from './ui/Tr/TrVisitaTecnica'
+
+export {default as VisitaTecnica} from './ui/VisitaTecnica'
+export {default as ProximaVisita} from './ui/ProximaVisita'
+
+
+
 
 
 

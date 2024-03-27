@@ -1,4 +1,5 @@
-import React from "react";
+import { IconMapPin2 } from "@tabler/icons-react";
+import { Link } from "react-router-dom";
 
 export default function Incidencias({ items }) {
   return (
@@ -22,6 +23,11 @@ export default function Incidencias({ items }) {
       ) : (
         <td className="text-red-900 font-bold px-3 py-4">{items.estado}</td>
       )}
+      <td className=" px-3 py-4 flex justify-center items-center">
+        <Link to={`/visita-incidencia/${items._id}`}>
+          <IconMapPin2 size={30} />
+        </Link>
+      </td>
     </tr>
   );
 }
