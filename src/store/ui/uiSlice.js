@@ -11,6 +11,9 @@ export const uiSlice = createSlice({
     isUserAddModalOpen: false,
     //Modam Add Incidencia
     isIncidenciaModalOpen: false,
+    //MODAL TECNICO
+    isVisitaAddModalOpen: false,
+    isDiagnosticoAddModalOpen: false,
 
   },
   reducers: {
@@ -40,7 +43,6 @@ export const uiSlice = createSlice({
     onCloseUserAddModal: (state) => {
       state.isUserAddModalOpen = false;
     },
-
     //INCIDENCIA
     onOpenIncidenciaModal: (state) => {
       state.isIncidenciaModalOpen = true;
@@ -48,6 +50,20 @@ export const uiSlice = createSlice({
     onCloseIncidenciaModal: (state) => {
       state.isIncidenciaModalOpen = false;
     },
+    //TECNICO
+    onOpenVisitaAddModal: (state) => {
+      state.isVisitaAddModalOpen = true;
+    },
+    onCloseVisitaAddModal: (state) => {
+      state.isVisitaAddModalOpen = false;
+    },
+    onOpenDiagnosticoAddModal: (state) => {
+      state.isDiagnosticoAddModalOpen = true
+    },
+    onCloseDiagnosticoAddModal: (state) => {
+      state.isDiagnosticoAddModalOpen = false
+    },
+
   },
 });
 
@@ -65,5 +81,11 @@ export const {
   onOpenUserModal,
   //INCIDENCIA
   onOpenIncidenciaModal,
-  onCloseIncidenciaModal
+  onCloseIncidenciaModal,
+  //Tecnico
+  onOpenVisitaAddModal,
+  onCloseVisitaAddModal,
+  onOpenDiagnosticoAddModal,
+  onCloseDiagnosticoAddModal
+  
 } = uiSlice.actions;

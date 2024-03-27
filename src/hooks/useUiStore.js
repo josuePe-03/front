@@ -12,7 +12,12 @@ import {
   onCloseUserModal,
   //INCIDENCIA
   onOpenIncidenciaModal,
-  onCloseIncidenciaModal
+  onCloseIncidenciaModal,
+  //TECNICO
+  onOpenVisitaAddModal,
+  onCloseVisitaAddModal,
+  onOpenDiagnosticoAddModal,
+  onCloseDiagnosticoAddModal
 } from "../store";
 
 export const useUiStore = () => {
@@ -25,6 +30,9 @@ export const useUiStore = () => {
     isUserAddModalOpen,
     isUserModalOpen,
     isIncidenciaModalOpen,
+    isVisitaAddModalOpen,
+    isDiagnosticoAddModalOpen,
+
   } = useSelector((state) => state.ui);
 
   //EQUIPO
@@ -62,6 +70,21 @@ export const useUiStore = () => {
     dispatch(onCloseIncidenciaModal());
   };
 
+  //tecnico
+  const openVisitaAddModal = () => {
+    dispatch(onOpenVisitaAddModal());
+  };
+  const closeVisitaAddModal = () => {
+    dispatch(onCloseVisitaAddModal());
+  };
+  const openDiagnosticoAddModal = () => {
+    dispatch(onOpenDiagnosticoAddModal());
+  };
+  const closeDiagnosticoAddModal = () => {
+    dispatch(onCloseDiagnosticoAddModal());
+  };
+
+
   return {
     //* Propiedades
     isEquipoModalOpen,
@@ -71,6 +94,9 @@ export const useUiStore = () => {
     isUserAddModalOpen,
     //INCIDENCIA
     isIncidenciaModalOpen,
+    //Tecnico
+    isVisitaAddModalOpen,
+    isDiagnosticoAddModalOpen,
 
     //* Métodos
     //equipo
@@ -85,6 +111,11 @@ export const useUiStore = () => {
     closeUserAddModal,
     //INCIDENCIA
     openIncidenciaModal,
-    closeIncidenciaModal
+    closeIncidenciaModal,
+    //Tecnico
+    openVisitaAddModal,
+    closeVisitaAddModal,
+    openDiagnosticoAddModal,
+    closeDiagnosticoAddModal
   };
 };

@@ -36,13 +36,10 @@ export const incidenciaSlice = createSlice({
         onLoadIncidencias: (state, { payload = [] }) => {
             state.isLoadingIncidencias = false;
             state.incidencias = payload;
-            state.incidencia      = [];
-
 
         },
         onLoadIncidencia: (state, { payload = [] }) => {
             state.isLoadingIncidencias = false;
-            state.incidencias      = [],
             state.incidencia = payload;
 
         },
