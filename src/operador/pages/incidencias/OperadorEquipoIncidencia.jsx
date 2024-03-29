@@ -7,17 +7,20 @@ import {
 import { Link, useParams } from "react-router-dom";
 import { IconArrowLeft, IconLogout2, IconMapPin2 } from "@tabler/icons-react";
 import { useEffect } from "react";
-import { useIncidenciaStore } from "../../../hooks";
+import { useEquipoStore, useIncidenciaStore } from "../../../hooks";
 
 export default function OperadorIncidencia() {
-  const { equipo } = useParams();
+  const { equipo: id_equipo } = useParams();
 
   const { incidencia, startLoadingIncidencia } = useIncidenciaStore();
+  const { equipo, startLoadingEquipo } = useEquipoStore();
 
   useEffect(() => {
-    startLoadingIncidencia(equipo);
+    startLoadingIncidencia(id_equipo);
+    startLoadingEquipo(id_equipo);
     const interval = setInterval(() => {
-      startLoadingIncidencia(equipo);
+      startLoadingIncidencia(id_equipo);
+      startLoadingEquipo(id_equipo);
     }, 5000); // 5000 milisegundos = 5 segundos
 
     // Función de limpieza que se ejecutará cuando el componente se desmonte
@@ -53,17 +56,17 @@ export default function OperadorIncidencia() {
                     {/* TITULOS */}
                     <div className="w-full">
                       <h1 className="text-gray-500 font-bold text-4xl">
-                        {/* {equipo.modelo} */}
+                        {equipo.modelo}
                       </h1>
                       <p className="text-3xl font-bold text-gray-400">
-                        {/* {equipo.marca} */}
+                        {equipo.marca}
                       </p>
                     </div>
                   </div>
                 </div>
 
                 {/* MAIN */}
-                <main className="grid md:grid-cols-2 md:h-[75vh] gap-y-4 md:gap-y-4 md:gap-x-4 ">
+                <main className="grid md:grid-cols-2 md:h-[72vh] gap-y-4 md:gap-y-4 md:gap-x-4 ">
                   <div className="w-full  bg-white p-6 rounded-xl ">
                     <div className="flex justify-between items-center">
                       <h1 className="text-lg text-gray-400 font-bold">

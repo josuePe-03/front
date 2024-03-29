@@ -1,11 +1,17 @@
-import { Navbar,TrVisitaTecnica, VisitaTecnica } from "../../components";
+import {
+  ButtonRegresar,
+  Navbar,
+  TrVisitaTecnica,
+  VisitaTecnica,
+} from "../../components";
 import { IconArrowLeft, IconLogout2, IconMapPin2 } from "@tabler/icons-react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useVisitaTecnicaStore } from "../../../hooks";
 import { useEffect } from "react";
 
 export default function OperadorVisitaIncidencia() {
   const { incidencia } = useParams();
+  const navigate = useNavigate();
 
   const { visitasTecnicas, startLoadingVisitasTecnicasIncidencia } =
     useVisitaTecnicaStore();
@@ -32,19 +38,19 @@ export default function OperadorVisitaIncidencia() {
                 {/* HEADER */}
                 <div className="w-full">
                   {/* LINK REGRESAR */}
-                  <Link
-                    to={`/incidencias`}
-                    className="w-[10rem] relative z-30 rounded-3xl  p-1.5 flex items-center"
-                  >
-                    <div className="ml-2 font-bold text-gray-600 flex items-center">
-                      <IconArrowLeft
-                        size={20}
-                        color="#0054aa"
-                        className="mr-1"
-                      />
-                      <p>Ver Incidencias</p>
-                    </div>
-                  </Link>
+
+                  <ButtonRegresar
+                    children={
+                      <>
+                        <IconArrowLeft
+                          size={20}
+                          color="#0054aa"
+                          className="mr-1"
+                        />
+                        <p>Ver Equipo</p>
+                      </>
+                    }
+                  />
                 </div>
 
                 <div className="mt-10 sm:w-full h-[15rem] md:h-[100%] bg-white p-6 rounded-xl md:col-span-2 relative w-[90vw] ">
@@ -59,15 +65,12 @@ export default function OperadorVisitaIncidencia() {
                       <div className=" w-full  rounded-xl">
                         <table className="w-full text-sm ">
                           <thead className="text-xs text-gray-400 bg-gray-50 ">
-                             <TrVisitaTecnica /> 
+                            <TrVisitaTecnica />
                           </thead>
                           <tbody className="text-xs text-gray-800">
-                             {visitasTecnicas.map((items, i) => (
-                                <VisitaTecnica
-                                  key={i}
-                                  items={items}
-                                />
-                              ))} 
+                            {visitasTecnicas.map((items, i) => (
+                              <VisitaTecnica key={i} items={items} />
+                            ))}
                           </tbody>
                         </table>
                       </div>

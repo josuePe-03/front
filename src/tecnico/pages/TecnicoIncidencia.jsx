@@ -14,6 +14,7 @@ export default function TecnicoIncidencia() {
     // Función de limpieza que se ejecutará cuando el componente se desmonte
     return () => clearInterval(interval);
   }, []);
+
   return (
     <div className="w-full  h-screen sm:flex bg-gray-100">
       <Navbar />
@@ -35,11 +36,11 @@ export default function TecnicoIncidencia() {
 
             <div className="mt-3  flex justify-center shadow shadow-gray-300  rounded-xl">
               <div className="relative  overflow-x-auto w-full  rounded-xl">
-                <table className="w-full text-sm ">
+                <table className="w-full">
                   <thead className="text-[12px] text-gray-400">
                     <TrIncidencia />
                   </thead>
-                  <tbody>
+                  <tbody className="text-xs">
                     {incidencias.map((items, i) => (
                       <Incidencias key={i} items={items} />
                     ))}

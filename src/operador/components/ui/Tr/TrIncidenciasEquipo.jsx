@@ -27,6 +27,9 @@ export default function TrIncidenciasEquipo() {
       <th scope="col" className="px-3 py-3">
         Estado
       </th>
+      <th scope="col" className="px-3 py-3">
+        Visitas
+      </th>
     </tr>
   );
 }

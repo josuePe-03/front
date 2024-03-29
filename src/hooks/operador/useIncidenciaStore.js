@@ -8,14 +8,13 @@ import {
   onSetActiveIncidencia,
   onUpdateIncidencia,
   onLoadIncidencia,
-  onLogoutModalIncidencia
+  onLogoutModalIncidencia,
 } from "../../store";
 
 export const useIncidenciaStore = () => {
-
   const dispatch = useDispatch();
 
-  const { incidencias,incidencia, activeIncidencia } = useSelector(
+  const { incidencias, incidencia, activeIncidencia } = useSelector(
     (state) => state.incidencia
   );
 
@@ -34,7 +33,6 @@ export const useIncidenciaStore = () => {
       );
       dispatch(onAddNewIncidencia({ ...incidencia }));
       startLoadingIncidencias();
-
     } catch (error) {
       console.log(error);
       Swal.fire("Error al guardar", error.response.data.msg, "error");
@@ -53,15 +51,32 @@ export const useIncidenciaStore = () => {
     }
   };
 
-  const startUpdateIncidencia = async (tecnico) => {
+  //TERMIANR INCIDENCIA
+  const startTerminarIncidencia = async (incidencia) => {
     // Todo: Llegar al backend
     try {
-      await clienteAxios.put(
-        `/admin/tecnico/actualizar-tecnico/${tecnico.id}`,
-        tecnico
-      );
-      dispatch(onUpdateIncidencia({ ...tecnico }));
-      startLoadingIncidencias();
+      Swal.fire({
+        title: "¿Deseas concluir la incidencia?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, concluir!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          clienteAxios.put(
+            `/operador/incidencia/terminar-incidencia/${incidencia._id}`,
+            incidencia
+          );
+          dispatch(onUpdateIncidencia({ ...incidencia }));
+          startLoadingIncidencias();
+
+          Swal.fire({
+            title: "¡Incidencia Concluida!",
+            icon: "success"
+          });
+        }
+      });
     } catch (error) {
       console.log(error);
       Swal.fire("Error al eliminar", error.response.data.msg, "error");
@@ -85,10 +100,9 @@ export const useIncidenciaStore = () => {
   const startLoadingIncidencia = async (incidencia) => {
     try {
       const { data } = await clienteAxios.get(
-        `/operador/incidencia/obtener-incidencia/${incidencia}`,
+        `/operador/incidencia/obtener-incidencia/${incidencia}`
       );
       dispatch(onLoadIncidencia(data.incidencia));
-
 
       if (!data.ok) return dispatch(onLoadIncidencias(data.msg));
     } catch (error) {
@@ -96,8 +110,10 @@ export const useIncidenciaStore = () => {
       console.log(error);
     }
   };
-  
-  const startLogoutModal = () =>{dispatch( onLogoutModalIncidencia() );}
+
+  const startLogoutModal = () => {
+    dispatch(onLogoutModalIncidencia());
+  };
 
   return {
     //* Propiedades
@@ -111,7 +127,7 @@ export const useIncidenciaStore = () => {
     startLoadingIncidencias,
     startLoadingIncidencia,
     startSavingIncidencia,
-    startUpdateIncidencia,
+    startTerminarIncidencia,
     startLogoutModal,
     startDeletingIncidencia,
   };

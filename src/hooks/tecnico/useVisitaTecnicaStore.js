@@ -25,11 +25,12 @@ export const useVisitaTecnicaStore = () => {
     dispatch(onSetActiveVisitaTecnica(calendarEvent));
   };
 
+  //AGREGAR VISITA
   const startSavingVisitaTecnica = async (visitaTecnica) => {
     try {
       // Creando
       const { data } = await clienteAxios.post(
-        "/operador/incidencia/agregar-incidencia",
+        "/tecnico/visita-incidencia/agregar-visita",
         visitaTecnica
       );
       dispatch(onAddNewVisitaTecnica({ ...visitaTecnica }));
@@ -39,6 +40,7 @@ export const useVisitaTecnicaStore = () => {
       Swal.fire("Error al guardar", error.response.data.msg, "error");
     }
   };
+
 
   const startDeletingVisitaTecnica = async (id) => {
     // Todo: Llegar al backend
@@ -52,15 +54,19 @@ export const useVisitaTecnicaStore = () => {
     }
   };
 
-  const startUpdateVisitaTecnica = async (visitaTecnica) => {
+
+  //TERMINAR VISITA
+  const startTerminarVisitaTecnica = async (visitaTecnica) => {
     // Todo: Llegar al backend
     try {
-      await clienteAxios.put(
-        `/admin/tecnico/actualizar-tecnico/${visitaTecnica.id}`,
-        visitaTecnica
-      );
-      dispatch(onUpdateVisitaTecnica({ ...visitaTecnica }));
-      startLoadingVisitasTecnicas();
+       await clienteAxios.put(
+         `/tecnico/visita-incidencia/terminar-visita/${visitaTecnica.id}`,
+         visitaTecnica
+       );
+
+       dispatch(onUpdateVisitaTecnica({ ...visitaTecnica }));
+       startLoadingVisitasTecnicas();
+
     } catch (error) {
       console.log(error);
       Swal.fire("Error al eliminar", error.response.data.msg, "error");
@@ -147,7 +153,7 @@ export const useVisitaTecnicaStore = () => {
     startLoadingVisitasTecnicasIncidencia,
     startLoadingVisitasTecnicasProxima,
     startSavingVisitaTecnica,
-    startUpdateVisitaTecnica,
+    startTerminarVisitaTecnica,
     startLogoutModal,
     startDeletingVisitaTecnica,
   };

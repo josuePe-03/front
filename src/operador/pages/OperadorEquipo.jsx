@@ -55,7 +55,7 @@ export default function OperadorIncidencia() {
             </div>
           </div>
 
-          <div className="lg:mt-5 m-4  flex justify-center shadow shadow-gray-300 bg-white rounded-xl">
+          <div className="lg:mt-5 mt-4   flex justify-center shadow shadow-gray-300 bg-white rounded-xl">
             <div className="relative  overflow-x-auto w-full  rounded-xl">
               <table className="w-full text-sm ">
                 <thead className="text-[12px] text-gray-400">

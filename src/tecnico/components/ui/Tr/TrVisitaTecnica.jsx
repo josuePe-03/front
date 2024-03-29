@@ -7,8 +7,9 @@ export default function TrVisitaTecnica() {
         Id Visita
       </th>
       <th scope="col" className="px-3 py-3">
-        Tecnico Asignado
+        Id Incidencia
       </th>
+
       <th scope="col" className="px-3 py-3">
         Tipo Incidencia
       </th>
@@ -16,14 +17,9 @@ export default function TrVisitaTecnica() {
         Status
       </th>
       <th scope="col" className="px-3 py-3">
-        Fecha Revisada
-      </th>
-      <th scope="col" className="px-3 py-3">
         Fecha Visita Proxima
       </th>
-      <th scope="col" className="px-3 py-3">
-        Observacion
-      </th>
+
       <th scope="col" className="px-3 py-3">
         Diagnosticar
       </th>

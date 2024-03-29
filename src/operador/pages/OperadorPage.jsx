@@ -47,11 +47,11 @@ export default function OperadorPage() {
                     </h1>
                     <div className="p-4  bg-white shadow-xl shadow-gray-300 rounded-3xl">
                       <div>
-                         {visitaProxima
+                          {visitaProxima != "Sin Visitas"
                           ? visitaProxima.map((items, i) => (
                               <ProximaVisita key={i} items={items} />
                             ))
-                          : "Sin visitas proximas"} 
+                          : "Sin visitas proximas"}  
                       </div>
                     </div>
                   </div>

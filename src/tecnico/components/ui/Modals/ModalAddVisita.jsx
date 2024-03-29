@@ -8,16 +8,18 @@ import { useFormik } from "formik";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 
-import { IconCheckupList } from "@tabler/icons-react";
+import { IconClipboardPlus } from "@tabler/icons-react";
 
 import {
   useUiStore,
   useIncidenciaStore,
   useAuthStore,
+  useVisitaTecnicaStore,
 } from "../../../../hooks";
 
 import Modal from "react-modal";
-import { compose } from "@reduxjs/toolkit";
+
+import {getTodayDateTime} from '../../../../helpers'
 
 const customStyles = {
   content: {
@@ -41,8 +43,10 @@ export default function ModalAddVisita({ items }) {
   const { isVisitaAddModalOpen, closeVisitaAddModal, openVisitaAddModal } =
     useUiStore();
   //inicidenciaStore
-  const { incidencia, startSavingIncidencia, startLogoutModal } =
+  const { incidencia, startLogoutModal } =
     useIncidenciaStore();
+
+  const {startSavingVisitaTecnica}  = useVisitaTecnicaStore();
   //AUTH
   const { user } = useAuthStore();
 
@@ -63,7 +67,7 @@ export default function ModalAddVisita({ items }) {
     fecha_revisado: new Date(),
     fecha_visita: "",
     observacion: "",
-    estado: "Pendiente",
+    estado: "Visita Pendiente",
     title: "Visita"+ incidencia?.id_operador?.unidad_medica + "Equipo" + incidencia?.id_equipo?.no_serie,
 
   });
@@ -75,7 +79,7 @@ export default function ModalAddVisita({ items }) {
       fecha_revisado: new Date(),
       fecha_visita: "",
       observacion: "",
-      estado: "Pendiente",
+      estado: "Visita Pendiente",
       title: "Visita "+ incidencia?.id_operador?.unidad_medica + " Equipo " + incidencia?.id_equipo?.no_serie,
     });
   }, [incidencia, user]);
@@ -86,9 +90,7 @@ export default function ModalAddVisita({ items }) {
     onSubmit: async (values, { resetForm }) => {
       try {
 
-        console.log(values)
-
-        // await startSavingIncidencia(values);
+        await startSavingVisitaTecnica(values);
          onCloseModal();
 
         Swal.fire({
@@ -109,7 +111,7 @@ export default function ModalAddVisita({ items }) {
           openModel(), dispatch(onLoadIncidencia(items));
         }}
       >
-        <IconCheckupList size={30} />
+        <IconClipboardPlus size={30} />
       </button>
 
       <Modal
@@ -138,6 +140,7 @@ export default function ModalAddVisita({ items }) {
                   value={formik.values.fecha_visita}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
+                  min={getTodayDateTime()}
                   placeholder="Tipo Incidencia"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required

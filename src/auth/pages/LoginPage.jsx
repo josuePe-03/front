@@ -60,7 +60,7 @@ export const LoginPage = () => {
     <div className="h-screen bg-gray-200">
       <section className="h-full w-full ">
         <div className="flex justify-center items-center h-full">
-          <div className="shadow-gray-300 shadow-lg w-11/12 md:w-7/12 lg:grid lg:grid-cols-2 lg:w-7/12 rounded-xl LG:h-[25rem]">
+          <div className="shadow-gray-300 shadow-lg w-11/12 md:w-7/12 lg:grid lg:grid-cols-2 lg:w-7/12 2xl:w-5/12 rounded-xl lg:h-[25rem]">
             <div className="hidden lg:flex justify-center items-center">
               <img className="w-[15rem]" src="../logo-angeles.png" alt="" />
             </div>

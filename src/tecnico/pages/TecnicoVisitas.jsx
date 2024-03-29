@@ -5,7 +5,6 @@ import { useVisitaTecnicaStore } from "../../hooks";
 import { useEffect } from "react";
 
 export default function TecnicoVisitas() {
-  const { incidencia } = useParams();
 
   const { visitasTecnicas, startLoadingVisitasTecnicas } =
     useVisitaTecnicaStore();
@@ -43,7 +42,7 @@ export default function TecnicoVisitas() {
               <div className="relative  overflow-x-auto w-full  rounded-xl">
                 <table className="w-full text-sm ">
                   <thead className="text-[12px] text-gray-400">
-                    <TrVisitaTecnica />
+                    <TrVisitaTecnica items={visitasTecnicas} />
                   </thead>
                   <tbody className="text-xs text-gray-800">
                     {visitasTecnicas.map((items, i) => (

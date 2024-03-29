@@ -19,11 +19,11 @@ export default function TrIncidencia() {
         Unidad
       </th>
       <th scope="col" className="px-3 py-3">
-        Observacion
+        Detalle
       </th>
-      <th scope="col" className="px-3 py-3">
+      {/* <th scope="col" className="px-3 py-3">
         Fecha Incidencia
-      </th>
+      </th> */}
       <th scope="col" className="px-3 py-3">
         Tipo Visita
       </th>

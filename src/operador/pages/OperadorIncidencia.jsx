@@ -36,11 +36,11 @@ export default function OperadorIncidencia() {
 
             <div className="mt-3  flex justify-center shadow shadow-gray-300  rounded-xl">
               <div className="relative  overflow-x-auto w-full  rounded-xl">
-                <table className="w-full text-sm ">
+                <table className="w-full text-xs ">
                   <thead className="text-[12px] text-gray-400">
                     <TrIncidencia />
                   </thead>
-                  <tbody>
+                  <tbody className="text-[11.5px]">
                     {incidencias.map((items, i) => (
                       <Incidencias key={i} items={items} />
                     ))}
