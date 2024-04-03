@@ -64,7 +64,8 @@ export default function ModalAddUser({ tecnico }) {
       try {
         if (tecnico) {
           const rol = 2;
-          const email = values.nombre +values.apellidos.slice(0,2) + values.edad   + "@example.com";
+          const email = values.nombre.replace(/ /g, '') + values.apellidos.slice(0,2)  + values.edad + "@example.com";
+
           // Create a new object that includes all the existing values and the new email
           const updatedValues = {
             ...values,
@@ -97,6 +98,7 @@ export default function ModalAddUser({ tecnico }) {
       }
     },
   });
+
 
   return (
     <>
@@ -159,7 +161,8 @@ export default function ModalAddUser({ tecnico }) {
                 </label>
                 <input
                   id="edad"
-                  type="text"
+                  type="number"
+                  max="100"
                   value={formik.values.edad}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}

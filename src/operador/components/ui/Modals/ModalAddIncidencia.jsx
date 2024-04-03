@@ -99,12 +99,12 @@ export default function ModalAddIncidencia({ items }) {
   return (
     <>
       <button
-        className=""
+        className="flex justify-center text-center"
         onClick={() => {
           openModel(), dispatch(onLoadIncidencia(items));
         }}
       >
-        <IconFilePlus className="text-green-900 " size={25} />
+        Agregar Incidencia
       </button>
 
       <Modal

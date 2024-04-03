@@ -15,6 +15,9 @@ export const uiSlice = createSlice({
     isVisitaAddModalOpen: false,
     isDiagnosticoAddModalOpen: false,
 
+    //INCIDENCIA OPTIONS
+    isIncidenciaOptionsOpen:false
+
   },
   reducers: {
     //EQUIPO
@@ -63,7 +66,9 @@ export const uiSlice = createSlice({
     onCloseDiagnosticoAddModal: (state) => {
       state.isDiagnosticoAddModalOpen = false
     },
-
+    onToogleIncidenciasOption: (state) => {
+      state.isIncidenciaOptionsOpen = !state.isIncidenciaOptionsOpen
+    },
   },
 });
 
@@ -86,6 +91,8 @@ export const {
   onOpenVisitaAddModal,
   onCloseVisitaAddModal,
   onOpenDiagnosticoAddModal,
-  onCloseDiagnosticoAddModal
+  onCloseDiagnosticoAddModal,
   
+  //INCIDECNIA OPTION
+  onToogleIncidenciasOption
 } = uiSlice.actions;

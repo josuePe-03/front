@@ -27,7 +27,7 @@ export default function Usuarios({ items, tecnico }) {
   };
 
   return (
-    <tr className=" border-b text-xs text-gray-900 font-bold">
+    <tr className=" border-b text-xs text-gray-600 font-bold">
       <td className="px-6 py-4 ">{items._id}</td>
       <td className="px-6 py-4 ">{items.nombre}</td>
       <td className="px-6 py-4">{items.apellidos}</td>

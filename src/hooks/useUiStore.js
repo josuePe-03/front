@@ -17,7 +17,9 @@ import {
   onOpenVisitaAddModal,
   onCloseVisitaAddModal,
   onOpenDiagnosticoAddModal,
-  onCloseDiagnosticoAddModal
+  onCloseDiagnosticoAddModal,
+  //incidencias option
+  onToogleIncidenciasOption
 } from "../store";
 
 export const useUiStore = () => {
@@ -32,6 +34,7 @@ export const useUiStore = () => {
     isIncidenciaModalOpen,
     isVisitaAddModalOpen,
     isDiagnosticoAddModalOpen,
+    isIncidenciaOptionsOpen
 
   } = useSelector((state) => state.ui);
 
@@ -84,6 +87,10 @@ export const useUiStore = () => {
     dispatch(onCloseDiagnosticoAddModal());
   };
 
+  //incidencia options
+  const toogleIncidenciasOption = () => {
+    dispatch(onToogleIncidenciasOption());
+  };
 
   return {
     //* Propiedades
@@ -97,7 +104,8 @@ export const useUiStore = () => {
     //Tecnico
     isVisitaAddModalOpen,
     isDiagnosticoAddModalOpen,
-
+    //INCIDENCIAS OPTION
+    isIncidenciaOptionsOpen,
     //* Métodos
     //equipo
     openEquipoModal,
@@ -116,6 +124,8 @@ export const useUiStore = () => {
     openVisitaAddModal,
     closeVisitaAddModal,
     openDiagnosticoAddModal,
-    closeDiagnosticoAddModal
+    closeDiagnosticoAddModal,
+    //INCIDENCIAS OPTION
+    toogleIncidenciasOption,
   };
 };

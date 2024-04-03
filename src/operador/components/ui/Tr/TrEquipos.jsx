@@ -24,12 +24,6 @@ export default function TrEquipos() {
       <th scope="col" className="px-3 py-3">
         Fecha Instalacion
       </th>
-      <th scope="col" className="px-3 py-3">
-        Agregar Incidencia
-      </th>
-      <th scope="col" className="px-3 py-3">
-        Detalles
-      </th>
     </tr>
   );
 }

@@ -1,6 +1,6 @@
-import { Navbar, Titulo, Incidencias, TrIncidencia } from "../components";
+import { Navbar, Dropdow, Incidencias, TrIncidencia } from "../components";
 import { useEquipoStore, useIncidenciaStore } from "../../hooks";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 
 export default function OperadorIncidencia() {
   const { incidencias, startLoadingIncidencias } = useIncidenciaStore();
@@ -15,6 +15,27 @@ export default function OperadorIncidencia() {
     return () => clearInterval(interval);
   }, []);
 
+  const [estado, setEstado] = useState();
+
+  const handleDropdownChange = (selectedValue) => {
+    setEstado(selectedValue);
+  };
+
+  const options = [
+    {
+      value: "predictiva",
+      label: "Predictiva",
+    },
+    {
+      value: "preventiva",
+      label: "Preventiva",
+    },
+    {
+      value: "correctiva",
+      label: "Correctiva",
+    },
+  ];
+
   return (
     <div className="w-full  h-screen sm:flex bg-gray-100">
       <Navbar />
@@ -24,16 +45,36 @@ export default function OperadorIncidencia() {
           <div className="m-4 p-4 bg-white rounded-xl shadow shadow-gray-200">
             <div className="mt-2 md:flex justify-between">
               <h1 className="text-3xl font-bold">Incidencias</h1>
-              {/* <input
-                type="search"
-                id="search-dropdown"
-                className=" mt-4 md:mt-0 w-full md:w-1/2 lg:w-1/5 block py-3 lg:pr-10  z-20 text-sm text-gray-900 bg-gray-50 rounded-lg "
-                placeholder="Busca Problema"
-                value={busqueda || ""}
-                onChange={handleChange}
-              /> */}
             </div>
 
+            <div class="flex flex-col md:flex-row items-center justify-end space-y-3 md:space-y-0 md:space-x-4 mt-2 ">
+                {/* SEARCH */}
+                <div class="w-full md:w-1/4">
+                  <form class="flex items-center">
+                    <label for="simple-search" class="sr-only">
+                      Search
+                    </label>
+                    <div class="relative w-full">
+                      <input
+                        type="text"
+                        id="simple-search"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
+                        placeholder="Search"
+                        required=""
+                      />
+                    </div>
+                  </form>
+                </div>
+                <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                  <div class="flex items-center space-x-3 w-full md:w-auto">
+                    <Dropdow
+                      options={options}
+                      texto={"Tipo Incidencia"}
+                      onChange={handleDropdownChange}
+                    />
+                  </div>
+                </div>
+              </div>
             <div className="mt-3  flex justify-center shadow shadow-gray-300  rounded-xl">
               <div className="relative  overflow-x-auto w-full  rounded-xl">
                 <table className="w-full text-xs ">

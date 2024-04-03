@@ -20,6 +20,8 @@ export {default as TrVisitaTecnica} from './ui/Tr/TrVisitaTecnica'
 export {default as VisitaTecnica} from './ui/VisitaTecnica'
 export {default as ProximaVisita} from './ui/ProximaVisita'
 export {default as ButtonRegresar} from './ui/ButtonRegresar'
+export {default as Dropdow} from './ui/Dropdow'
+
 
 
 

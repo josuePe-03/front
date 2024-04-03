@@ -13,7 +13,7 @@ import {
 
 export const useEquipoStore = () => {
   const dispatch = useDispatch();
-  const { equipos,equipo, activeEquipo } = useSelector(
+  const { equipos, equipo, activeEquipo } = useSelector(
     (state) => state.adminEquipo
   );
 
@@ -26,7 +26,6 @@ export const useEquipoStore = () => {
       );
       dispatch(onAddNewEquipo({ ...equipo }));
       startLoadingEquipos();
-
     } catch (error) {
       console.log(error);
       Swal.fire("Error al guardar", error.response.data.msg, "error");
@@ -36,9 +35,20 @@ export const useEquipoStore = () => {
   const startDeletingEquipo = async (id) => {
     // Todo: Llegar al backend
     try {
-      await clienteAxios.put(`/admin/equipo/eliminar-equipo/${id}`);
-      dispatch(onDeleteEquipo());
-      startLoadingEquipos();
+      Swal.fire({
+        title: "¿Deseas borrar el equipo?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, borrar.",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          clienteAxios.put(`/admin/equipo/eliminar-equipo/${id}`);
+          dispatch(onDeleteEquipo());
+          startLoadingEquipos();
+        }
+      });
     } catch (error) {
       console.log(error);
       Swal.fire("Error al eliminar", error.response.data.msg, "error");
@@ -62,9 +72,7 @@ export const useEquipoStore = () => {
 
   const startLoadingEquipos = async () => {
     try {
-      const { data } = await clienteAxios.get(
-        "/admin/equipo/obtener-equipos"
-      );
+      const { data } = await clienteAxios.get("/admin/equipo/obtener-equipos");
       dispatch(onLoadEquipos(data.equipos));
 
       if (!data.ok) return dispatch(onLoadEquipos(data.msg));
@@ -77,23 +85,20 @@ export const useEquipoStore = () => {
   const startLoadingEquipo = async (equipo) => {
     try {
       const { data } = await clienteAxios.get(
-        `/admin/equipo/obtener-equipo/${equipo}`,
+        `/admin/equipo/obtener-equipo/${equipo}`
       );
       dispatch(onLoadEquipo(data.equipo));
 
       if (!data.ok) return dispatch(onLoadEquipos(data.msg));
     } catch (error) {
-      console.log("Error cargando operadores");
+      console.log("Error cargando equipos");
       console.log(error);
     }
   };
 
-  
-  const startLogoutModal = () =>{
-
-    dispatch( onLogoutModalEquipo() );
-
-  }
+  const startLogoutModal = () => {
+    dispatch(onLogoutModalEquipo());
+  };
 
   return {
     //* Propiedades

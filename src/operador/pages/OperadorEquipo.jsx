@@ -1,6 +1,6 @@
-import { Navbar, Titulo, Equipos, TrEquipos } from "../components";
+import { Navbar, Dropdow, Equipos, TrEquipos } from "../components";
 import { useEquipoStore } from "../../hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function OperadorIncidencia() {
   const { equipos, startLoadingEquipos } = useEquipoStore();
@@ -15,6 +15,23 @@ export default function OperadorIncidencia() {
     return () => clearInterval(interval);
   }, []);
 
+  const [estado, setEstado] = useState();
+
+  const handleDropdownChange = (selectedValue) => {
+    setEstado(selectedValue);
+  };
+
+  const options = [
+    {
+      value: "mastografo",
+      label: "Mastografo",
+    },
+    {
+      value: "tomgrafo",
+      label: "Tomografo",
+    },
+  ];
+
   return (
     <div className="w-full  h-screen sm:flex bg-gray-100">
       <Navbar />
@@ -23,35 +40,37 @@ export default function OperadorIncidencia() {
         <div className="bg-white rounded-xl shadow shadow-gray-200 m-4 p-4">
           <div className="w-full font-semibold">
             <div className="w-full ">
-              <form className=" md:flex md:justify-between :items-center ">
-                <div className="text-3xl font-bold">
-
+              <div className="text-3xl font-bold">
                 <h1>Equipos</h1>
+              </div>
+              <div class="flex flex-col md:flex-row items-center justify-end space-y-3 md:space-y-0 md:space-x-4 mt-2 ">
+                {/* SEARCH */}
+                <div class="w-full md:w-1/4">
+                  <form class="flex items-center">
+                    <label for="simple-search" class="sr-only">
+                      Search
+                    </label>
+                    <div class="relative w-full">
+                      <input
+                        type="text"
+                        id="simple-search"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
+                        placeholder="Search"
+                        required=""
+                      />
+                    </div>
+                  </form>
                 </div>
-                <div className="lg:flex">
-                  {/* <DropdownEquipo
-                  options={options}
-                  texto={"Selecciona un categoria"}
-                  onChange={handleDropdownChange}
-                  onClear={handleClear} // Pass the onClear function to the DropdownEquipos component
-                /> */}
-                  <div className="relative mt-4 md:mt-0">
-                    {/* <input
-                      type="search"
-                      id="search-dropdown"
-                      className="block py-3 pl-5 lg:pr-10 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg lg:rounded-lg  border-gray-300 "
-                      placeholder="Busca Equipo Medico"
-                      value={busqueda || ""}
-                      onChange={handleChange}
-                    /> */}
-                    {/* <div className="absolute top-0 end-0 p-2.5 text-sm font-medium  text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                      <IconSearch />
-
-                      <span className="sr-only">Search</span>
-                    </div> */}
+                <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                  <div class="flex items-center space-x-3 w-full md:w-auto">
+                    <Dropdow
+                      options={options}
+                      texto={"Categoria"}
+                      onChange={handleDropdownChange}
+                    />
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
 
@@ -63,8 +82,8 @@ export default function OperadorIncidencia() {
                 </thead>
                 <tbody>
                   {equipos.map((items, i) => (
-                        <Equipos key={i} items={items} />
-                      ))}
+                    <Equipos key={i} items={items} />
+                  ))}
                 </tbody>
               </table>
             </div>

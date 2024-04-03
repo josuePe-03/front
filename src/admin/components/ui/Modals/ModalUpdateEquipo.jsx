@@ -34,7 +34,6 @@ export default function ModalUpdateEquipo({ items }) {
   const {
     equipo:selectEquipo,
     startUpdateEquipo,
-    startLoadingEquipo,
     startLogoutModal
     
   } = useEquipoStore();
