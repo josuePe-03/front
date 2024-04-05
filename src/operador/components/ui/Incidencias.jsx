@@ -38,7 +38,7 @@ export default function Incidencias({ items }) {
       {items.estado === "Concluido" ? (
         <td className="text-green-500 font-bold px-3 py-3">{items.estado}</td>
       ) : items.estado === "Revision Operador" ? (
-        <td className="text-orange-6  00 font-bold px-3 py-3">
+        <td className="text-orange-600 font-bold px-3 py-3">
           {items.estado}
         </td>
       ) : items.estado === "Diagnosticado" ? (

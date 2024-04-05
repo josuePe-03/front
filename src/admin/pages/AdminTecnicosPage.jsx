@@ -77,13 +77,13 @@ export default function AdminOperadoresPage() {
                   <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                     <ModalAddUser tecnico={true} />
 
-                    <div class="flex items-center space-x-3 w-full md:w-auto">
+                    {/* <div class="flex items-center space-x-3 w-full md:w-auto">
                        <Dropdow
                         options={options}
                         texto={"Area Tecnica"}
                         onChange={handleDropdownChange}
                       /> 
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div class="overflow-x-auto">

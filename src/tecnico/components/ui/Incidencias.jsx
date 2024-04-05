@@ -24,7 +24,7 @@ export default function Incidencias({ items }) {
       <td className="px-3 py-4">{fecha_formateada}</td>
       <td className="px-3 py-4">{items.tipo_incidencia}</td>
 
-      {items.estado === "Completado" ? (
+      {items.estado === "Completado" || items.estado === "Concluido" ? (
         <td className="text-green-500 font-bold px-3 py-4">{items.estado}</td>
       ) : items.estado === "Diagnosticado" ? (
         <td className="text-yellow-300 font-bold px-3 py-4">{items.estado}</td>
@@ -34,8 +34,10 @@ export default function Incidencias({ items }) {
         <td className="text-red-900 font-bold px-3 py-4">{items.estado}</td>
       )}
 
-      {items.estado === "Completado" ? (
-        <td className="text-green-500 font-bold px-3 py-4">{items.estado}</td>
+      {items.estado === "Completado"|| items.estado === "Concluido"  ? (
+        <td className="flex justify-center items-center px-3 py-4">
+        <IconClipboardSmile size={30} />
+      </td>
       ) : items.estado === "Revision Operador" ? (
         <td className="flex justify-center items-center px-3 py-4">
           <IconClipboardSmile size={30} />
