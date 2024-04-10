@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { IconMapPin2 } from "@tabler/icons-react";
 import { obtenerFechaHora } from "../../../helpers";
 
-export default function IncidenciasEquipo({ incidencias }) {
-
-  const fecha_registrada = obtenerFechaHora(incidencias.fecha_registrada);
+export default function IncidenciasEquipo({ incidencias, t }) {
 
   return (
     <tr className="">
@@ -14,7 +12,7 @@ export default function IncidenciasEquipo({ incidencias }) {
       <td className="px-3 py-4">{incidencias.id_equipo.modelo}</td>
       <td className="px-3 py-4">{incidencias.id_operador.unidad_medica}</td>
       <td className="col-span-1 px-6 py-4">{incidencias.detalle}</td>
-      <td className="px-3 py-4">{fecha_registrada}</td>
+      <td className="px-3 py-4">{obtenerFechaHora(incidencias.fecha_registrada)}</td>
 
       <td className="px-3 py-4">{incidencias.tipo_incidencia}</td>
       <td
@@ -28,11 +26,16 @@ export default function IncidenciasEquipo({ incidencias }) {
       >
         {incidencias.estado}
       </td>
-      <td className=" px-3 py-4 flex justify-center items-center">
-        <Link to={`/visita-incidencia/${incidencias._id}`}>
-          <IconMapPin2 size={30} />
-        </Link>
-      </td>
+
+      {t ? (
+        ""
+      ) : (
+        <td className=" px-3 py-4 flex justify-center items-center">
+          <Link to={`/visita-incidencia/${incidencias._id}`}>
+            <IconMapPin2 size={30} />
+          </Link>
+        </td>
+      )}
     </tr>
   );
 }

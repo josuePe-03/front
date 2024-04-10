@@ -22,6 +22,9 @@ export {default as ProximaVisita} from './ui/ProximaVisita'
 export {default as ButtonRegresar} from './ui/ButtonRegresar'
 export {default as Dropdow} from './ui/Dropdow'
 
+export {default as PDF} from './ui/PDF'
+
+
 
 
 
