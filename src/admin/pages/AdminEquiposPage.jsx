@@ -84,7 +84,7 @@ export default function AdminOperadoresPage() {
             <Titulo texto={"Administrador de Equipos"} />
           </div>
           <section className="h-[85vh] w-full">
-            <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
+            <div class="">
               {/* <!-- Start coding here --> */}
               <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
@@ -129,7 +129,7 @@ export default function AdminOperadoresPage() {
                     </div>
                   </div>
                 </div>
-                <div class="overflow-x-auto h-[70vh]">
+                <div class="overflow-x-auto h-[22rem]">
                   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <TrEquipos />

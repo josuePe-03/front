@@ -28,16 +28,16 @@ export default function Usuarios({ items, tecnico }) {
 
   return (
     <tr className=" border-b text-xs text-gray-600 font-bold">
-      <td className="px-6 py-4 ">{items._id}</td>
-      <td className="px-6 py-4 ">{items.nombre}</td>
-      <td className="px-6 py-4">{items.apellidos}</td>
-      <td className="px-6 py-4">{items.direccion}</td>
-      <td className="px-6 py-4">{items.user.email}</td>
-      <td className="px-6 py-4">{items.edad}</td>
+      <td className="px-3 py-4 ">{items._id}</td>
+      <td className="px-3 py-4 ">{items.nombre}</td>
+      <td className="px-3 py-4">{items.apellidos}</td>
+      <td className="px-3 py-4">{items.direccion}</td>
+      <td className="px-3 py-4">{items.user.email}</td>
+      <td className="px-3 py-4">{items.edad}</td>
 
-      {tecnico ? <td className="px-6 py-4">{items.area}</td> : ""}
+      {tecnico ? <td className="px-3 py-4">{items.area}</td> : ""}
 
-      <td className="px-6 py-4">{items.unidad_medica}</td>
+      <td className="px-3 py-4">{items.unidad_medica}</td>
       <td className=" text-center space-x-1">
         <ModalUpdateUser tecnico={tecnico} items={items} />
         <button

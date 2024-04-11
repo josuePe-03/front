@@ -8,12 +8,13 @@ import {
   onSetActiveOperador,
   onUpdateOperador,
   onLoadOperador,
-  onLogoutModalOperador
+  onLogoutModalOperador,
+  onLoadFiltrosOperador
 } from "../../store";
 
 export const useOperadorStore = () => {
   const dispatch = useDispatch();
-  const { operadores,operador, activeOperador } = useSelector(
+  const { operadores, operador,filtros, activeOperador } = useSelector(
     (state) => state.adminOperador
   );
   const { user } = useSelector((state) => state.auth);
@@ -22,6 +23,7 @@ export const useOperadorStore = () => {
     dispatch(onSetActiveOperador(calendarEvent));
   };
 
+  //GUARDAR OPERADOR
   const startSavingOperador = async (operador) => {
     try {
       // Creando
@@ -31,13 +33,16 @@ export const useOperadorStore = () => {
       );
       dispatch(onAddNewOperador({ ...operador }));
       startLoadingOperadores();
-
+      Swal.fire({
+        title: "!Agregado Correctamente!",
+        icon: "success",
+      });
     } catch (error) {
-      console.log(error);
       Swal.fire("Error al guardar", error.response.data.msg, "error");
     }
   };
 
+  //BORRAR OPERADOR
   const startDeletingOperador = async (id) => {
     // Todo: Llegar al backend
     try {
@@ -65,13 +70,20 @@ export const useOperadorStore = () => {
     }
   };
 
-  const startLoadingOperadores = async () => {
+  //OBTENER OPERADORES
+  const startLoadingOperadores = async (datos) => {
     try {
-      const { data } = await clienteAxios.get(
-        "/admin/operador/obtener-operadores"
-      );
-      dispatch(onLoadOperadores(data.operadores));
 
+      const page = datos.map((items)=>items.page) 
+      const search = datos.map((items)=>items.search) 
+
+      const { data } = await clienteAxios.get( `/admin/operador/obtener-operadores?page=${page}&search=${search}`);
+      dispatch(onLoadOperadores(data.operadores));
+       dispatch(onLoadFiltrosOperador({
+         total: data.total,
+         page:data.page,
+         limit:data.limit
+       }));
       if (!data.ok) return dispatch(onLoadOperadores(data.msg));
     } catch (error) {
       console.log("Error cargando operadores");
@@ -82,7 +94,7 @@ export const useOperadorStore = () => {
   const startLoadingOperador = async (operador) => {
     try {
       const { data } = await clienteAxios.get(
-        `/admin/operador/obtener-operador/${operador}`,
+        `/admin/operador/obtener-operador/${operador}`
       );
       dispatch(onLoadOperador(data.operador));
 
@@ -93,18 +105,16 @@ export const useOperadorStore = () => {
     }
   };
 
-  
-  const startLogoutModal = () =>{
-
-    dispatch( onLogoutModalOperador() );
-
-  }
+  const startLogoutModal = () => {
+    dispatch(onLogoutModalOperador());
+  };
 
   return {
     //* Propiedades
     activeOperador,
     operador,
     operadores,
+    filtros,
     hasEventSelected: !!activeOperador,
 
     //* Métodos
