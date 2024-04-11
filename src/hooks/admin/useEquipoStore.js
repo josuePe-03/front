@@ -70,11 +70,15 @@ export const useEquipoStore = () => {
     }
   };
 
-  const startLoadingEquipos = async () => {
-    try {
-      const { data } = await clienteAxios.get("/admin/equipo/obtener-equipos");
-      dispatch(onLoadEquipos(data.equipos));
+  const startLoadingEquipos = async (datos) => {
 
+      const page = datos.map((items)=>items.page) 
+      const filterCategoria = datos.map((items)=>items.filterCategoria) 
+      const search = datos.map((items)=>items.search) 
+
+    try {
+      const { data } = await clienteAxios.get( `/admin/equipo/obtener-equipos?page=${page}&categoria=${filterCategoria.toString()}&search=${search}`);
+      dispatch(onLoadEquipos(data));
       if (!data.ok) return dispatch(onLoadEquipos(data.msg));
     } catch (error) {
       console.log("Error cargando equipos");

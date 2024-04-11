@@ -15,6 +15,10 @@ export {default as Equipos} from './ui/Equipos'
 export {default as TrUsuarios} from './ui/Tr/TrUsuarios'
 export {default as TrEquipos} from './ui/Tr/TrEquipos'
 export {default as Dropdow} from './ui/Dropdow'
+export {default as Pagination} from './ui/Pagination/Pagination'
+
+
+
 
 
 

@@ -5,6 +5,7 @@ import {
   TrEquipos,
   Equipos,
   Dropdow,
+  Pagination,
 } from "../components";
 import { useEquipoStore, useUiStore } from "../../hooks";
 import { useEffect, useState } from "react";
@@ -24,68 +25,45 @@ const options = [
 export default function AdminOperadoresPage() {
   const { equipos, startLoadingEquipos } = useEquipoStore();
 
-  
-  //FILTRADO
-  const [busqueda, setBusqueda] = useState("");
-  const [dropdown, setDropdown] = useState("");
+  const [filterCategoria, setFilterCategoria] = useState([]);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
   const [clearDropdown, setClearDropdown] = useState(false);
-  const [filteredData, setFilteredData] = useState([]);
-  const [resultados, setResultados] = useState([]);
-  
+
+  const datos = [
+    {
+      filterCategoria: filterCategoria,
+      page: page,
+      search: search,
+    },
+  ];
+
   useEffect(() => {
-    startLoadingEquipos();
+    startLoadingEquipos(datos);
     // Función que se ejecutará cada 5 segundos
-     const interval = setInterval(() => {
-       startLoadingEquipos();
-     }, 5000); // 5000 milisegundos = 5 segundos
+    const interval = setInterval(() => {
+      startLoadingEquipos(datos);
+    }, 5000); // 5000 milisegundos = 5 segundos
 
     // Función de limpieza que se ejecutará cuando el componente se desmonte
     return () => clearInterval(interval);
-  }, [busqueda,dropdown]);
-  
+  }, [filterCategoria, search, page]);
+
+  //FILTRADO CATEGORIAS
   const handleDropdownChange = (selectedValue) => {
-    setDropdown(selectedValue);
-    const filterData = (selectedValue) => {
-      const filtered = equipos.filter((item) =>
-        item.categoria.toLowerCase().includes(selectedValue.toLowerCase())
-      );
-      setFilteredData(filtered);
-      setResultados(filtered);
-    };
-    filterData(selectedValue)
+    setFilterCategoria([selectedValue]);
   };
 
-
-  const filtrar = (terminoBusqueda) => {
-    const arrayToFilter = dropdown ? filteredData : equipos;
-
-    var resultadoBusqueda = arrayToFilter.filter((elemento) => {
-      return elemento.modelo
-        .toString()
-        .toLowerCase()
-        .includes(terminoBusqueda.toLowerCase());
-    });
-
-    if (!resultadoBusqueda.length) {
-      const sin_resultados = ["Sin resultados"];
-      setResultados(sin_resultados);
-      return;
-    }
-
-    setResultados(resultadoBusqueda);
-  };
-
+  //filtadro busqueda
   const handleChange = (e) => {
-    setBusqueda(e.target.value);
-    filtrar(e.target.value);
+    setSearch(e.target.value);
   };
 
+  //LIMPIAR
   const handleClear = () => {
-    setBusqueda("");
+    setSearch("");
     setClearDropdown(true);
-
-    setDropdown("");
-    setResultados(equipos);
+    setFilterCategoria([]);
   };
   // Resetear el estado de clearDropdown después de limpiar para permitir limpiezas futuras
   useEffect(() => {
@@ -93,7 +71,6 @@ export default function AdminOperadoresPage() {
       setClearDropdown(false);
     }
   }, [clearDropdown]);
-
 
   return (
     <div className="w-full h-screen  bg-gray-200">
@@ -122,7 +99,7 @@ export default function AdminOperadoresPage() {
                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
                           placeholder="Search"
                           required=""
-                          value={busqueda || ""}
+                          value={search || ""}
                           onChange={handleChange}
                         />
                       </div>
@@ -131,7 +108,7 @@ export default function AdminOperadoresPage() {
                   <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                     <ModalAddEquipo />
 
-                    {/* <div class="flex items-center space-x-3 w-full md:w-auto">
+                    <div class="flex items-center space-x-3 w-full md:w-auto">
                       <Dropdow
                         options={options}
                         texto={"Categoria"}
@@ -147,7 +124,7 @@ export default function AdminOperadoresPage() {
                           <IconFilterCancel />
                         </button>
                       </div>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
                 <div class="overflow-x-auto h-[70vh]">
@@ -162,23 +139,21 @@ export default function AdminOperadoresPage() {
                             {equipos}
                           </td>
                         </tr>
-                      ) : resultados == "Sin resultados" ? (
-                        <tr>
-                          <td className="px-6 py-4 text-center " colSpan={7}>
-                            No hay resultados
-                          </td>
-                        </tr>
-                      ) : resultados.length ? (
-                        resultados.map((items, i) => (
-                          <Equipos key={i} items={items} />
-                        ))
                       ) : (
-                        equipos.map((items, i) => (
+                        equipos.equipos.map((items, i) => (
                           <Equipos key={i} items={items} />
                         ))
                       )}
                     </tbody>
                   </table>
+                  <div className="">
+                    <Pagination
+                      page={page}
+                      limit={equipos.limit ? equipos.limit : 0}
+                      total={equipos.total ? equipos.total : 0}
+                      setPage={(page) => setPage(page)}
+                    />
+                  </div>
                 </div>
               </div>
             </div>

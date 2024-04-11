@@ -4,16 +4,30 @@ import { useEffect, useState } from "react";
 
 export default function OperadorIncidencia() {
   const { equipos, startLoadingEquipos } = useEquipoStore();
+
+  const [filterCategoria, setFilterCategoria] = useState([]);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [clearDropdown, setClearDropdown] = useState(false);
+
+  const datos = [
+    {
+      filterCategoria: filterCategoria,
+      page: page,
+      search: search,
+    },
+  ];
+
   useEffect(() => {
-    startLoadingEquipos();
+    startLoadingEquipos(datos);
     // Función que se ejecutará cada 5 segundos
     const interval = setInterval(() => {
-      startLoadingEquipos();
+      startLoadingEquipos(datos);
     }, 5000); // 5000 milisegundos = 5 segundos
 
     // Función de limpieza que se ejecutará cuando el componente se desmonte
     return () => clearInterval(interval);
-  }, []);
+  }, [filterCategoria, search, page]);
 
   const [estado, setEstado] = useState();
 
@@ -31,6 +45,8 @@ export default function OperadorIncidencia() {
       label: "Tomografo",
     },
   ];
+
+  console.log(equipos)
 
   return (
     <div className="w-full  h-screen sm:flex bg-gray-100">
@@ -81,9 +97,9 @@ export default function OperadorIncidencia() {
                   <TrEquipos />
                 </thead>
                 <tbody>
-                  {equipos.map((items, i) => (
+                   {equipos.equipos.map((items, i) => (
                     <Equipos key={i} items={items} />
-                  ))}
+                  ))} 
                 </tbody>
               </table>
             </div>
