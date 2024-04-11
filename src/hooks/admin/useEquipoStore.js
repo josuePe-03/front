@@ -26,7 +26,6 @@ export const useEquipoStore = () => {
         equipo
       );
       dispatch(onAddNewEquipo({ ...equipo }));
-      startLoadingEquipos();
     } catch (error) {
       console.log(error);
       Swal.fire("Error al guardar", error.response.data.msg, "error");
@@ -47,7 +46,6 @@ export const useEquipoStore = () => {
         if (result.isConfirmed) {
           clienteAxios.put(`/admin/equipo/eliminar-equipo/${id}`);
           dispatch(onDeleteEquipo());
-          startLoadingEquipos();
         }
       });
     } catch (error) {
@@ -64,7 +62,6 @@ export const useEquipoStore = () => {
         equipo
       );
       dispatch(onUpdateEquipo({ ...equipo }));
-      startLoadingEquipos();
     } catch (error) {
       console.log(error);
       Swal.fire("Error al eliminar", error.response.data.msg, "error");
