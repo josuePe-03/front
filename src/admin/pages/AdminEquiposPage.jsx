@@ -23,7 +23,7 @@ const options = [
 ];
 
 export default function AdminOperadoresPage() {
-  const { equipos, startLoadingEquipos } = useEquipoStore();
+  const { equipos,filtros, startLoadingEquipos } = useEquipoStore();
 
   const [filterCategoria, setFilterCategoria] = useState([]);
   const [page, setPage] = useState(1);
@@ -71,6 +71,8 @@ export default function AdminOperadoresPage() {
       setClearDropdown(false);
     }
   }, [clearDropdown]);
+
+
 
   return (
     <div className="w-full h-screen  bg-gray-200">
@@ -133,24 +135,24 @@ export default function AdminOperadoresPage() {
                       <TrEquipos />
                     </thead>
                     <tbody>
-                      {equipos === "Sin equipos existentes" ? (
+                        {equipos === "Sin equipos existentes" ? (
                         <tr>
                           <td className="px-6 py-4 text-center " colSpan={7}>
                             {equipos}
                           </td>
                         </tr>
                       ) : (
-                        equipos.equipos.map((items, i) => (
+                        equipos.map((items, i) => (
                           <Equipos key={i} items={items} />
                         ))
-                      )}
+                      )}  
                     </tbody>
                   </table>
                   <div className="">
                     <Pagination
                       page={page}
-                      limit={equipos.limit ? equipos.limit : 0}
-                      total={equipos.total ? equipos.total : 0}
+                      limit={filtros.limit ? filtros.limit : 0}
+                      total={filtros.total ? filtros.total : 0}
                       setPage={(page) => setPage(page)}
                     />
                   </div>

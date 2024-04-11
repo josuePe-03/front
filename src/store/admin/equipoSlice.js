@@ -10,6 +10,9 @@ export const equipoSlice = createSlice({
         equipo: [
             // tempEvent
         ],
+        filtros: [
+            // tempEvent
+        ],
         activeEquipo: null
     },
     reducers: {
@@ -43,6 +46,12 @@ export const equipoSlice = createSlice({
             state.equipo = payload;
 
         },
+        //FILTROS
+        onLoadFiltrosEquipo: (state, { payload = [] }) => {
+            state.isLoadingEquipos = false;
+            state.filtros = payload;
+
+        },
         onLogoutModalEquipo: ( state ) => {
             state.isLoadingEquipos = false,
             state.equipo    = []
@@ -63,6 +72,7 @@ export const {
     onDeleteEquipo,
     onLoadEquipos,
     onLoadEquipo,
+    onLoadFiltrosEquipo,
     onLogoutEquipo,
     onLogoutModalEquipo,
     onSetActiveEquipo,

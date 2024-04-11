@@ -46,7 +46,6 @@ export default function OperadorIncidencia() {
     },
   ];
 
-  console.log(equipos)
 
   return (
     <div className="w-full  h-screen sm:flex bg-gray-100">
@@ -97,7 +96,7 @@ export default function OperadorIncidencia() {
                   <TrEquipos />
                 </thead>
                 <tbody>
-                   {equipos.equipos.map((items, i) => (
+                   {equipos.map((items, i) => (
                     <Equipos key={i} items={items} />
                   ))} 
                 </tbody>

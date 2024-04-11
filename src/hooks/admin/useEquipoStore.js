@@ -9,11 +9,12 @@ import {
   onUpdateEquipo,
   onLoadEquipo,
   onLogoutModalEquipo,
+  onLoadFiltrosEquipo
 } from "../../store";
 
 export const useEquipoStore = () => {
   const dispatch = useDispatch();
-  const { equipos, equipo, activeEquipo } = useSelector(
+  const { equipos, equipo, activeEquipo,filtros } = useSelector(
     (state) => state.adminEquipo
   );
 
@@ -78,7 +79,14 @@ export const useEquipoStore = () => {
 
     try {
       const { data } = await clienteAxios.get( `/admin/equipo/obtener-equipos?page=${page}&categoria=${filterCategoria.toString()}&search=${search}`);
-      dispatch(onLoadEquipos(data));
+      dispatch(onLoadEquipos(data.equipos));
+
+      dispatch(onLoadFiltrosEquipo({
+        total: data.total,
+        page:data.page,
+        limit:data.limit
+      }));
+
       if (!data.ok) return dispatch(onLoadEquipos(data.msg));
     } catch (error) {
       console.log("Error cargando equipos");
@@ -109,6 +117,7 @@ export const useEquipoStore = () => {
     activeEquipo,
     equipo,
     equipos,
+    filtros,
     hasEventSelected: !!activeEquipo,
 
     //* Métodos
