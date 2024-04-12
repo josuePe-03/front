@@ -24,6 +24,9 @@ export {default as Dropdow} from './ui/Dropdow'
 
 export {default as PDF} from './ui/PDF'
 
+export {default as Pagination} from './ui/Pagination/Pagination'
+
+
 
 
 

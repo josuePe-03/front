@@ -1,11 +1,11 @@
 import { useEquipoStore } from "../../hooks";
 
-import { Navbar, Dropdow, TrEquipos, Equipos } from "../components";
+import { Navbar, Dropdow, TrEquipos, Equipos, Pagination } from "../components";
 
 import { useEffect, useState } from "react";
 
 export default function TecnicoEquipos() {
-  const { equipos, startLoadingEquipos } = useEquipoStore();
+  const { equipos, filtros, startLoadingEquipos } = useEquipoStore();
   const [filterCategoria, setFilterCategoria] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
@@ -46,6 +46,11 @@ export default function TecnicoEquipos() {
     },
   ];
 
+  //filtadro busqueda
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <div className="w-full  h-screen sm:flex bg-gray-100">
       <Navbar />
@@ -71,6 +76,8 @@ export default function TecnicoEquipos() {
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
                         placeholder="Search"
                         required=""
+                        value={search || ""}
+                        onChange={handleChange}
                       />
                     </div>
                   </form>
@@ -89,17 +96,29 @@ export default function TecnicoEquipos() {
           </div>
 
           <div className="lg:mt-5  flex justify-center shadow shadow-gray-300 bg-white rounded-xl">
-            <div className="relative  overflow-x-auto w-full  rounded-xl">
+            <div className="relative  overflow-x-auto w-full h-[29rem]  rounded-xl">
               <table className="w-full text-sm ">
                 <thead className="text-[12px] text-gray-400">
                   <TrEquipos />
                 </thead>
                 <tbody>
-                  {equipos.map((items, i) => (
-                    <Equipos key={i} items={items} />
-                  ))}
+                  {equipos === "Sin equipos existentes" ? (
+                    <tr>
+                      <td className="px-6 py-4 text-center " colSpan={9}>
+                        {equipos}
+                      </td>
+                    </tr>
+                  ) : (
+                    equipos.map((items, i) => <Equipos key={i} items={items} />)
+                  )}
                 </tbody>
               </table>
+              <Pagination
+                page={page}
+                limit={filtros.limit ? filtros.limit : 0}
+                total={filtros.total ? filtros.total : 0}
+                setPage={(page) => setPage(page)}
+              />
             </div>
           </div>
         </div>

@@ -1,33 +1,39 @@
-import { Navbar, Dropdow, TrIncidencia, Incidencias } from "../components";
+import {
+  Navbar,
+  Dropdow,
+  TrIncidencia,
+  Incidencias,
+  Pagination,
+} from "../components";
 import { useEffect, useState } from "react";
 import { useIncidenciaStore } from "../../hooks";
 
 export default function TecnicoIncidencia() {
-  const { incidencias, startLoadingIncidencias } = useIncidenciaStore();
+  const { incidencias, filtros, startLoadingIncidencias } =
+    useIncidenciaStore();
 
- // FILTROS
- const [filterCategoria, setFilterCategoria] = useState([]);
- const [page, setPage] = useState(1);
- const [search, setSearch] = useState("");
- const [clearDropdown, setClearDropdown] = useState(false);
+  // FILTROS
+  const [filterCategoria, setFilterCategoria] = useState([]);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [clearDropdown, setClearDropdown] = useState(false);
 
- const datos = [
-   {
-     filterCategoria: filterCategoria,
-     page: page,
-     search: search,
-   },
- ];
+  const datos = [
+    {
+      filterCategoria: filterCategoria,
+      page: page,
+      search: search,
+    },
+  ];
 
- useEffect(() => {
-   startLoadingIncidencias(datos);
-   const interval = setInterval(() => {
-     startLoadingIncidencias(datos);
-   }, 5000); // 5000 milisegundos = 5 segundos
-   // Función de limpieza que se ejecutará cuando el componente se desmonte
-   return () => clearInterval(interval);
- }, [filterCategoria, page, search]);
-
+  useEffect(() => {
+    startLoadingIncidencias(datos);
+    const interval = setInterval(() => {
+      startLoadingIncidencias(datos);
+    }, 5000); // 5000 milisegundos = 5 segundos
+    // Función de limpieza que se ejecutará cuando el componente se desmonte
+    return () => clearInterval(interval);
+  }, [filterCategoria, page, search]);
 
   const [estado, setEstado] = useState();
 
@@ -49,6 +55,11 @@ export default function TecnicoIncidencia() {
       label: "Correctiva",
     },
   ];
+
+      //filtadro busqueda
+      const handleChange = (e) => {
+        setSearch(e.target.value);
+      };
   return (
     <div className="w-full  h-screen sm:flex bg-gray-100">
       <Navbar />
@@ -73,6 +84,8 @@ export default function TecnicoIncidencia() {
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
                       placeholder="Search"
                       required=""
+                      value={search || ""}
+                      onChange={handleChange}
                     />
                   </div>
                 </form>
@@ -89,17 +102,31 @@ export default function TecnicoIncidencia() {
             </div>
 
             <div className="mt-3  flex justify-center shadow shadow-gray-300  rounded-xl">
-              <div className="relative  overflow-x-auto w-full  rounded-xl">
+              <div className="relative  overflow-x-auto w-full h-[29rem]  rounded-xl">
                 <table className="w-full">
                   <thead className="text-[12px] text-gray-400">
                     <TrIncidencia />
                   </thead>
                   <tbody className="text-xs">
-                    {incidencias.map((items, i) => (
-                      <Incidencias key={i} items={items} />
-                    ))}
+                    {incidencias === "Sin incidencias existentes" ? (
+                      <tr>
+                        <td className="px-6 py-4 text-center " colSpan={9}>
+                          {incidencias}
+                        </td>
+                      </tr>
+                    ) : (
+                      incidencias.map((items, i) => (
+                        <Incidencias key={i} items={items} />
+                      ))
+                    )}
                   </tbody>
                 </table>
+                <Pagination
+                  page={page}
+                  limit={filtros.limit ? filtros.limit : 0}
+                  total={filtros.total ? filtros.total : 0}
+                  setPage={(page) => setPage(page)}
+                />
               </div>
             </div>
           </div>

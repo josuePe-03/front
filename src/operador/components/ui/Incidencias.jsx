@@ -23,7 +23,7 @@ export default function Incidencias({ items }) {
   };
 
   return (
-    <tr className=" text-gray-900">
+    <tr className=" border-b text-xs text-gray-900 font-bold">
       <td className="px-3 py-3">{items._id}</td>
       <td className="px-3 py-3">{items.id_equipo.no_serie}</td>
       <td className="px-3 py-3">{items.id_equipo.marca}</td>
