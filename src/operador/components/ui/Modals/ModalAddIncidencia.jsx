@@ -63,6 +63,7 @@ export default function ModalAddIncidencia({ items }) {
     fecha_registrada: new Date(),
     status: "",
     estado: "Pendiente",
+    is_delete:false
   });
 
   useEffect(() => {
@@ -74,6 +75,7 @@ export default function ModalAddIncidencia({ items }) {
       fecha_registrada: new Date(),
       status: "",
       estado: "Pendiente",
+      is_delete:false
     });
   }, [incidencia, user]);
 

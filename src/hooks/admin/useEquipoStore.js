@@ -68,6 +68,8 @@ export const useEquipoStore = () => {
     }
   };
 
+
+  // OBTENER EQUIPOS
   const startLoadingEquipos = async (datos) => {
 
       const page = datos.map((items)=>items.page) 

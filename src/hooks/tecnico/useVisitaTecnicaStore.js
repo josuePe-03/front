@@ -10,14 +10,19 @@ import {
   onUpdateVisitaTecnica,
   onLoadVisitaTecnica,
   onLogoutModalVisitaTecnica,
+  onLoadFiltrosVisitaTecnica,
 } from "../../store";
 
 export const useVisitaTecnicaStore = () => {
   const dispatch = useDispatch();
 
-  const { visitaProxima, visitasTecnicas, visitaTecnica, activeVisitaTecnica } = useSelector(
-    (state) => state.visitaTecnica
-  );
+  const {
+    visitaProxima,
+    visitasTecnicas,
+    visitaTecnica,
+    filtros,
+    activeVisitaTecnica,
+  } = useSelector((state) => state.visitaTecnica);
 
   const { user } = useSelector((state) => state.auth);
 
@@ -41,7 +46,6 @@ export const useVisitaTecnicaStore = () => {
     }
   };
 
-
   const startDeletingVisitaTecnica = async (id) => {
     // Todo: Llegar al backend
     try {
@@ -54,19 +58,17 @@ export const useVisitaTecnicaStore = () => {
     }
   };
 
-
   //TERMINAR VISITA
   const startTerminarVisitaTecnica = async (visitaTecnica) => {
     // Todo: Llegar al backend
     try {
-       await clienteAxios.put(
-         `/tecnico/visita-incidencia/terminar-visita/${visitaTecnica.id}`,
-         visitaTecnica
-       );
+      await clienteAxios.put(
+        `/tecnico/visita-incidencia/terminar-visita/${visitaTecnica.id}`,
+        visitaTecnica
+      );
 
-       dispatch(onUpdateVisitaTecnica({ ...visitaTecnica }));
-       startLoadingVisitasTecnicas();
-
+      dispatch(onUpdateVisitaTecnica({ ...visitaTecnica }));
+      startLoadingVisitasTecnicas();
     } catch (error) {
       console.log(error);
       Swal.fire("Error al eliminar", error.response.data.msg, "error");
@@ -74,12 +76,22 @@ export const useVisitaTecnicaStore = () => {
   };
 
   //OBTENER TODAS LAS VISITAS
-  const startLoadingVisitasTecnicas = async () => {
+  const startLoadingVisitasTecnicas = async (datos) => {
+    const page = datos.map((items) => items.page);
+    const search = datos.map((items) => items.search);
+
     try {
       const { data } = await clienteAxios.get(
-        `/tecnico/visita-incidencia/obtener-visitas`
+        `/tecnico/visita-incidencia/obtener-visitas?page=${page}&search=${search}`
       );
-      dispatch(onLoadVisitasTecnicas(data.visitas));
+      dispatch(onLoadVisitasTecnicas(data.visita));
+      dispatch(
+        onLoadFiltrosVisitaTecnica({
+          total: data.total,
+          page: data.page,
+          limit: data.limit,
+        })
+      );
 
       if (!data.ok) return dispatch(onLoadVisitasTecnicas(data.msg));
     } catch (error) {
@@ -110,7 +122,7 @@ export const useVisitaTecnicaStore = () => {
       const { data } = await clienteAxios.get(
         `/tecnico/visita-incidencia/visita-proxima/${operador}`
       );
-      dispatch( onLoadVisitaTecnicaProxima(data.visita_proxima));
+      dispatch(onLoadVisitaTecnicaProxima(data.visita_proxima));
 
       if (!data.ok) return dispatch(onLoadVisitaTecnicaProxima(data.msg));
     } catch (error) {
@@ -144,6 +156,7 @@ export const useVisitaTecnicaStore = () => {
     visitaTecnica,
     visitasTecnicas,
     visitaProxima,
+    filtros,
     hasEventSelected: !!activeVisitaTecnica,
 
     //* Métodos

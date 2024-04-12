@@ -89,12 +89,8 @@ export default function ModalAddUser({ tecnico }) {
 
         onCloseModal();
 
-        Swal.fire({
-          title: "!Agregado Correctamente!",
-          icon: "success",
-        });
+
       } catch (error) {
-        console.log(error);
       }
     },
   });

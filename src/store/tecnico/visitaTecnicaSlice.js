@@ -13,6 +13,10 @@ export const visitaTecnicaSlice = createSlice({
         visitaProxima:[
 
         ],
+        filtros:[
+
+        ],
+        
         activeVisitaTecnica: null
     },
     reducers: {
@@ -41,9 +45,6 @@ export const visitaTecnicaSlice = createSlice({
             state.isLoadingVisitasTecnicas = false;
             state.visitasTecnicas = payload;
             state.visitaProxima      = [];
-
-
-
         },
         //VISITA
         onLoadVisitaTecnica: (state, { payload = [] }) => {
@@ -59,6 +60,12 @@ export const visitaTecnicaSlice = createSlice({
             state.visitasTecnicas      = [],
             state.visitaTecnica      = [],
             state.visitaProxima = payload;
+
+        },
+        // FILTROS
+        onLoadFiltrosVisitaTecnica: (state, { payload = [] }) => {
+            state.isLoadingVisitasTecnicas = false;
+            state.filtros      = payload;
 
         },
         onLogoutModalVisitaTecnica: ( state ) => {
@@ -85,6 +92,8 @@ export const {
     onLoadVisitasTecnicas,
     onLoadVisitaTecnica,
     onLoadVisitaTecnicaProxima,
+    // FILTROS
+    onLoadFiltrosVisitaTecnica,
     onLogoutVisitaTecnica,
     onLogoutModalVisitaTecnica,
     onSetActiveVisitaTecnica,

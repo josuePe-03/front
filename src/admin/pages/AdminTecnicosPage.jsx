@@ -5,42 +5,84 @@ import {
   Titulo,
   Usuarios,
   TrUsuarios,
-  Dropdow
+  Dropdow,
+  Pagination
 } from "../components";
 import { useTecnicoStore, useUiStore } from "../../hooks";
 import { useEffect,useState } from "react";
+import { IconFilterCancel } from "@tabler/icons-react";
+
+const options = [
+  {
+    value: "Mecanico",
+    label : "Mecanico",
+  },
+  {
+    value: "Electricista",
+    label : "Electricista",
+  },
+  {
+    value: "General",
+    label : "General",
+  },
+];
 
 export default function AdminOperadoresPage() {
 
-  const { tecnicos, startLoadingTecnicos } = useTecnicoStore();
+  const { tecnicos,filtros, startLoadingTecnicos } = useTecnicoStore();
+
+  
+  // FILTROS
+  const [filterArea, setFilterArea] = useState([]);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [clearDropdown, setClearDropdown] = useState(false);
+
+  const datos = [
+    {
+      filterArea: filterArea,
+      page: page,
+      search: search,
+    },
+  ];
+
 
   useEffect(() => {
-    startLoadingTecnicos();
+    startLoadingTecnicos(datos);
     // Función que se ejecutará cada 5 segundos
     const interval = setInterval(() => {
-      startLoadingTecnicos();
+      startLoadingTecnicos(datos);
     }, 5000); // 5000 milisegundos = 5 segundos
 
     // Función de limpieza que se ejecutará cuando el componente se desmonte
     return () => clearInterval(interval);
-  }, []);
+  }, [filterArea,page,search]);
 
-  const [estado, setEstado] = useState();
 
-  const handleDropdownChange = (selectedValue) => {
-    setEstado(selectedValue);
-  };
 
-  const options = [
-    {
-      value: "mecanico",
-      label : "Mecanico",
-    },
-    {
-      value: "electricista",
-      label : "Electricista",
-    },
-  ];
+    //FILTRADO CATEGORIAS
+    const handleDropdownChange = (selectedValue) => {
+      setFilterArea([selectedValue]);
+    };
+  
+    //filtadro busqueda
+    const handleChange = (e) => {
+      setSearch(e.target.value);
+    };
+  
+    //LIMPIAR
+    const handleClear = () => {
+      setSearch("");
+      setClearDropdown(true);
+      setFilterCategoria([]);
+    };
+    // Resetear el estado de clearDropdown después de limpiar para permitir limpiezas futuras
+    useEffect(() => {
+      if (clearDropdown) {
+        setClearDropdown(false);
+      }
+    }, [clearDropdown]);
+  
 
 
   return (
@@ -53,7 +95,7 @@ export default function AdminOperadoresPage() {
             <Titulo texto={"Administrador de Tecnicos"} />
           </div>
           <section className="h-[85vh] w-full">
-            <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
+            <div class="">
               {/* <!-- Start coding here --> */}
               <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
@@ -70,6 +112,8 @@ export default function AdminOperadoresPage() {
                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
                           placeholder="Search"
                           required=""
+                          value={search || ""}
+                          onChange={handleChange}
                         />
                       </div>
                     </form>
@@ -77,16 +121,26 @@ export default function AdminOperadoresPage() {
                   <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                     <ModalAddUser tecnico={true} />
 
-                    {/* <div class="flex items-center space-x-3 w-full md:w-auto">
-                       <Dropdow
+                    <div class="flex items-center space-x-3 w-full md:w-auto">
+                      <Dropdow
                         options={options}
-                        texto={"Area Tecnica"}
+                        texto={"Categoria"}
                         onChange={handleDropdownChange}
-                      /> 
-                    </div> */}
+                        clearValue={clearDropdown}
+                      />
+                      <div>
+                        <button
+                          onClick={() => {
+                            handleClear();
+                          }}
+                        >
+                          <IconFilterCancel />
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="overflow-x-auto">
+                <div class="overflow-x-auto h-[22rem]">
                   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <TrUsuarios tecnico={true} />
@@ -94,7 +148,7 @@ export default function AdminOperadoresPage() {
                     <tbody>
                       {tecnicos === "Sin tecnicos existentes" ? (
                         <tr>
-                          <td className="px-6 py-4 text-center " colSpan={8}>
+                          <td className="px-6 py-4 text-center " colSpan={9}>
                             {tecnicos}
                           </td>
                         </tr>
@@ -105,6 +159,14 @@ export default function AdminOperadoresPage() {
                       )}
                     </tbody>
                   </table>
+                  <div className="">
+                    <Pagination
+                      page={page}
+                      limit={filtros.limit ? filtros.limit : 0}
+                      total={filtros.total ? filtros.total : 0}
+                      setPage={(page) => setPage(page)}
+                    />
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import {  IconUsers,IconDeviceImac,IconTools,IconCalendarEvent, IconSettings} from "@tabler/icons-react";
+import {  IconUsers,IconDeviceImac,IconTools,IconMapPin2, IconSettings,IconCalendarEvent} from "@tabler/icons-react";
 import { ButtonLink } from "./ButtonLink";
 import { useUiNavbarStore } from "../../../hooks";
 
@@ -38,13 +38,18 @@ export default function LinksAdmin() {
         </ButtonLink>
       </li>
       <li>
-        <ButtonLink  onToggle={closeNavbar} to="/admin-agenda">
+        <ButtonLink  onToggle={closeNavbar} to="/agenda">
           <IconCalendarEvent   className="text-gray-600"size={20} />
         </ButtonLink>
       </li>
       <li>
-        <ButtonLink  onToggle={closeNavbar} to="/admin-incidencias">
+        <ButtonLink  onToggle={closeNavbar} to="/incidencias">
           <IconSettings   className="text-gray-600"size={20} />
+        </ButtonLink>
+      </li>
+      <li>
+        <ButtonLink  onToggle={closeNavbar} to="/visitas">
+          <IconMapPin2   className="text-gray-600"size={20} />
         </ButtonLink>
       </li>
     </>

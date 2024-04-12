@@ -10,6 +10,9 @@ export const tecnicoSlice = createSlice({
         tecnico: [
             // tempEvent
         ],
+        filtros:[
+
+        ],
         activeTecnico: null
     },
     reducers: {
@@ -44,6 +47,11 @@ export const tecnicoSlice = createSlice({
             state.tecnico = payload;
 
         },
+        onLoadFiltrosTecnico: (state, { payload = [] }) => {
+            state.isLoadingTecnicos = false;
+            state.filtros = payload;
+
+        },
         onLogoutModalTecnico: ( state ) => {
             state.isLoadingTecnicos = false,
             state.tecnico    = []
@@ -65,6 +73,8 @@ export const {
     onDeleteTecnico,
     onLoadTecnicos,
     onLoadTecnico,
+    // FILTROS TECNCIO
+    onLoadFiltrosTecnico,
     onLogoutTecnico,
     onLogoutModalTecnico,
     onSetActiveTecnico,

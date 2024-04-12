@@ -1,20 +1,40 @@
-import { Navbar, TrVisitaTecnica, VisitaTecnica,Dropdow } from "../components";
+import {
+  Navbar,
+  TrVisitaTecnica,
+  VisitaTecnica,
+  Dropdow,
+  Pagination,
+} from "../components";
 import { useVisitaTecnicaStore } from "../../hooks";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function TecnicoVisitas() {
-  const { visitasTecnicas, startLoadingVisitasTecnicas } =
+  const { visitasTecnicas, filtros, startLoadingVisitasTecnicas } =
     useVisitaTecnicaStore();
 
+  // FILTROS
+  const [filterCategoria, setFilterCategoria] = useState([]);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [clearDropdown, setClearDropdown] = useState(false);
+
+  const datos = [
+    {
+      filterCategoria: filterCategoria,
+      page: page,
+      search: search,
+    },
+  ];
+
   useEffect(() => {
-    startLoadingVisitasTecnicas();
+    startLoadingVisitasTecnicas(datos);
     const interval = setInterval(() => {
-      startLoadingVisitasTecnicas();
+      startLoadingVisitasTecnicas(datos);
     }, 5000); // 5000 milisegundos = 5 segundos
 
     // Función de limpieza que se ejecutará cuando el componente se desmonte
     return () => clearInterval(interval);
-  }, []);
+  }, [filterCategoria, page, search]);
 
   const [estado, setEstado] = useState();
 
@@ -32,7 +52,6 @@ export default function TecnicoVisitas() {
       label: "No Urgente",
     },
   ];
-
 
   return (
     <div className="w-full  md:h-screen  sm:flex bg-gray-200 ">
@@ -52,13 +71,13 @@ export default function TecnicoVisitas() {
                     Search
                   </label>
                   <div class="relative w-full">
-                    <input
+                    {/* <input
                       type="text"
                       id="simple-search"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
                       placeholder="Search"
                       required=""
-                    />
+                    /> */}
                   </div>
                 </form>
               </div>
@@ -74,17 +93,31 @@ export default function TecnicoVisitas() {
             </div>
 
             <div className="mt-3  flex justify-center shadow shadow-gray-300  rounded-xl">
-              <div className="relative  overflow-x-auto w-full  rounded-xl">
+              <div className="relative  overflow-x-auto w-full h-[29rem]  rounded-xl">
                 <table className="w-full text-sm ">
                   <thead className="text-[12px] text-gray-400">
                     <TrVisitaTecnica items={visitasTecnicas} />
                   </thead>
                   <tbody className="text-xs text-gray-800">
-                    {visitasTecnicas.map((items, i) => (
-                      <VisitaTecnica key={i} items={items} />
-                    ))}
+                  {visitasTecnicas === "Sin visitas existentes" ? (
+                        <tr>
+                          <td className="px-6 py-4 text-center " colSpan={7}>
+                            {visitasTecnicas}
+                          </td>
+                        </tr>
+                      ) : (
+                        visitasTecnicas.map((items, i) => (
+                          <VisitaTecnica key={i} items={items} />
+                        ))
+                      )}  
                   </tbody>
                 </table>
+                <Pagination
+                  page={page}
+                  limit={filtros.limit ? filtros.limit : 0}
+                  total={filtros.total ? filtros.total : 0}
+                  setPage={(page) => setPage(page)}
+                />
               </div>
             </div>
           </div>

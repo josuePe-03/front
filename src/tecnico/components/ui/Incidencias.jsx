@@ -14,7 +14,7 @@ export default function Incidencias({ items }) {
   const fecha_formateada = obtenerFechaHora(items.fecha_registrada);
 
   return (
-    <tr className=" text-gray-900">
+    <tr className=" border-b text-xs text-gray-900 font-bold">
       <td className="px-3 py-4">{items._id}</td>
       <td className="px-3 py-4">{items.id_equipo.no_serie}</td>
       <td className="px-3 py-4">{items.id_equipo.marca}</td>

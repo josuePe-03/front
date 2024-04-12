@@ -8,12 +8,14 @@ import {
   onSetActiveTecnico,
   onUpdateTecnico,
   onLoadTecnico,
-  onLogoutModalTecnico
+  onLogoutModalTecnico,
+  // FILTROS TECNICO
+  onLoadFiltrosTecnico,
 } from "../../store";
 
 export const useTecnicoStore = () => {
   const dispatch = useDispatch();
-  const { tecnicos,tecnico, activeTecnico } = useSelector(
+  const { tecnicos, tecnico, filtros, activeTecnico } = useSelector(
     (state) => state.adminTecnico
   );
   const { user } = useSelector((state) => state.auth);
@@ -22,6 +24,7 @@ export const useTecnicoStore = () => {
     dispatch(onSetActiveTecnico(calendarEvent));
   };
 
+  // AGREGAR TECNICOS
   const startSavingTecnico = async (tecnico) => {
     try {
       // Creando
@@ -31,7 +34,10 @@ export const useTecnicoStore = () => {
       );
       dispatch(onAddNewTecnico({ ...tecnico }));
       startLoadingTecnicos();
-
+      Swal.fire({
+        title: "!Agregado Correctamente!",
+        icon: "success",
+      });
     } catch (error) {
       console.log(error);
       Swal.fire("Error al guardar", error.response.data.msg, "error");
@@ -65,12 +71,25 @@ export const useTecnicoStore = () => {
     }
   };
 
-  const startLoadingTecnicos = async () => {
+  // OBTENER TECNICOS
+  const startLoadingTecnicos = async (datos) => {
+    const page = datos.map((items) => items.page);
+    const filterArea = datos.map((items) => items.filterArea);
+    const search = datos.map((items) => items.search);
+
     try {
       const { data } = await clienteAxios.get(
-        "/admin/tecnico/obtener-tecnicos"
+        `/admin/tecnico/obtener-tecnicos?page=${page}&area=${filterArea.toString()}&search=${search}`
       );
       dispatch(onLoadTecnicos(data.tecnicos));
+
+      dispatch(
+        onLoadFiltrosTecnico({
+          total: data.total,
+          page: data.page,
+          limit: data.limit,
+        })
+      );
 
       if (!data.ok) return dispatch(onLoadTecnicos(data.msg));
     } catch (error) {
@@ -82,7 +101,7 @@ export const useTecnicoStore = () => {
   const startLoadingTecnico = async (tecnico) => {
     try {
       const { data } = await clienteAxios.get(
-        `/admin/tecnico/obtener-tecnico/${tecnico}`,
+        `/admin/tecnico/obtener-tecnico/${tecnico}`
       );
       dispatch(onLoadTecnico(data.tecnico));
 
@@ -92,14 +111,17 @@ export const useTecnicoStore = () => {
       console.log(error);
     }
   };
-  
-  const startLogoutModal = () =>{dispatch( onLogoutModalTecnico() );}
+
+  const startLogoutModal = () => {
+    dispatch(onLogoutModalTecnico());
+  };
 
   return {
     //* Propiedades
     activeTecnico,
     tecnico,
     tecnicos,
+    filtros,
     hasEventSelected: !!activeTecnico,
 
     //* Métodos

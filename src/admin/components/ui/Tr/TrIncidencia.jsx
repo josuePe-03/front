@@ -1,34 +1,34 @@
 import React from "react";
 
-export default function TrUsuarios({ tecnico }) {
+export default function TrIncidencia() {
   return (
     <tr>
       <th scope="col" className="px-3 py-3">
-        Id
+        No Incidencia
       </th>
       <th scope="col" className="px-3 py-3">
-        Nombre
+        No Serie
       </th>
       <th scope="col" className="px-3 py-3">
-        Apellidos
+        Marca
       </th>
       <th scope="col" className="px-3 py-3">
-        Direccion
+        Modelo
       </th>
       <th scope="col" className="px-3 py-3">
-        Correo Electronico
+        Unidad
       </th>
       <th scope="col" className="px-3 py-3">
-        Edad
-      </th>
-
-      {tecnico ? (<th scope="col" className="px-3 py-3">Area</th>) : ("")}
-      
-      <th scope="col" className="px-3 py-3">
-        Unidad Medica
+        Detalle
       </th>
       <th scope="col" className="px-3 py-3">
-        Opciones
+        Fecha Incidencia
+      </th>
+      <th scope="col" className="px-3 py-3">
+        Tipo Visita
+      </th>
+      <th scope="col" className="px-3 py-3">
+        Estado
       </th>
     </tr>
   );

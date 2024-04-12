@@ -30,9 +30,9 @@ export default function Incidencias({ items }) {
       <td className="px-3 py-3">{items.id_equipo.modelo}</td>
       <td className="px-3 py-3">{items.id_operador.unidad_medica}</td>
       <td className=" px-3 py-3">{items.detalle}</td>
-      {/* <td className="px-3 py-3">
+       <td className="px-3 py-3">
         {fecha_registrada}
-      </td> */}
+      </td> 
       <td className="px-3 py-3">{items.tipo_incidencia}</td>
 
       {items.estado === "Concluido" ? (
@@ -47,29 +47,7 @@ export default function Incidencias({ items }) {
         <td className="text-red-900 font-bold px-3 py-3">{items.estado}</td>
       )}
 
-      {/* DAR COMPLETADA VISITA */}
 
-      {items.estado === "Concluido" ? (
-        <td className=" px-3 py-3 flex justify-center items-center">
-          <IconClipboardSmile size={30} />
-        </td>
-      ) : items.estado === "Revision Operador" ? (
-        <td className=" px-3 py-3 flex justify-center items-center">
-          <button
-            onClick={() => {
-              terminarIncidencia();
-            }}
-          >
-            <IconClipboardCheck size={30} />
-          </button>
-        </td>
-      ) : (
-        <td className=" px-3 py-3 flex justify-center items-center">
-          <Link to={`/visita-incidencia/${items._id}`}>
-            <IconMapPin2 size={30} />
-          </Link>
-        </td>
-      )}
     </tr>
   );
 }
