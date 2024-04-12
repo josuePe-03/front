@@ -1,46 +1,37 @@
 import {
-  ModalAddUser,
-  ModalUpdateUser,
   Navbar,
-  Titulo,
-  Usuarios,
-  TrUsuarios,
+  TrVisitaTecnica,
+  VisitaTecnica,
   Dropdow,
+  Titulo,
   Pagination
 } from "../components";
-import { useTecnicoStore, useUiStore } from "../../hooks";
-import { useEffect,useState } from "react";
+import { useVisitaTecnicaStore } from "../../hooks";
 import { IconFilterCancel } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
 
-const options = [
-  {
-    value: "Mecanico",
-    label : "Mecanico",
-  },
-  {
-    value: "Electricista",
-    label : "Electricista",
-  },
-  {
-    value: "General",
-    label : "General",
-  },
-];
+// const options = [
+//   {
+//     value: "urgente",
+//     label: "Visita Pendiente",
+//   },
+//   {
+//     value: "noUrgente",
+//     label: "Visita",
+//   },
+// ];
 
-export default function AdminOperadoresPage() {
+export default function AdminVisitasTecnicas() {
+  const { visitasTecnicas,filtros, startLoadingVisitasTecnicas } =
+    useVisitaTecnicaStore();
 
-  const { tecnicos,filtros, startLoadingTecnicos } = useTecnicoStore();
-
-  
   // FILTROS
-  const [filterArea, setFilterArea] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [clearDropdown, setClearDropdown] = useState(false);
 
   const datos = [
     {
-      filterArea: filterArea,
       page: page,
       search: search,
     },
@@ -48,42 +39,37 @@ export default function AdminOperadoresPage() {
 
 
   useEffect(() => {
-    startLoadingTecnicos(datos);
-    // Función que se ejecutará cada 5 segundos
+    startLoadingVisitasTecnicas(datos);
     const interval = setInterval(() => {
-      startLoadingTecnicos(datos);
+      startLoadingVisitasTecnicas(datos);
     }, 5000); // 5000 milisegundos = 5 segundos
 
     // Función de limpieza que se ejecutará cuando el componente se desmonte
     return () => clearInterval(interval);
-  }, [filterArea,page,search]);
+  }, [ page, search]);
 
+  //FILTRADO CATEGORIAS
+  const handleDropdownChange = (selectedValue) => {
+    setFilterCategoria([selectedValue]);
+  };
 
+  //filtadro busqueda
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
 
-    //FILTRADO CATEGORIAS
-    const handleDropdownChange = (selectedValue) => {
-      setFilterArea([selectedValue]);
-    };
-  
-    //filtadro busqueda
-    const handleChange = (e) => {
-      setSearch(e.target.value);
-    };
-  
-    //LIMPIAR
-    const handleClear = () => {
-      setSearch("");
-      setClearDropdown(true);
-      setFilterCategoria([]);
-    };
-    // Resetear el estado de clearDropdown después de limpiar para permitir limpiezas futuras
-    useEffect(() => {
-      if (clearDropdown) {
-        setClearDropdown(false);
-      }
-    }, [clearDropdown]);
-  
-
+  //LIMPIAR
+  const handleClear = () => {
+    setSearch("");
+    setClearDropdown(true);
+    setFilterCategoria([]);
+  };
+  // Resetear el estado de clearDropdown después de limpiar para permitir limpiezas futuras
+  useEffect(() => {
+    if (clearDropdown) {
+      setClearDropdown(false);
+    }
+  }, [clearDropdown]);
 
   return (
     <div className="w-full h-screen  bg-gray-200">
@@ -92,7 +78,7 @@ export default function AdminOperadoresPage() {
       <div className="w-full sm:pl-[3rem] pt-[2rem] sm:pt-0 ">
         <div className="px-12 pt-4  ">
           <div className="h-[10vh]">
-            <Titulo texto={"Administrador de Tecnicos"} />
+            <Titulo texto={"Administrador de Visitas"} />
           </div>
           <section className="h-[85vh] w-full">
             <div class="">
@@ -105,7 +91,7 @@ export default function AdminOperadoresPage() {
                       <label for="simple-search" class="sr-only">
                         Search
                       </label>
-                      <div class="relative w-full">
+                      {/* <div class="relative w-full">
                         <input
                           type="text"
                           id="simple-search"
@@ -115,16 +101,14 @@ export default function AdminOperadoresPage() {
                           value={search || ""}
                           onChange={handleChange}
                         />
-                      </div>
+                      </div> */}
                     </form>
                   </div>
                   <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                    <ModalAddUser tecnico={true} />
-
-                    <div class="flex items-center space-x-3 w-full md:w-auto">
+                    {/* <div class="flex items-center space-x-3 w-full md:w-auto">
                       <Dropdow
                         options={options}
-                        texto={"Categoria"}
+                        texto={"Estado"}
                         onChange={handleDropdownChange}
                         clearValue={clearDropdown}
                       />
@@ -137,35 +121,35 @@ export default function AdminOperadoresPage() {
                           <IconFilterCancel />
                         </button>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div class="overflow-x-auto h-[22rem]">
                   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                      <TrUsuarios tecnico={true} />
+                      <TrVisitaTecnica items={visitasTecnicas} />
                     </thead>
                     <tbody>
-                      {tecnicos === "Sin tecnicos existentes" ? (
+                      {visitasTecnicas === "Sin visitas existentes" ? (
                         <tr>
                           <td className="px-6 py-4 text-center " colSpan={9}>
-                            {tecnicos}
+                            {visitasTecnicas}
                           </td>
                         </tr>
                       ) : (
-                        tecnicos.map((items, i) => (
-                          <Usuarios tecnico={true} key={i} items={items} />
+                        visitasTecnicas.map((items, i) => (
+                          <VisitaTecnica key={i} items={items} />
                         ))
                       )}
                     </tbody>
                   </table>
                   <div className="">
                     <Pagination
-                      page={page}
-                      limit={filtros.limit ? filtros.limit : 0}
-                      total={filtros.total ? filtros.total : 0}
-                      setPage={(page) => setPage(page)}
-                    />
+                        page={page}
+                        limit={filtros.limit ? filtros.limit : 0}
+                        total={filtros.total ? filtros.total : 0}
+                        setPage={(page) => setPage(page)}
+                      /> 
                   </div>
                 </div>
               </div>

@@ -74,12 +74,12 @@ export const useTecnicoStore = () => {
   // OBTENER TECNICOS
   const startLoadingTecnicos = async (datos) => {
     const page = datos.map((items) => items.page);
-    const filterCategoria = datos.map((items) => items.filterCategoria);
+    const filterArea = datos.map((items) => items.filterArea);
     const search = datos.map((items) => items.search);
 
     try {
       const { data } = await clienteAxios.get(
-        `/admin/tecnico/obtener-tecnicos?page=${page}&categoria=${filterCategoria.toString()}&search=${search}`
+        `/admin/tecnico/obtener-tecnicos?page=${page}&area=${filterArea.toString()}&search=${search}`
       );
       dispatch(onLoadTecnicos(data.tecnicos));
 

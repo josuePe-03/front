@@ -1,88 +1,80 @@
 import {
-  ModalAddUser,
-  ModalUpdateUser,
   Navbar,
-  Titulo,
-  Usuarios,
-  TrUsuarios,
   Dropdow,
+  Titulo,
+  Incidencias,
+  TrIncidencia,
   Pagination
 } from "../components";
-import { useTecnicoStore, useUiStore } from "../../hooks";
-import { useEffect,useState } from "react";
+import { useEquipoStore, useIncidenciaStore } from "../../hooks";
+import { useEffect, useState } from "react";
 import { IconFilterCancel } from "@tabler/icons-react";
 
 const options = [
   {
-    value: "Mecanico",
-    label : "Mecanico",
+    value: "Predictiva",
+    label: "Predictiva",
   },
   {
-    value: "Electricista",
-    label : "Electricista",
+    value: "Preventiva",
+    label: "Preventiva",
   },
   {
-    value: "General",
-    label : "General",
+    value: "Correctiva",
+    label: "Correctiva",
   },
 ];
 
-export default function AdminOperadoresPage() {
+export default function AdminIncidencias() {
+  const { incidencias, filtros, startLoadingIncidencias } =
+    useIncidenciaStore();
 
-  const { tecnicos,filtros, startLoadingTecnicos } = useTecnicoStore();
-
-  
   // FILTROS
-  const [filterArea, setFilterArea] = useState([]);
+  const [filterCategoria, setFilterCategoria] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [clearDropdown, setClearDropdown] = useState(false);
 
   const datos = [
     {
-      filterArea: filterArea,
+      filterCategoria: filterCategoria,
       page: page,
       search: search,
     },
   ];
 
-
   useEffect(() => {
-    startLoadingTecnicos(datos);
-    // Función que se ejecutará cada 5 segundos
+    startLoadingIncidencias(datos);
     const interval = setInterval(() => {
-      startLoadingTecnicos(datos);
+      startLoadingIncidencias(datos);
     }, 5000); // 5000 milisegundos = 5 segundos
-
     // Función de limpieza que se ejecutará cuando el componente se desmonte
     return () => clearInterval(interval);
-  }, [filterArea,page,search]);
+  }, [filterCategoria, page, search]);
+
+  //FILTRADO CATEGORIAS
+  const handleDropdownChange = (selectedValue) => {
+    setFilterCategoria([selectedValue]);
+  };
 
 
+  //filtadro busqueda
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
 
-    //FILTRADO CATEGORIAS
-    const handleDropdownChange = (selectedValue) => {
-      setFilterArea([selectedValue]);
-    };
-  
-    //filtadro busqueda
-    const handleChange = (e) => {
-      setSearch(e.target.value);
-    };
-  
-    //LIMPIAR
-    const handleClear = () => {
-      setSearch("");
-      setClearDropdown(true);
-      setFilterCategoria([]);
-    };
-    // Resetear el estado de clearDropdown después de limpiar para permitir limpiezas futuras
-    useEffect(() => {
-      if (clearDropdown) {
-        setClearDropdown(false);
-      }
-    }, [clearDropdown]);
-  
+  //LIMPIAR
+  const handleClear = () => {
+    setSearch("");
+    setClearDropdown(true);
+    setFilterCategoria([]);
+  };
+  // Resetear el estado de clearDropdown después de limpiar para permitir limpiezas futuras
+  useEffect(() => {
+    if (clearDropdown) {
+      setClearDropdown(false);
+    }
+  }, [clearDropdown]);
 
 
   return (
@@ -92,10 +84,10 @@ export default function AdminOperadoresPage() {
       <div className="w-full sm:pl-[3rem] pt-[2rem] sm:pt-0 ">
         <div className="px-12 pt-4  ">
           <div className="h-[10vh]">
-            <Titulo texto={"Administrador de Tecnicos"} />
+            <Titulo texto={"Administrador de Incidencias"} />
           </div>
           <section className="h-[85vh] w-full">
-            <div class="">
+            <div class=" ">
               {/* <!-- Start coding here --> */}
               <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
@@ -119,12 +111,10 @@ export default function AdminOperadoresPage() {
                     </form>
                   </div>
                   <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                    <ModalAddUser tecnico={true} />
-
                     <div class="flex items-center space-x-3 w-full md:w-auto">
                       <Dropdow
                         options={options}
-                        texto={"Categoria"}
+                        texto={"Tipo de incidencia"}
                         onChange={handleDropdownChange}
                         clearValue={clearDropdown}
                       />
@@ -143,18 +133,18 @@ export default function AdminOperadoresPage() {
                 <div class="overflow-x-auto h-[22rem]">
                   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                      <TrUsuarios tecnico={true} />
+                      <TrIncidencia />
                     </thead>
                     <tbody>
-                      {tecnicos === "Sin tecnicos existentes" ? (
+                      {incidencias === "Sin incidencias existentes" ? (
                         <tr>
-                          <td className="px-6 py-4 text-center " colSpan={9}>
-                            {tecnicos}
+                          <td className="px-6 py-4 text-center " colSpan={8}>
+                            {incidencias}
                           </td>
                         </tr>
                       ) : (
-                        tecnicos.map((items, i) => (
-                          <Usuarios tecnico={true} key={i} items={items} />
+                        incidencias.map((items, i) => (
+                          <Incidencias key={i} items={items} />
                         ))
                       )}
                     </tbody>

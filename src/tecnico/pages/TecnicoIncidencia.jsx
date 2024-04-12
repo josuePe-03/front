@@ -5,15 +5,29 @@ import { useIncidenciaStore } from "../../hooks";
 export default function TecnicoIncidencia() {
   const { incidencias, startLoadingIncidencias } = useIncidenciaStore();
 
-  useEffect(() => {
-    startLoadingIncidencias();
-    const interval = setInterval(() => {
-      startLoadingIncidencias();
-    }, 5000); // 5000 milisegundos = 5 segundos
+ // FILTROS
+ const [filterCategoria, setFilterCategoria] = useState([]);
+ const [page, setPage] = useState(1);
+ const [search, setSearch] = useState("");
+ const [clearDropdown, setClearDropdown] = useState(false);
 
-    // Función de limpieza que se ejecutará cuando el componente se desmonte
-    return () => clearInterval(interval);
-  }, []);
+ const datos = [
+   {
+     filterCategoria: filterCategoria,
+     page: page,
+     search: search,
+   },
+ ];
+
+ useEffect(() => {
+   startLoadingIncidencias(datos);
+   const interval = setInterval(() => {
+     startLoadingIncidencias(datos);
+   }, 5000); // 5000 milisegundos = 5 segundos
+   // Función de limpieza que se ejecutará cuando el componente se desmonte
+   return () => clearInterval(interval);
+ }, [filterCategoria, page, search]);
+
 
   const [estado, setEstado] = useState();
 

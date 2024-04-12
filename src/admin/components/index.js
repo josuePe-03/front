@@ -17,6 +17,15 @@ export {default as TrEquipos} from './ui/Tr/TrEquipos'
 export {default as Dropdow} from './ui/Dropdow'
 export {default as Pagination} from './ui/Pagination/Pagination'
 
+export {default as Incidencias} from './ui/Incidencias'
+export {default as TrIncidencia} from './ui/Tr/TrIncidencia'
+export {default as TrVisitaTecnica} from './ui/Tr/TrVisitaTecnica'
+export {default as VisitaTecnica} from './ui/VisitaTecnica'
+
+
+
+
+
 
 
 

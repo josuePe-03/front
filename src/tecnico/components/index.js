@@ -18,6 +18,7 @@ export {default as VisitaTecnica} from './ui/VisitaTecnica'
 export {default as ModalAddVisita} from './ui/Modals/ModalAddVisita'
 export {default as Dropdow} from './ui/Dropdow'
 
+export {default as Pagination} from './ui/Pagination/Pagination'
 
 
 

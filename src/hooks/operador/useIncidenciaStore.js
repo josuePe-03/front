@@ -9,12 +9,13 @@ import {
   onUpdateIncidencia,
   onLoadIncidencia,
   onLogoutModalIncidencia,
+  onLoadFiltrosIncidencias
 } from "../../store";
 
 export const useIncidenciaStore = () => {
   const dispatch = useDispatch();
 
-  const { incidencias, incidencia, activeIncidencia } = useSelector(
+  const { incidencias, incidencia,filtros, activeIncidencia} = useSelector(
     (state) => state.incidencia
   );
 
@@ -83,12 +84,24 @@ export const useIncidenciaStore = () => {
     }
   };
 
-  const startLoadingIncidencias = async () => {
+  // OBTENER INCIDENCIAS
+  const startLoadingIncidencias = async (datos) => {
+
+    const page = datos.map((items)=>items.page) 
+    const filterCategoria = datos.map((items)=>items.filterCategoria) 
+    const search = datos.map((items)=>items.search) 
+
     try {
       const { data } = await clienteAxios.get(
-        "/operador/incidencia/obtener-incidencias"
+        `/operador/incidencia/obtener-incidencias?page=${page}&tipo_incidencia=${filterCategoria.toString()}&search=${search}`
       );
       dispatch(onLoadIncidencias(data.incidencias));
+
+      dispatch(onLoadFiltrosIncidencias({
+        total: data.total,
+        page:data.page,
+        limit:data.limit
+      }));
 
       if (!data.ok) return dispatch(onLoadIncidencias(data.msg));
     } catch (error) {
@@ -120,6 +133,7 @@ export const useIncidenciaStore = () => {
     activeIncidencia,
     incidencia,
     incidencias,
+    filtros,
     hasEventSelected: !!activeIncidencia,
 
     //* Métodos

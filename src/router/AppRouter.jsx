@@ -9,6 +9,9 @@ import {
   AdminEquiposPage,
   AdminOperadoresPage,
   AdminTecnicosPage,
+  AdminAgenda,
+  AdminIncidencias,
+  AdminVisitasTecnicas
 } from "../admin";
 import {
   OperadorPage,
@@ -47,6 +50,10 @@ export const AppRouter = () => {
           <Route path="/operadores" element={<AdminOperadoresPage />} />
           <Route path="/tecnicos" element={<AdminTecnicosPage />} />
           <Route path="/equipos" element={<AdminEquiposPage />} />
+          <Route path="/agenda" element={<AdminAgenda />} />
+          <Route path="/incidencias" element={<AdminIncidencias />} />
+          <Route path="/visitas" element={<AdminVisitasTecnicas />} />
+
           <Route path="/*" element={<Navigate to="/" />} />
         </>
       ) : status === "authenticated" && user.rol == 2 ? (

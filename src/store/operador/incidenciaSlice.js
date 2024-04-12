@@ -10,6 +10,9 @@ export const incidenciaSlice = createSlice({
         incidencia: [
             // tempEvent
         ],
+        filtros: [
+            // tempEvent
+        ],
         activeIncidencia: null
     },
     reducers: {
@@ -43,6 +46,11 @@ export const incidenciaSlice = createSlice({
             state.incidencia = payload;
 
         },
+        onLoadFiltrosIncidencias: (state, { payload = [] }) => {
+            state.isLoadingIncidencias = false;
+            state.filtros = payload;
+
+        },
         onLogoutModalIncidencia: ( state ) => {
             state.isLoadingIncidencias = false,
             state.incidencia    = []
@@ -66,6 +74,8 @@ export const {
     onDeleteIncidencia,
     onLoadIncidencias,
     onLoadIncidencia,
+    // FILTROS
+    onLoadFiltrosIncidencias,
     onLogoutIncidencia,
     onLogoutModalIncidencia,
     onSetActiveIncidencia,
