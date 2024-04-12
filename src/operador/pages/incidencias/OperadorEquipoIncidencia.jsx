@@ -121,13 +121,12 @@ export default function OperadorIncidencia() {
                         <div className=" w-full  rounded-xl">
                           <table className="w-full text-sm ">
                             <thead className="text-xs text-gray-400 bg-gray-50 ">
-                              <TrIncidenciasEquipo t={t} />
+                              <TrIncidenciasEquipo />
                             </thead>
                             <tbody className="text-xs text-gray-800">
                               {incidencia.map((incidencia, i) => (
                                 <IncidenciasEquipo
                                   key={i}
-                                  t={t}
                                   incidencias={incidencia}
                                 />
                               ))}

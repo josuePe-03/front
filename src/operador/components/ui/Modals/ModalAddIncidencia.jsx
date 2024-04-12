@@ -8,8 +8,8 @@ import { useFormik } from "formik";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 
-import  Dropdown  from '../Dropdow'
-import Titulo from '../Titulo'
+import Dropdown from "../Dropdow";
+import Titulo from "../Titulo";
 
 import {
   useUiStore,
@@ -124,7 +124,6 @@ export default function ModalAddIncidencia({ items }) {
     });
   };
 
-
   return (
     <>
       <button
@@ -143,11 +142,16 @@ export default function ModalAddIncidencia({ items }) {
         closeTimeoutMS={200}
       >
         <div className="space-y-6">
-
-          <Titulo texto={"Agregar Incidencia"}/>
+          <Titulo texto={"Agregar Incidencia"} />
           <div className="flex gap-2 items-end">
-            <h3 className="text-2xl text-[#004b93] font-bold"> {incidencia.marca}</h3>
-            <h3 className="text-xl text-[#004b93] font-semibold"> {incidencia.modelo}</h3>
+            <h3 className="text-2xl text-[#004b93] font-bold">
+              {" "}
+              {incidencia.marca}
+            </h3>
+            <h3 className="text-xl text-[#004b93] font-semibold">
+              {" "}
+              {incidencia.modelo}
+            </h3>
           </div>
           <form onSubmit={formik.handleSubmit}>
             <div className="grid md:grid-cols-2 grid-rows-2 gap-x-3 gap-y-2">
@@ -192,14 +196,16 @@ export default function ModalAddIncidencia({ items }) {
             <div className="flex gap-2 mt-4">
               <button
                 type="submit "
-                className=" w-1/2 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                class="text-white w-1/2 h-full bg-gradient-to-r from-green-600 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
               >
                 Agregar Incidencia
               </button>
+
               <button
                 type="button"
                 onClick={onCloseModal}
-                className=" w-1/2 text-white bg-red-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+
+                class="w-1/2 text-white bg-gradient-to-br from-red-500 to-orange-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
               >
                 Cancelar
               </button>

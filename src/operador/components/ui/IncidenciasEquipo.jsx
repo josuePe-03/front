@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { IconMapPin2 } from "@tabler/icons-react";
 import { obtenerFechaHora } from "../../../helpers";
 
-export default function IncidenciasEquipo({ incidencias, t }) {
+export default function IncidenciasEquipo({ incidencias }) {
 
   return (
     <tr className="">
@@ -27,15 +27,12 @@ export default function IncidenciasEquipo({ incidencias, t }) {
         {incidencias.estado}
       </td>
 
-      {t ? (
-        ""
-      ) : (
+
         <td className=" px-3 py-4 flex justify-center items-center">
           <Link to={`/visita-incidencia/${incidencias._id}`}>
             <IconMapPin2 size={30} />
           </Link>
         </td>
-      )}
     </tr>
   );
 }

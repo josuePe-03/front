@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TrIncidenciasEquipo({ t }) {
+export default function TrIncidenciasEquipo() {
   return (
     <tr>
       <th scope="col" className="px-3 py-3">
@@ -27,13 +27,10 @@ export default function TrIncidenciasEquipo({ t }) {
       <th scope="col" className="px-3 py-3">
         Estado
       </th>
-      {t ? (
-        ""
-      ) : (
-        <th scope="col" className="px-3 py-3">
-          Visitas
-        </th>
-      )}
+
+      <th scope="col" className="px-3 py-3">
+        Visitas
+      </th>
     </tr>
   );
 }
