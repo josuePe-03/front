@@ -22,8 +22,8 @@ export default function ProximaVisita({items}) {
           </div>
         </div>
         <div className="h-[1px] my-4 bg-gray-600"></div>
-        <div className="grid sm:grid-cols-4  space-y-2 sm:space-y-0">
-          <div className="flex sm:col-span-2">
+        <div className="grid sm:grid-cols-3  space-y-2 sm:space-y-0">
+          <div className="flex sm:col-span-1">
             <div className="rounded-full w-12 h-12 bg-gray-300"></div>
             <div className="ml-4">
               <div className="">
