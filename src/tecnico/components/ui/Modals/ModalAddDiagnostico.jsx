@@ -19,6 +19,8 @@ import {
 
 import Modal from "react-modal";
 
+import Titulo from "../Titulo";
+
 import { Dropdow } from "../../";
 
 import { getTodayDateTime, customStyles } from "../../../../helpers";
@@ -50,16 +52,34 @@ export default function ModalAddDiagnostico({ items }) {
 
   //TECNICOS
   const { tecnicos, startLoadingTecnicos } = useTecnicoStore();
+  // FILTROS
+  const [filterArea, setFilterArea] = useState([]);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [clearDropdown, setClearDropdown] = useState(false);
+
+  const datos = [
+    {
+      filterArea: filterArea,
+      page: page,
+      search: search,
+    },
+  ];
+
+
   useEffect(() => {
-    startLoadingTecnicos();
+    startLoadingTecnicos(datos);
     // Función que se ejecutará cada 5 segundos
     const interval = setInterval(() => {
-      startLoadingTecnicos();
+      startLoadingTecnicos(datos);
     }, 5000); // 5000 milisegundos = 5 segundos
 
     // Función de limpieza que se ejecutará cuando el componente se desmonte
     return () => clearInterval(interval);
-  }, []);
+  }, [filterArea,page,search]);
+
+
+
 
   const tecnicosDisponibles = tecnicos
     .filter((tecnico) => tecnico._id !== user.uid)
@@ -175,9 +195,8 @@ export default function ModalAddDiagnostico({ items }) {
         closeTimeoutMS={200}
       >
         <div className="space-y-6">
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Agregar Diagnostico
-          </h3>
+        <Titulo texto={"Agregar Diagnostico"}/>
+
           <div className="flex gap-2 items-end"></div>
           <form onSubmit={formik.handleSubmit}>
             <div className="grid md:grid-cols-2 gap-3">

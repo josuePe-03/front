@@ -13,7 +13,7 @@ import { useEquipoStore, useIncidenciaStore } from "../../../hooks";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 
 export default function OperadorIncidencia() {
-  const { equipo: id_equipo, t } = useParams();
+  const { equipo: id_equipo } = useParams();
 
   const { incidencia, startLoadingIncidencia } = useIncidenciaStore();
   const { equipo, startLoadingEquipo } = useEquipoStore();

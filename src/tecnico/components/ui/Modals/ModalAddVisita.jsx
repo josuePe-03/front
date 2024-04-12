@@ -10,6 +10,8 @@ import "sweetalert2/dist/sweetalert2.min.css";
 
 import { IconClipboardPlus } from "@tabler/icons-react";
 
+import Titulo from "../Titulo";
+
 import {
   useUiStore,
   useIncidenciaStore,
@@ -19,7 +21,7 @@ import {
 
 import Modal from "react-modal";
 
-import {getTodayDateTime} from '../../../../helpers'
+import { getTodayDateTime } from "../../../../helpers";
 
 const customStyles = {
   content: {
@@ -35,7 +37,6 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 export default function ModalAddVisita({ items }) {
-
   //redux
   const dispatch = useDispatch();
 
@@ -43,10 +44,9 @@ export default function ModalAddVisita({ items }) {
   const { isVisitaAddModalOpen, closeVisitaAddModal, openVisitaAddModal } =
     useUiStore();
   //inicidenciaStore
-  const { incidencia, startLogoutModal } =
-    useIncidenciaStore();
+  const { incidencia, startLogoutModal } = useIncidenciaStore();
 
-  const {startSavingVisitaTecnica}  = useVisitaTecnicaStore();
+  const { startSavingVisitaTecnica } = useVisitaTecnicaStore();
   //AUTH
   const { user } = useAuthStore();
 
@@ -68,8 +68,11 @@ export default function ModalAddVisita({ items }) {
     fecha_visita: "",
     observacion: "",
     estado: "Visita Pendiente",
-    title: "Visita"+ incidencia?.id_operador?.unidad_medica + "Equipo" + incidencia?.id_equipo?.no_serie,
-
+    title:
+      "Visita" +
+      incidencia?.id_operador?.unidad_medica +
+      "Equipo" +
+      incidencia?.id_equipo?.no_serie,
   });
 
   useEffect(() => {
@@ -80,7 +83,11 @@ export default function ModalAddVisita({ items }) {
       fecha_visita: "",
       observacion: "",
       estado: "Visita Pendiente",
-      title: "Visita "+ incidencia?.id_operador?.unidad_medica + " Equipo " + incidencia?.id_equipo?.no_serie,
+      title:
+        "Visita " +
+        incidencia?.id_operador?.unidad_medica +
+        " Equipo " +
+        incidencia?.id_equipo?.no_serie,
     });
   }, [incidencia, user]);
 
@@ -89,9 +96,8 @@ export default function ModalAddVisita({ items }) {
     enableReinitialize: true, // Allows Formik to reset when initialValues change
     onSubmit: async (values, { resetForm }) => {
       try {
-
         await startSavingVisitaTecnica(values);
-         onCloseModal();
+        onCloseModal();
 
         Swal.fire({
           title: "!Agregado Correctamente!",
@@ -121,12 +127,17 @@ export default function ModalAddVisita({ items }) {
         closeTimeoutMS={200}
       >
         <div className="space-y-6">
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Agregar Visita
-          </h3>
+          <Titulo texto={"Agregar Visita"} />
+
           <div className="flex gap-2 items-end">
-            <h3 className="text-2xl font-semibold"> {incidencia?.id_equipo?.marca} </h3>
-            <h3 className="text-xl font-medium"> {incidencia?.id_equipo?.modelo} </h3>
+            <h3 className="text-2xl text-[#004b93] font-bold">
+              {" "}
+              {incidencia?.id_equipo?.marca}
+            </h3>
+            <h3 className="text-xl text-[#004b93] font-semibold">
+              {" "}
+              {incidencia?.id_equipo?.modelo}
+            </h3>
           </div>
           <form onSubmit={formik.handleSubmit}>
             <div className="grid md:grid-cols-2 grid-rows-2 gap-3">
