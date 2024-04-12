@@ -3,6 +3,7 @@ import {
   TrIncidenciasEquipo,
   IncidenciasEquipo,
   PDF,
+  Titulo,
 } from "../../components";
 
 import { Link, useParams } from "react-router-dom";
@@ -12,8 +13,7 @@ import { useEquipoStore, useIncidenciaStore } from "../../../hooks";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 
 export default function OperadorIncidencia() {
-  const { equipo: id_equipo,t } = useParams();
-
+  const { equipo: id_equipo } = useParams();
 
   const { incidencia, startLoadingIncidencia } = useIncidenciaStore();
   const { equipo, startLoadingEquipo } = useEquipoStore();
@@ -40,8 +40,9 @@ export default function OperadorIncidencia() {
             <div className=" w-full  ">
               <div className="mt-10 lg:mt-0  p-4 lg:pt-5  ">
                 {/* HEADER */}
-                <div className="w-full">
+                <div className="w-full flex  mb-10">
                   {/* LINK REGRESAR */}
+
                   <Link
                     to={`/equipos`}
                     className="w-[10rem] relative z-30 rounded-3xl  p-1.5 flex items-center"
@@ -55,22 +56,22 @@ export default function OperadorIncidencia() {
                       <p>Ver Equipos</p>
                     </div>
                   </Link>
-                  <div className="pt-3 pb-1 lg:mb-2">
+
+                  <div className="w-full flex  gap-2 justify-center -ml-[10rem]">
                     {/* TITULOS */}
-                    <div className="w-full">
-                      <h1 className="text-gray-500 font-bold text-4xl">
-                        {equipo.modelo}
-                      </h1>
-                      <p className="text-3xl font-bold text-gray-400">
+                    <Titulo texto={equipo.modelo} />
+
+                    <h1 className="text-2xl sm:text-4xl font-extrabold text-gray-90 md:text-5xl lg:text-4xl mt-2">
+                      <span className="text-transparent bg-clip-text bg-gradient-to-l to-[#004b93] from-sky-400 ">
                         {equipo.marca}
-                      </p>
-                    </div>
+                      </span>
+                    </h1>
                   </div>
                 </div>
 
                 {/* MAIN */}
                 <main className="grid md:grid-cols-2 md:h-[72vh] gap-y-4 md:gap-y-4 md:gap-x-4">
-                  <div className="w-full  bg-white p-6 rounded-xl ">
+                  {/* <div className="w-full  bg-white p-6 rounded-xl ">
                     <div className="flex justify-between items-center">
                       <h1 className="text-lg text-gray-400 font-bold">
                         Incidencias por mes
@@ -78,7 +79,6 @@ export default function OperadorIncidencia() {
                     </div>
 
                     <div className="mt-5 h-[10rem] lg:h-[80%] flex justify-center">
-                      {/* <GraficaTipoIncidencia id_equipo={id} /> */}
                     </div>
                   </div>
                   <div className="w-full  bg-white p-6 rounded-xl ">
@@ -89,11 +89,10 @@ export default function OperadorIncidencia() {
                     </div>
 
                     <div className="mt-5 h-[10rem] lg:h-[80%] flex justify-center">
-                      {/* <GraficaTipoVisita id_equipo={id} /> */}
                     </div>
-                  </div>
+                  </div> */}
 
-                  <div className=" sm:w-full  bg-white p-6 rounded-xl md:col-span-2 relative  ">
+                  <div className=" sm:w-full h-[28rem]  bg-white p-6 rounded-xl md:col-span-2 relative  ">
                     <div className="flex justify-between items-center">
                       <h1 className="text-lg text-gray-400 font-bold">
                         Incidencias
@@ -106,24 +105,28 @@ export default function OperadorIncidencia() {
                           loading ? (
                             <button>Loading Document ...</button>
                           ) : (
-                            <button>Generar Reporte</button>
+                            <button
+                              type="button"
+                              class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                            >
+                              Generar Reporte
+                            </button>
                           )
                         }
                       </PDFDownloadLink>
                     </div>
 
-                    <section className="mt-3 overflow-y-scroll h-[17rem]   ">
+                    <section className="mt-3 overflow-y-scroll   ">
                       <div className=" flex justify-center">
                         <div className=" w-full  rounded-xl">
                           <table className="w-full text-sm ">
                             <thead className="text-xs text-gray-400 bg-gray-50 ">
-                              <TrIncidenciasEquipo t={t}/>
+                              <TrIncidenciasEquipo />
                             </thead>
                             <tbody className="text-xs text-gray-800">
                               {incidencia.map((incidencia, i) => (
                                 <IncidenciasEquipo
                                   key={i}
-                                  t={t}
                                   incidencias={incidencia}
                                 />
                               ))}

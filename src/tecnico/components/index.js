@@ -20,6 +20,12 @@ export {default as Dropdow} from './ui/Dropdow'
 
 export {default as Pagination} from './ui/Pagination/Pagination'
 
+export {default as PDF} from './ui/PDF'
+export {default as TrIncidenciasEquipo} from './ui/Tr/TrIncidenciasEquipo'
+export {default as IncidenciasEquipo} from './ui/IncidenciasEquipo'
+
+
+
 
 
 

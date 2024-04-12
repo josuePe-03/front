@@ -1,6 +1,6 @@
 import { useVisitaTecnicaStore } from "../../hooks";
 
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 
 import { Navbar, Titulo } from "../components";
 import dayjs from "dayjs";
@@ -17,23 +17,38 @@ export default function AdminAgenda() {
   const { visitasTecnicas, startLoadingVisitasTecnicas } =
     useVisitaTecnicaStore();
 
-  useEffect(() => {
-    startLoadingVisitasTecnicas();
-    // Función que se ejecutará cada 5 segundos
-    const interval = setInterval(() => {
-      startLoadingVisitasTecnicas();
-    }, 5000); // 5000 milisegundos = 5 segundos
-
-    // Función de limpieza que se ejecutará cuando el componente se desmonte
-    return () => clearInterval(interval);
-  }, []);
-
-  const events = visitasTecnicas.map((item) => ({
-    start: dayjs(item.fecha_visita).toDate(),
-    end: dayjs(item.fecha_visita).toDate(),
-    title: item.title,
-  }));
-
+    const [filterCategoria, setFilterCategoria] = useState([]);
+    const [page, setPage] = useState(1);
+    const [search, setSearch] = useState("");
+  
+    const datos = [
+      {
+        filterCategoria: filterCategoria,
+        page: page,
+        search: search,
+      },
+    ];
+  
+    useEffect(() => {
+      startLoadingVisitasTecnicas(datos);
+      // Función que se ejecutará cada 5 segundos
+      const interval = setInterval(() => {
+        startLoadingVisitasTecnicas(datos);
+      }, 5000); // 5000 milisegundos = 5 segundos
+  
+      // Función de limpieza que se ejecutará cuando el componente se desmonte
+      return () => clearInterval(interval);
+    }, [filterCategoria, page, search]);
+  
+    let eventos = visitasTecnicas === "Sin visitas existentes" ? [] : visitasTecnicas;
+  
+    const events = eventos.map((item) => ({
+     start: dayjs(item.fecha_visita).toDate(),
+     end: dayjs(item.fecha_visita).toDate(),
+     title: item.title,
+    }));
+  
+    
   return (
     <div className="w-full  md:h-screen  sm:flex bg-gray-100 ">
       <Navbar  />

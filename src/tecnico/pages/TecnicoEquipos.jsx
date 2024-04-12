@@ -1,6 +1,6 @@
 import { useEquipoStore } from "../../hooks";
 
-import { Navbar, Dropdow, TrEquipos, Equipos, Pagination } from "../components";
+import { Navbar, Dropdow, TrEquipos, Equipos, Pagination,Titulo } from "../components";
 
 import { useEffect, useState } from "react";
 
@@ -60,7 +60,7 @@ export default function TecnicoEquipos() {
           <div className="w-full font-semibold">
             <div className="w-full ">
               <div className="text-3xl font-bold">
-                <h1>Equipos</h1>
+                <Titulo texto={"Equipos"}/>
               </div>
               <div class="flex flex-col md:flex-row items-center justify-end space-y-3 md:space-y-0 md:space-x-4 mt-2 ">
                 {/* SEARCH */}

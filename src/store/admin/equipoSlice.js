@@ -40,6 +40,7 @@ export const equipoSlice = createSlice({
             state.isLoadingEquipos = false;
             state.equipos = payload;
 
+
         },
         onLoadEquipo: (state, { payload = [] }) => {
             state.isLoadingEquipos = false;

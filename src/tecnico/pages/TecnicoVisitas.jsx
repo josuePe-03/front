@@ -4,6 +4,7 @@ import {
   VisitaTecnica,
   Dropdow,
   Pagination,
+  Titulo
 } from "../components";
 import { useVisitaTecnicaStore } from "../../hooks";
 import { useEffect, useState } from "react";
@@ -61,7 +62,8 @@ export default function TecnicoVisitas() {
         <div className="w-full font-semibold ">
           <div className="m-4 p-4 bg-white rounded-xl shadow shadow-gray-200">
             <div className="mt-2 md:flex justify-between">
-              <h1 className="text-3xl font-bold">Visitas Tecnicas</h1>
+            <Titulo texto={"Visitas Tecnicas"}/>
+
             </div>
             <div class="flex flex-col md:flex-row items-center justify-end space-y-3 md:space-y-0 md:space-x-4 mt-2 ">
               {/* SEARCH */}

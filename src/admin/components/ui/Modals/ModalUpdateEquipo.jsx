@@ -7,6 +7,8 @@ import { useFormik } from "formik";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 
+import Titulo from "../Titulo";
+
 import {
   useEquipoStore,
   useUiStore,
@@ -107,9 +109,7 @@ export default function ModalUpdateEquipo({ items }) {
         closeTimeoutMS={200}
       >
         <div className="space-y-4">
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
-           Editar Equipo
-          </h3>
+        <Titulo texto={"Editar Equipo"} />
           <form onSubmit={formik.handleSubmit}>
             <div className="grid md:grid-cols-2 gap-4">
               <div>
@@ -208,9 +208,10 @@ export default function ModalUpdateEquipo({ items }) {
             </div>
             <button
               type="submit "
-              className="mt-5 w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              class="text-white mt-5 w-full h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
+ 
             >
-              Agregar Equipo
+              Editar Equipo
             </button>
           </form>
         </div>

@@ -18,7 +18,7 @@ export default function Equipos({ items }) {
 
       <td className="px-3 py-4  ">
         <Link
-          to={`/equipo-incidencia/t/${items._id}`}
+          to={`/equipo-incidencia/${items._id}`}
           className=" flex justify-center"
         >
           <IconListDetails />

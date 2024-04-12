@@ -5,11 +5,7 @@ import { useFormik } from "formik";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 
-import {
-  useEquipoStore,
-  useUiStore,
-  useAuthStore,
-} from "../../../../hooks";
+import { useEquipoStore, useUiStore, useAuthStore } from "../../../../hooks";
 
 import Modal from "react-modal";
 
@@ -27,18 +23,19 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 export default function ModalAddEquipo({ tecnico }) {
-  const { isEquipoAddModalOpen, closeEquipoAddModal,openEquipoAddModal } = useUiStore();
-  const {user} = useAuthStore();
+  const { isEquipoAddModalOpen, closeEquipoAddModal, openEquipoAddModal } =
+    useUiStore();
+  const { user } = useAuthStore();
 
   const { startSavingEquipo } = useEquipoStore();
 
   //Abrir
   const openModel = () => {
-    openEquipoAddModal()
+    openEquipoAddModal();
   };
   //CERRAR MODAL
   const onCloseModal = () => {
-    closeEquipoAddModal()
+    closeEquipoAddModal();
     formik.resetForm();
   };
 
@@ -50,7 +47,7 @@ export default function ModalAddEquipo({ tecnico }) {
     fecha_agregado: new Date(),
     fecha_instalacion: "",
     fecha_fabricacion: "",
-    id_admin:user.uid,
+    id_admin: user.uid,
     is_delete: false,
   });
 
@@ -59,7 +56,6 @@ export default function ModalAddEquipo({ tecnico }) {
     enableReinitialize: true, // Allows Formik to reset when initialValues change
     onSubmit: async (values, { resetForm }) => {
       try {
-
         await startSavingEquipo(values);
 
         onCloseModal();
@@ -77,12 +73,12 @@ export default function ModalAddEquipo({ tecnico }) {
   return (
     <>
       <button
-        className="w-full h-full sm:w-fit rounded-xl bg-blue-700 text-gray-100 py-1.5 px-5 font-medium"
         onClick={() => {
           openModel();
         }}
+        class="text-white h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
       >
-        Agregar equipo
+        Agregar Equipo
       </button>
 
       <Modal
@@ -178,7 +174,7 @@ export default function ModalAddEquipo({ tecnico }) {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Fecha Fabricacion
                 </label>
-                
+
                 <input
                   id="fecha_fabricacion"
                   type="datetime-local"
@@ -190,11 +186,10 @@ export default function ModalAddEquipo({ tecnico }) {
                   required
                 />
               </div>
-
             </div>
             <button
               type="submit "
-              className="mt-5 w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              class="text-white mt-5 w-full h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
             >
               Agregar Equipo
             </button>

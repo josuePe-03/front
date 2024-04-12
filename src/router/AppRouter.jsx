@@ -21,7 +21,7 @@ import {
   OperadorEquipoIncidencia,
   OperadorVisitaIncidencia
 } from "../operador";
-import { TecnicoPage,TecnicoAgenda,TecnicoEquipos,TecnicoIncidencia,TecnicoVisitas } from "../tecnico";
+import { TecnicoPage,TecnicoAgenda,TecnicoEquipos,TecnicoIncidencia,TecnicoVisitas, TecnicoEquipoIncidencia } from "../tecnico";
 
 export const AppRouter = () => {
   const { user, status, checkAuthToken } = useAuthStore();
@@ -64,7 +64,7 @@ export const AppRouter = () => {
           <Route path="/incidencias" element={<TecnicoIncidencia />} />
           <Route path="/equipos" element={<TecnicoEquipos />} />
           <Route path="/visitas" element={<TecnicoVisitas />} />
-          <Route path="/equipo-incidencia/:t/:equipo"element={<OperadorEquipoIncidencia />}/>
+          <Route path="/equipo-incidencia/:equipo"element={<TecnicoEquipoIncidencia />}/>
           <Route path="/*" element={<Navigate to="/" />} />
         </>
       ) : status === "authenticated" && user.rol == 1 ? (

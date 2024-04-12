@@ -1,4 +1,4 @@
-import { Navbar, ProximaVisita } from "../components";
+import { Navbar, ProximaVisita, Titulo } from "../components";
 import { useAuthStore, useVisitaTecnicaStore } from "../../hooks";
 import { IconLogout2, IconMapPin2, IconArrowRight } from "@tabler/icons-react";
 import Swal from "sweetalert2";
@@ -35,7 +35,7 @@ export default function OperadorPage() {
                   <div className="pt-3 pb-1 grid lg:grid-cols-2 lg:mb-2">
                     <div className="lg:flex items-center lg:items-start xl:flex-col xl:w-6/12">
                       <div className="lg:mr-2 xl:mr-0  xl:mb-2 ">
-                        <h1 className="text-4xl font-semibold">Dashboard</h1>
+                        <Titulo texto={"Dashboard"}/>
                       </div>
                     </div>
                   </div>
@@ -114,18 +114,7 @@ export default function OperadorPage() {
               </div>
               <button
                 onClick={() => {
-                  Swal.fire({
-                    title: "Deseas Cerrar Sesion?",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Si, cierra sesion!",
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      logout();
-                    }
-                  });
+                  startLogout();
                 }}
                 className="h-20 bg-gray-300 text-gray-400 w-full flex items-center justify-center space-x-2"
               >
