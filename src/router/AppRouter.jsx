@@ -65,6 +65,8 @@ export const AppRouter = () => {
           <Route path="/equipos" element={<TecnicoEquipos />} />
           <Route path="/visitas" element={<TecnicoVisitas />} />
           <Route path="/equipo-incidencia/:equipo"element={<TecnicoEquipoIncidencia />}/>
+          <Route path="/visita-incidencia/:incidencia"element={<OperadorVisitaIncidencia />}/>
+
           <Route path="/*" element={<Navigate to="/" />} />
         </>
       ) : status === "authenticated" && user.rol == 1 ? (

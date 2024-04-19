@@ -68,9 +68,18 @@ export default function OperadorVisitaIncidencia() {
                             <TrVisitaTecnica />
                           </thead>
                           <tbody className="text-xs text-gray-800">
-                            {visitasTecnicas.map((items, i) => (
-                              <VisitaTecnica key={i} items={items} />
-                            ))}
+                            {visitasTecnicas === "Sin visitas" ? (
+                              <td
+                                className="px-3 py-4 ext text-center text-xl font-medium"
+                                colSpan={9}
+                              >
+                                {visitasTecnicas}
+                              </td>
+                            ) : (
+                              visitasTecnicas.map((items, i) => (
+                                <VisitaTecnica key={i} items={items} />
+                              ))
+                            )}
                           </tbody>
                         </table>
                       </div>

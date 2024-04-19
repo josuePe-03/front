@@ -12,6 +12,10 @@ export default function VisitaTecnica({ items }) {
     <tr className=" border-b text-xs text-gray-900 font-bold">
       <td className="px-3 py-4 ">{items._id}</td>
       <td className="px-3 py-4 ">{items.id_incidencia._id}</td>
+      <td className="px-3 py-4 ">{items.id_incidencia.id_equipo.marca}</td>
+      <td className="px-3 py-4 ">{items.id_incidencia.id_equipo.modelo}</td>
+
+
  
 
       <td className="px-3 py-4">{items.id_incidencia.tipo_incidencia}</td>
