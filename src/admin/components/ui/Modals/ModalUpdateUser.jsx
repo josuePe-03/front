@@ -16,6 +16,8 @@ import { onLoadOperador, onLoadTecnico } from "../../../../store";
 import { useDispatch } from "react-redux";
 
 import Modal from "react-modal";
+import Dropdown from "../Dropdow";
+
 
 const customStyles = {
   content: {
@@ -27,6 +29,13 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
+
+// AREA OPCIONES
+const areas = [
+  { value: "General", label: "General" },
+  { value: "Electricista", label: "Electricista" },
+  { value: "Mecanico", label: "Mecanico" },
+];
 
 Modal.setAppElement("#root");
 
@@ -68,7 +77,7 @@ export default function ModalUpdateUser({ items, tecnico: tecnicoTrue }) {
     apellidos: operador.apellidos || tecnico.apellidos || "",
     direccion: operador.direccion || tecnico.direccion || "",
     edad: operador.edad || tecnico.edad || "",
-    area: tecnico.area || "",
+    area: tecnico.area ? tecnico.area.join(', ') : "",
   });
 
   useEffect(() => {
@@ -78,7 +87,7 @@ export default function ModalUpdateUser({ items, tecnico: tecnicoTrue }) {
       apellidos: operador.apellidos || tecnico.apellidos || "",
       direccion: operador.direccion || tecnico.direccion || "",
       edad: operador.edad || tecnico.edad || "",
-      area: tecnico.area || "",
+      area: tecnico.area ? tecnico.area.join(', ') : "",
     });
   }, [operador, tecnico]);
 
@@ -104,6 +113,16 @@ export default function ModalUpdateUser({ items, tecnico: tecnicoTrue }) {
       }
     },
   });
+
+
+  // AREA TECNICO
+  const handleDropdownArea = (selectedValue) => {
+    // Update the tipoVisita field with the selected value
+    formik.setValues({
+      ...formik.values, // Spread the current values to keep the other values intact
+      area: selectedValue , // Set the tipoVisita to the selected value or an empty string if selectedValue is falsy
+    });
+  };
 
   return (
     <>
@@ -183,15 +202,11 @@ export default function ModalUpdateUser({ items, tecnico: tecnicoTrue }) {
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Area
                   </label>
-                  <input
-                    id="area"
-                    type="text"
-                    value={formik.values.area}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    placeholder="Apellido Materno"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
+                  <Dropdown
+                    options={areas}
+                    texto={"Selecciona una area"}
+                    onChange={handleDropdownArea}
+                    areaValue={equipo.area}
                   />
                 </div>
               ) : (
@@ -222,7 +237,7 @@ export default function ModalUpdateUser({ items, tecnico: tecnicoTrue }) {
               type="submit "
               class="text-white mt-5 w-full h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
             >
-             {tecnicoTrue ? "Editar Tecnico" : "Editar Operador"}
+              {tecnicoTrue ? "Editar Tecnico" : "Editar Operador"}
             </button>
           </form>
         </div>

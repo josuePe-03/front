@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
-export default function Dropdown  ({ options, onChange, texto, clearValue }) {
-  const [selectedValue, setSelectedValue] = useState("");
+export default function Dropdown  ({ options, onChange, texto, clearValue,areaValue }) {
+  const [selectedValue, setSelectedValue] = useState(areaValue);
  
   const handleChange = (event) => {
      setSelectedValue(event.target.value);
@@ -15,11 +15,14 @@ export default function Dropdown  ({ options, onChange, texto, clearValue }) {
  
   // Llamar a clearValue si se pasa como prop
   useEffect(() => {
+    setSelectedValue(areaValue);
+
      if (clearValue) {
        clearSelectedValue();
      }
-  }, [clearValue]);
+  }, [clearValue,areaValue]);
  
+
   return (
      <select
        value={selectedValue}

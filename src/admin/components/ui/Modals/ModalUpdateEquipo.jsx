@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 
 import Titulo from "../Titulo";
+import Dropdown from "../Dropdow";
 
 import {
   useEquipoStore,
@@ -29,6 +30,12 @@ const customStyles = {
   },
 };
 
+// AREA OPCIONES
+const categorias = [
+  { value: "Tomografo", label: "Tomografo" },
+  { value: "Mastografo", label: "Mastografo" },
+];
+
 Modal.setAppElement("#root");
 
 export default function ModalUpdateEquipo({ items }) {
@@ -45,7 +52,6 @@ export default function ModalUpdateEquipo({ items }) {
   //CERRAR MODAL
   const onCloseModal = () => {
     closeEquipoModal();
-    startLogoutModal();
   };
 
   const openModel = () => {
@@ -56,7 +62,7 @@ export default function ModalUpdateEquipo({ items }) {
     no_serie: selectEquipo._id || "",
     marca: selectEquipo.marca || "",
     modelo: selectEquipo.modelo || "",
-    categoria: selectEquipo.categoria || "",
+    categoria: selectEquipo.categoria ? selectEquipo.categoria.join(', ') : "",
     fecha_instalacion: selectEquipo.fecha_instalacion || "",
     fecha_fabricacion: selectEquipo.fecha_fabricacion || "",
   });
@@ -66,7 +72,7 @@ export default function ModalUpdateEquipo({ items }) {
       no_serie: selectEquipo._id || "",
       marca: selectEquipo.marca || "",
       modelo: selectEquipo.modelo || "",
-      categoria: selectEquipo.categoria || "",
+      categoria: selectEquipo.categoria ? selectEquipo.categoria.join(', ') : "",
       fecha_instalacion: selectEquipo.fecha_instalacion || "",
       fecha_fabricacion: selectEquipo.fecha_fabricacion || "",
      });
@@ -90,6 +96,17 @@ export default function ModalUpdateEquipo({ items }) {
       }
     },
   });
+
+  
+  // CATEGORIA
+  const handleDropdownCategoria = (selectedValue) => {
+    // Update the tipoVisita field with the selected value
+    formik.setValues({
+      ...formik.values, // Spread the current values to keep the other values intact
+      categoria: selectedValue, // Set the tipoVisita to the selected value or an empty string if selectedValue is falsy
+    });
+  };
+
 
   return (
     <>
@@ -163,16 +180,12 @@ export default function ModalUpdateEquipo({ items }) {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Categoria
                 </label>
-                <input
-                  id="categoria"
-                  type="text"
-                  value={formik.values.categoria}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  placeholder="Categoria"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  required
-                />
+                <Dropdown
+                    options={categorias}
+                    texto={"Selecciona una categoria"}
+                    onChange={handleDropdownCategoria}
+                    areaValue={equipo.categoria}
+                  />
               </div>
               <div className="">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -208,7 +221,7 @@ export default function ModalUpdateEquipo({ items }) {
             </div>
             <button
               type="submit "
-              class="text-white mt-5 w-full h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
+              className="text-white mt-5 w-full h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
  
             >
               Editar Equipo

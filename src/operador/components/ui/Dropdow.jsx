@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const Dropdown = ({ options,onChange,texto}) => {
-  const [selectedValue, setSelectedValue] = useState("");
+const Dropdown = ({ options,onChange,texto,areaValue}) => {
+  const [selectedValue, setSelectedValue] = useState(areaValue);
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
     onChange(event.target.value);
   };
+
+  useEffect(() => {
+    setSelectedValue(areaValue);
+ }, [areaValue]);
 
   return (
     <select
