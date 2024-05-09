@@ -15,7 +15,6 @@ export default function OperadorIncidencia() {
   const [filterCategoria, setFilterCategoria] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-  const [clearDropdown, setClearDropdown] = useState(false);
 
   const datos = [
     {
@@ -35,23 +34,6 @@ export default function OperadorIncidencia() {
     // Función de limpieza que se ejecutará cuando el componente se desmonte
     return () => clearInterval(interval);
   }, [filterCategoria, search, page]);
-
-  const [estado, setEstado] = useState();
-
-  const handleDropdownChange = (selectedValue) => {
-    setEstado(selectedValue);
-  };
-
-  const options = [
-    {
-      value: "mastografo",
-      label: "Mastografo",
-    },
-    {
-      value: "tomgrafo",
-      label: "Tomografo",
-    },
-  ];
 
   //filtadro busqueda
   const handleChange = (e) => {
@@ -87,15 +69,6 @@ export default function OperadorIncidencia() {
                     </div>
                   </form>
                 </div>
-                {/* <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                  <div class="flex items-center space-x-3 w-full md:w-auto">
-                    <Dropdow
-                      options={options}
-                      texto={"Categoria"}
-                      onChange={handleDropdownChange}
-                    />
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>

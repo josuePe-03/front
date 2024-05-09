@@ -13,7 +13,7 @@ export default function OperadorVisitaIncidencia() {
   const { incidencia } = useParams();
   const navigate = useNavigate();
 
-  const { visitasTecnicas, startLoadingVisitasTecnicasIncidencia } =
+  const { visitasTecnicasIncidencia, startLoadingVisitasTecnicasIncidencia } =
     useVisitaTecnicaStore();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function OperadorVisitaIncidencia() {
 
     // Función de limpieza que se ejecutará cuando el componente se desmonte
     return () => clearInterval(interval);
-  }, []);
+  }, [incidencia]);
 
   return (
     <div className="w-full  md:h-screen  sm:flex bg-gray-200 ">
@@ -68,15 +68,15 @@ export default function OperadorVisitaIncidencia() {
                             <TrVisitaTecnica />
                           </thead>
                           <tbody className="text-xs text-gray-800">
-                            {visitasTecnicas === "Sin visitas" ? (
+                            {visitasTecnicasIncidencia === "Sin visitas" ? (
                               <td
                                 className="px-3 py-4 ext text-center text-xl font-medium"
                                 colSpan={9}
                               >
-                                {visitasTecnicas}
+                                {visitasTecnicasIncidencia}
                               </td>
                             ) : (
-                              visitasTecnicas.map((items, i) => (
+                              visitasTecnicasIncidencia.map((items, i) => (
                                 <VisitaTecnica key={i} items={items} />
                               ))
                             )}

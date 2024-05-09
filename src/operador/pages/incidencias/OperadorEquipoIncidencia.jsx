@@ -71,27 +71,6 @@ export default function OperadorIncidencia() {
 
                 {/* MAIN */}
                 <main className="grid md:grid-cols-2 md:h-[72vh] gap-y-4 md:gap-y-4 md:gap-x-4">
-                  {/* <div className="w-full  bg-white p-6 rounded-xl ">
-                    <div className="flex justify-between items-center">
-                      <h1 className="text-lg text-gray-400 font-bold">
-                        Incidencias por mes
-                      </h1>
-                    </div>
-
-                    <div className="mt-5 h-[10rem] lg:h-[80%] flex justify-center">
-                    </div>
-                  </div>
-                  <div className="w-full  bg-white p-6 rounded-xl ">
-                    <div className="flex justify-between items-center">
-                      <h1 className="text-lg text-gray-400 font-bold">
-                        Tipos de incidencia por mes
-                      </h1>
-                    </div>
-
-                    <div className="mt-5 h-[10rem] lg:h-[80%] flex justify-center">
-                    </div>
-                  </div> */}
-
                   <div className=" sm:w-full h-[28rem]  bg-white p-6 rounded-xl md:col-span-2 relative  ">
                     <div className="flex justify-between items-center">
                       <h1 className="text-lg text-gray-400 font-bold">

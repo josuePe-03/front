@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { LoginPage } from "../auth";
-import { CalendarPage } from "../calendar";
 import { useAuthStore } from "../hooks";
 import {
   AdminPage,
@@ -45,7 +44,6 @@ export const AppRouter = () => {
       ) : status === "authenticated" && user.rol == 3 ? (
         // ADMIN
         <>
-          <Route path="/calendario" element={<CalendarPage />} />
           <Route path="/" element={<AdminPage />} />
           <Route path="/operadores" element={<AdminOperadoresPage />} />
           <Route path="/tecnicos" element={<AdminTecnicosPage />} />
