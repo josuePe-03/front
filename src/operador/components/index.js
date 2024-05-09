@@ -27,6 +27,8 @@ export {default as PDF} from './ui/PDF'
 export {default as Pagination} from './ui/Pagination/Pagination'
 
 export {default as BarraDatos} from './BarraDatos'
+export {default as DropdowIncidencia} from './ui/DropdowIncidencia'
+
 
 
 

@@ -11,6 +11,7 @@ import {
   onLoadVisitaTecnica,
   onLogoutModalVisitaTecnica,
   onLoadFiltrosVisitaTecnica,
+  onLoadVisitasTecnicasIncidencia,
 } from "../../store";
 
 export const useVisitaTecnicaStore = () => {
@@ -19,6 +20,7 @@ export const useVisitaTecnicaStore = () => {
   const {
     visitaProxima,
     visitasTecnicas,
+    visitasTecnicasIncidencia,
     visitaTecnica,
     filtros,
     activeVisitaTecnica,
@@ -77,6 +79,7 @@ export const useVisitaTecnicaStore = () => {
 
   //OBTENER TODAS LAS VISITAS
   const startLoadingVisitasTecnicas = async (datos) => {
+    
     const page = datos.map((items) => items.page);
     const search = datos.map((items) => items.search);
 
@@ -106,9 +109,10 @@ export const useVisitaTecnicaStore = () => {
       const { data } = await clienteAxios.get(
         `/tecnico/visita-incidencia/obtener-visitas-incidencia/${incidencia}`
       );
-      dispatch(onLoadVisitasTecnicas(data.visita_incidencia));
 
-      if (!data.ok) return dispatch(onLoadVisitasTecnicas(data.msg));
+      dispatch(onLoadVisitasTecnicasIncidencia(data.visita_incidencia));
+
+      if (!data.ok) return dispatch(onLoadVisitasTecnicasIncidencia(data.msg));
     } catch (error) {
       console.log("Error cargando incidencias");
       console.log(error);
@@ -155,6 +159,7 @@ export const useVisitaTecnicaStore = () => {
     activeVisitaTecnica,
     visitaTecnica,
     visitasTecnicas,
+    visitasTecnicasIncidencia,
     visitaProxima,
     filtros,
     hasEventSelected: !!activeVisitaTecnica,

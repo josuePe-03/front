@@ -10,6 +10,9 @@ export const visitaTecnicaSlice = createSlice({
         visitaTecnica: [
             // tempEvent
         ],
+        visitasTecnicasIncidencia:[
+
+        ],
         visitaProxima:[
 
         ],
@@ -44,6 +47,13 @@ export const visitaTecnicaSlice = createSlice({
         onLoadVisitasTecnicas: (state, { payload = [] }) => {
             state.isLoadingVisitasTecnicas = false;
             state.visitasTecnicas = payload;
+            state.visitaProxima      = [];
+        },
+
+        // VISITAS TECNICAS POR INCIDENCIA
+        onLoadVisitasTecnicasIncidencia: (state, { payload = [] }) => {
+            state.isLoadingVisitasTecnicas = false;
+            state.visitasTecnicasIncidencia = payload;
             state.visitaProxima      = [];
         },
         //VISITA
@@ -91,6 +101,7 @@ export const {
     onDeleteVisitaTecnica,
     onLoadVisitasTecnicas,
     onLoadVisitaTecnica,
+    onLoadVisitasTecnicasIncidencia,
     onLoadVisitaTecnicaProxima,
     // FILTROS
     onLoadFiltrosVisitaTecnica,

@@ -18,6 +18,7 @@ import {
 } from "../../../../hooks";
 
 import Modal from "react-modal";
+import DropdownIncidencia from "../DropdowIncidencia";
 
 const customStyles = {
   content: {
@@ -145,11 +146,9 @@ export default function ModalAddIncidencia({ items }) {
           <Titulo texto={"Agregar Incidencia"} />
           <div className="flex gap-2 items-end">
             <h3 className="text-2xl text-[#004b93] font-bold">
-              {" "}
               {incidencia.marca}
             </h3>
             <h3 className="text-xl text-[#004b93] font-semibold">
-              {" "}
               {incidencia.modelo}
             </h3>
           </div>
@@ -159,7 +158,7 @@ export default function ModalAddIncidencia({ items }) {
                 <label className="block mt-2 mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Tipo Incidencia:
                 </label>
-                <Dropdown
+                <DropdownIncidencia
                   options={tipoVisita}
                   texto={"Selecciona un problema"}
                   onChange={handleDropdownChange}
@@ -186,7 +185,7 @@ export default function ModalAddIncidencia({ items }) {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Status:
                 </label>
-                <Dropdown
+                <DropdownIncidencia
                   options={status}
                   texto={"Seleccione el status"}
                   onChange={handleDropdownStatus}

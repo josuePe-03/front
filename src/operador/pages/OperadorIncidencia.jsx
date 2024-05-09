@@ -103,7 +103,7 @@ export default function OperadorIncidencia() {
                   <tbody className="text-[11.5px]">
                     {incidencias === "Sin incidencias existentes" ? (
                       <tr>
-                        <td className="px-6 py-4 text-center " colSpan={8}>
+                        <td className="px-6 py-4 text-center " colSpan={9}>
                           {incidencias}
                         </td>
                       </tr>

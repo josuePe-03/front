@@ -37,7 +37,7 @@ export default function OperadorIncidencia() {
   
       // Función de limpieza que se ejecutará cuando el componente se desmonte
       return () => clearInterval(interval);
-    }, [filterCategoria, page, search]);
+    }, [filterCategoria, page, search,datos]);
   
     let eventos = visitasTecnicas === "Sin visitas existentes" ? [] : visitasTecnicas;
   
