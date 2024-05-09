@@ -1,4 +1,11 @@
-import { Navbar, Dropdow, Incidencias, TrIncidencia,Pagination,Titulo } from "../components";
+import {
+  Navbar,
+  Dropdow,
+  Incidencias,
+  TrIncidencia,
+  Pagination,
+  Titulo,
+} from "../components";
 import { useEquipoStore, useIncidenciaStore } from "../../hooks";
 import { useEffect, useState } from "react";
 
@@ -50,10 +57,10 @@ export default function OperadorIncidencia() {
     },
   ];
 
-    //filtadro busqueda
-    const handleChange = (e) => {
-      setSearch(e.target.value);
-    };
+  //filtadro busqueda
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
 
   return (
     <div className="w-full  h-screen sm:flex bg-gray-100">
@@ -63,7 +70,7 @@ export default function OperadorIncidencia() {
         <div className="w-full font-semibold ">
           <div className="m-4 p-4 bg-white rounded-xl shadow shadow-gray-200">
             <div className="mt-2 md:flex justify-between">
-             <Titulo texto={"Incidencias"}/>
+              <Titulo texto={"Incidencias"} />
             </div>
 
             <div class="flex flex-col md:flex-row items-center justify-end space-y-3 md:space-y-0 md:space-x-4 mt-2 ">
@@ -86,15 +93,6 @@ export default function OperadorIncidencia() {
                   </div>
                 </form>
               </div>
-              {/* <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                  <div class="flex items-center space-x-3 w-full md:w-auto">
-                    <Dropdow
-                      options={options}
-                      texto={"Tipo Incidencia"}
-                      onChange={handleDropdownChange}
-                    />
-                  </div>
-                </div> */}
             </div>
             <div className="mt-3  flex justify-center shadow shadow-gray-300  rounded-xl">
               <div className="relative  overflow-x-auto h-[29rem] w-full  rounded-xl">
@@ -103,25 +101,25 @@ export default function OperadorIncidencia() {
                     <TrIncidencia />
                   </thead>
                   <tbody className="text-[11.5px]">
-                  {incidencias === "Sin incidencias existentes" ? (
-                        <tr>
-                          <td className="px-6 py-4 text-center " colSpan={8}>
-                            {incidencias}
-                          </td>
-                        </tr>
-                      ) : (
-                        incidencias.map((items, i) => (
-                          <Incidencias key={i} items={items} />
-                        ))
-                      )}
+                    {incidencias === "Sin incidencias existentes" ? (
+                      <tr>
+                        <td className="px-6 py-4 text-center " colSpan={8}>
+                          {incidencias}
+                        </td>
+                      </tr>
+                    ) : (
+                      incidencias.map((items, i) => (
+                        <Incidencias key={i} items={items} />
+                      ))
+                    )}
                   </tbody>
                 </table>
                 <Pagination
-                page={page}
-                limit={filtros.limit ? filtros.limit : 0}
-                total={filtros.total ? filtros.total : 0}
-                setPage={(page) => setPage(page)}
-              />
+                  page={page}
+                  limit={filtros.limit ? filtros.limit : 0}
+                  total={filtros.total ? filtros.total : 0}
+                  setPage={(page) => setPage(page)}
+                />
               </div>
             </div>
           </div>

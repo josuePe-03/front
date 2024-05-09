@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { calendarApi } from '../api';
-import { clearErrorMessage, onChecking, onLogin, onLogout, onLogoutCalendar,onLogoutIncidencia,onLogoutNavbar } from '../store';
+import { clearErrorMessage, onChecking, onLogin, onLogout,onLogoutIncidencia,onLogoutNavbar } from '../store';
 import Swal from 'sweetalert2';
-
+import { clienteAxios } from '../api';
 
 export const useAuthStore = () => {
 
@@ -12,7 +11,7 @@ export const useAuthStore = () => {
     const startLogin = async({ email, password }) => {
         dispatch( onChecking() );
         try {
-            const { data } = await calendarApi.post('/auth',{ email, password });
+            const { data } = await clienteAxios.post('/auth',{ email, password });
             localStorage.setItem('token', data.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
             dispatch( onLogin({ name: data.name, uid: data.uid,rol:data.rol }) );
@@ -27,7 +26,7 @@ export const useAuthStore = () => {
     const startRegister = async({ email, password, name,rol }) => {
         dispatch( onChecking() );
         try {
-            const { data } = await calendarApi.post('/auth/new',{ email, password, name,rol });
+            const { data } = await clienteAxios.post('/auth/new',{ email, password, name,rol });
             localStorage.setItem('token', data.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
             dispatch( onLogin({ name: data.name, uid: data.uid,rol:data }) );
@@ -46,7 +45,7 @@ export const useAuthStore = () => {
         if ( !token ) return dispatch( onLogout() );
         
         try {
-            const { data } = await calendarApi.get('auth/renew');
+            const { data } = await clienteAxios.get('auth/renew');
         
             localStorage.setItem('token', data.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
@@ -68,7 +67,6 @@ export const useAuthStore = () => {
           }).then((result) => {
             if (result.isConfirmed) {
                 localStorage.clear();
-                dispatch( onLogoutCalendar() );
                 dispatch( onLogout() );
                 dispatch( onLogoutNavbar() );
                 dispatch( onLogoutIncidencia() );
