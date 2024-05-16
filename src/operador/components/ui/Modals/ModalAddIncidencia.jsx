@@ -44,6 +44,20 @@ const status = [
   { value: "Urgente", label: "Urgente" },
 ];
 
+const data = [
+  "Piso 1 - Sala 1",
+  "Piso 1 - Sala 2",
+  "Piso 1 - Sala 3",
+  "Piso 1 - Sala 4",
+  "Piso 1 - Sala 5",
+  "Piso 1 - Sala 6",
+  "Piso 2 - Sala 1",
+  "Piso 2 - Sala 2",
+  "Piso 2 - Sala 3",
+  "Piso 2 - Sala 4",
+  "Piso 2 - Sala 5",
+];
+
 export default function ModalAddIncidencia({ items }) {
   //redux
   const dispatch = useDispatch();
@@ -76,6 +90,7 @@ export default function ModalAddIncidencia({ items }) {
     status: "",
     estado: "Pendiente",
     is_delete: false,
+    ubicacion: "",
   });
 
   useEffect(() => {
@@ -87,6 +102,7 @@ export default function ModalAddIncidencia({ items }) {
       status: "",
       estado: "Pendiente",
       is_delete: false,
+      ubicacion: "",
     });
   }, [incidencia, user]);
 
@@ -95,8 +111,9 @@ export default function ModalAddIncidencia({ items }) {
     enableReinitialize: true, // Allows Formik to reset when initialValues change
     onSubmit: async (values, { resetForm }) => {
       try {
+        console.log(values)
         await startSavingIncidencia(values);
-        onCloseModal();
+        //onCloseModal();
 
         Swal.fire({
           title: "!Agregado Correctamente!",
@@ -191,6 +208,30 @@ export default function ModalAddIncidencia({ items }) {
                   onChange={handleDropdownStatus}
                 />
               </div>
+
+              <div className="col-span-2">
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Ubicacion:
+                </label>
+                <input
+                id="ubicacion"
+                  list="data"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value={formik.values.ubicacion}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  placeholder="Ubicacion del equipo"
+                  required
+                />
+                <datalist
+                  id="data"
+                  className="bg-white"
+                >
+                  {data.map((op, i) => (
+                    <option key={i} value={op} />
+                  ))}
+                </datalist>
+              </div>
             </div>
             <div className="flex gap-2 mt-4">
               <button
@@ -203,7 +244,6 @@ export default function ModalAddIncidencia({ items }) {
               <button
                 type="button"
                 onClick={onCloseModal}
-
                 class="w-1/2 text-white bg-gradient-to-br from-red-500 to-orange-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
               >
                 Cancelar

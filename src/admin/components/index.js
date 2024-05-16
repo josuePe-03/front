@@ -22,7 +22,8 @@ export {default as TrIncidencia} from './ui/Tr/TrIncidencia'
 export {default as TrVisitaTecnica} from './ui/Tr/TrVisitaTecnica'
 export {default as VisitaTecnica} from './ui/VisitaTecnica'
 
-
+export {default as Calendario} from './ui/Calendario'
+export {default as ListaVisitas} from './ui/ListaVisitas'
 
 
 
