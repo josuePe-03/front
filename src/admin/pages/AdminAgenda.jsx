@@ -2,7 +2,13 @@ import { useVisitaTecnicaStore } from "../../hooks";
 
 import { useEffect, useState } from "react";
 
-import { Calendario, ListaVisitas, Navbar, Titulo } from "../components";
+import {
+  Calendario,
+  DetallesVisita,
+  ListaVisitas,
+  Navbar,
+  Titulo,
+} from "../components";
 import dayjs from "dayjs";
 import "dayjs/locale/es";
 import { dayjsLocalizer, Calendar } from "react-big-calendar";
@@ -12,7 +18,7 @@ export default function AdminAgenda() {
   const localizer = dayjsLocalizer(dayjs);
   dayjs.locale("es");
 
-  const { visitasTecnicas, startLoadingVisitasTecnicas } =
+  const { visitasTecnicas, visitaTecnica, startLoadingVisitasTecnicas } =
     useVisitaTecnicaStore();
 
   const [filterCategoria, setFilterCategoria] = useState([]);
@@ -38,14 +44,25 @@ export default function AdminAgenda() {
     return () => clearInterval(interval);
   }, [filterCategoria, page, search]);
 
-  let eventos =
+  // CONVERTIR OBJETO A ARREGLO
+  let validateVisitasTecnicas =
     visitasTecnicas === "Sin visitas existentes" ? [] : visitasTecnicas;
+
+  let eventos =
+    visitaTecnica.length === 0 ? validateVisitasTecnicas : visitaTecnica;
 
   const events = eventos.map((item) => ({
     start: dayjs(item.fecha_visita).toDate(),
     end: dayjs(item.fecha_visita).toDate(),
     title: item.title,
   }));
+
+  const fechaVisita = localStorage.getItem("fecha_visita");
+  const fechaSeleccionada = fechaVisita ? fechaVisita : "";
+
+  useEffect(() => {
+    localStorage.removeItem("fecha_visita")
+  }, []);
 
   return (
     <div className="w-full  md:h-screen  sm:flex bg-gray-100 ">
@@ -60,6 +77,7 @@ export default function AdminAgenda() {
             <div className=" flex  w-full gap-4 p-3 h-screen">
               <div className="">
                 <ListaVisitas visitasTecnicas={visitasTecnicas} />
+                <DetallesVisita visitaTecnica={visitaTecnica} />
               </div>
               <div className="w-full ">
                 <Calendar
@@ -77,6 +95,7 @@ export default function AdminAgenda() {
                     week: "Semana",
                     day: "Día",
                   }}
+                  date={fechaSeleccionada} // Usa la fecha seleccionada para navegar en el calendario
                 />
               </div>
             </div>

@@ -7,6 +7,7 @@ export * from './useForm';
 export * from './admin/useOperadorStore';
 export * from './admin/useTecnicoStore';
 export * from './admin/useEquipoStore';
+export * from './admin/useUbicacionStore';
 
 //Ui
 export * from './useUiStore';

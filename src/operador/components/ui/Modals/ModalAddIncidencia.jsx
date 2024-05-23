@@ -15,6 +15,7 @@ import {
   useUiStore,
   useIncidenciaStore,
   useAuthStore,
+  useUbicacionStore,
 } from "../../../../hooks";
 
 import Modal from "react-modal";
@@ -44,19 +45,6 @@ const status = [
   { value: "Urgente", label: "Urgente" },
 ];
 
-const data = [
-  "Piso 1 - Sala 1",
-  "Piso 1 - Sala 2",
-  "Piso 1 - Sala 3",
-  "Piso 1 - Sala 4",
-  "Piso 1 - Sala 5",
-  "Piso 1 - Sala 6",
-  "Piso 2 - Sala 1",
-  "Piso 2 - Sala 2",
-  "Piso 2 - Sala 3",
-  "Piso 2 - Sala 4",
-  "Piso 2 - Sala 5",
-];
 
 export default function ModalAddIncidencia({ items }) {
   //redux
@@ -113,7 +101,7 @@ export default function ModalAddIncidencia({ items }) {
       try {
         console.log(values)
         await startSavingIncidencia(values);
-        //onCloseModal();
+        onCloseModal();
 
         Swal.fire({
           title: "!Agregado Correctamente!",
@@ -142,6 +130,28 @@ export default function ModalAddIncidencia({ items }) {
     });
   };
 
+
+  //UBICACIONES
+  const { ubicaciones, startLoadingUbicaciones } = useUbicacionStore();
+
+
+  useEffect(() => {
+    startLoadingUbicaciones();
+    // Función que se ejecutará cada 5 segundos
+    const interval = setInterval(() => {
+      startLoadingUbicaciones();
+    }, 5000); // 5000 milisegundos = 5 segundos
+
+    // Función de limpieza que se ejecutará cuando el componente se desmonte
+    return () => clearInterval(interval);
+  }, []);
+
+  const data = ubicaciones.map((items)=>{
+    return `${items.piso} - ${items.no_sala}`
+  })
+
+
+  console.log(data)
   return (
     <>
       <button
@@ -236,7 +246,7 @@ export default function ModalAddIncidencia({ items }) {
             <div className="flex gap-2 mt-4">
               <button
                 type="submit "
-                class="text-white w-1/2 h-full bg-gradient-to-r from-green-600 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
+                class="text-white  w-1/2 h-full bg-gradient-to-r from-green-600 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-0 py-2.5 text-center "
               >
                 Agregar Incidencia
               </button>

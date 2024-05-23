@@ -59,7 +59,7 @@ export const visitaTecnicaSlice = createSlice({
         //VISITA
         onLoadVisitaTecnica: (state, { payload = [] }) => {
             state.isLoadingVisitasTecnicas = false;
-            state.visitaTecnica = payload;
+            state.visitaTecnica = [payload];
             state.visitaProxima      = [];
 
         },

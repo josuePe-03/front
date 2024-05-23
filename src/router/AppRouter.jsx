@@ -10,7 +10,8 @@ import {
   AdminTecnicosPage,
   AdminAgenda,
   AdminIncidencias,
-  AdminVisitasTecnicas
+  AdminVisitasTecnicas,
+  AdminUbicacionHospitalPage
 } from "../admin";
 import {
   OperadorPage,
@@ -51,6 +52,8 @@ export const AppRouter = () => {
           <Route path="/agenda" element={<AdminAgenda />} />
           <Route path="/incidencias" element={<AdminIncidencias />} />
           <Route path="/visitas" element={<AdminVisitasTecnicas />} />
+          <Route path="/ubicaciones-hospital" element={<AdminUbicacionHospitalPage />} />
+
 
           <Route path="/*" element={<Navigate to="/" />} />
         </>

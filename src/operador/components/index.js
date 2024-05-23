@@ -29,6 +29,9 @@ export {default as Pagination} from './ui/Pagination/Pagination'
 export {default as BarraDatos} from './BarraDatos'
 export {default as DropdowIncidencia} from './ui/DropdowIncidencia'
 
+export {default as DetallesVisita} from './ui/DetallesVisita'
+export {default as ListaVisitas} from './ui/ListaVisitas'
+
 
 
 

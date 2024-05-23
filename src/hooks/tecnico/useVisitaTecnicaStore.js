@@ -141,7 +141,6 @@ export const useVisitaTecnicaStore = () => {
         `/operador/incidencia/obtener-incidencia/${visitaTecnica}`
       );
       dispatch(onLoadVisitaTecnica(data.visitaTecnica));
-      dispatch(onLogo(data.visitaTecnica));
 
       if (!data.ok) return dispatch(onLoadVisitasTecnicas(data.msg));
     } catch (error) {

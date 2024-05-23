@@ -24,6 +24,11 @@ export {default as PDF} from './ui/PDF'
 export {default as TrIncidenciasEquipo} from './ui/Tr/TrIncidenciasEquipo'
 export {default as IncidenciasEquipo} from './ui/IncidenciasEquipo'
 
+export {default as DetallesVisita} from './ui/DetallesVisita'
+export {default as ListaVisitas} from './ui/ListaVisitas'
+
+
+
 
 
 
