@@ -28,7 +28,7 @@ export const useOperadorStore = () => {
     try {
       // Creando
       const { data } = await clienteAxios.post(
-        "/admin/operador/agregar-operador",
+        "/operador/agregar-operador",
         operador
       );
       dispatch(onAddNewOperador({ ...operador }));
@@ -46,7 +46,7 @@ export const useOperadorStore = () => {
   const startDeletingOperador = async (id) => {
     // Todo: Llegar al backend
     try {
-      await clienteAxios.put(`/admin/operador/eliminar-operador/${id}`);
+      await clienteAxios.put(`/operador/eliminar-operador/${id}`);
       dispatch(onDeleteOperador());
       startLoadingOperadores();
     } catch (error) {
@@ -59,7 +59,7 @@ export const useOperadorStore = () => {
     // Todo: Llegar al backend
     try {
       await clienteAxios.put(
-        `/admin/operador/actualizar-operador/${operador.id}`,
+        `/operador/actualizar-operador/${operador.id}`,
         operador
       );
       dispatch(onUpdateOperador({ ...operador }));
@@ -77,7 +77,7 @@ export const useOperadorStore = () => {
       const page = datos.map((items)=>items.page) 
       const search = datos.map((items)=>items.search) 
 
-      const { data } = await clienteAxios.get( `/admin/operador/obtener-operadores?page=${page}&search=${search}`);
+      const { data } = await clienteAxios.get( `/operador/obtener-operadores?page=${page}&search=${search}`);
       dispatch(onLoadOperadores(data.operadores));
        dispatch(onLoadFiltrosOperador({
          total: data.total,
@@ -94,7 +94,7 @@ export const useOperadorStore = () => {
   const startLoadingOperador = async (operador) => {
     try {
       const { data } = await clienteAxios.get(
-        `/admin/operador/obtener-operador/${operador}`
+        `/operador/obtener-operador/${operador}`
       );
       dispatch(onLoadOperador(data.operador));
 

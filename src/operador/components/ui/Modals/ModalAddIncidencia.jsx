@@ -15,6 +15,7 @@ import {
   useUiStore,
   useIncidenciaStore,
   useAuthStore,
+  useUbicacionStore,
 } from "../../../../hooks";
 
 import Modal from "react-modal";
@@ -43,6 +44,7 @@ const status = [
   { value: "NoUrgente", label: "No Urgente" },
   { value: "Urgente", label: "Urgente" },
 ];
+
 
 export default function ModalAddIncidencia({ items }) {
   //redux
@@ -76,6 +78,7 @@ export default function ModalAddIncidencia({ items }) {
     status: "",
     estado: "Pendiente",
     is_delete: false,
+    ubicacion: "",
   });
 
   useEffect(() => {
@@ -87,6 +90,8 @@ export default function ModalAddIncidencia({ items }) {
       status: "",
       estado: "Pendiente",
       is_delete: false,
+      ubicacion: "",
+      centro_medico:user.centroMedico._id
     });
   }, [incidencia, user]);
 
@@ -124,6 +129,27 @@ export default function ModalAddIncidencia({ items }) {
       status: selectedValue || "", // Set the tipoVisita to the selected value or an empty string if selectedValue is falsy
     });
   };
+
+
+  //UBICACIONES
+  const { ubicaciones, startLoadingUbicaciones } = useUbicacionStore();
+
+
+  useEffect(() => {
+    startLoadingUbicaciones();
+    // Función que se ejecutará cada 5 segundos
+    const interval = setInterval(() => {
+      startLoadingUbicaciones();
+    }, 5000); // 5000 milisegundos = 5 segundos
+
+    // Función de limpieza que se ejecutará cuando el componente se desmonte
+    return () => clearInterval(interval);
+  }, []);
+
+  const data = ubicaciones.map((items)=>{
+    return `${items.piso} - ${items.no_sala}`
+  })
+
 
   return (
     <>
@@ -191,11 +217,35 @@ export default function ModalAddIncidencia({ items }) {
                   onChange={handleDropdownStatus}
                 />
               </div>
+
+              <div className="col-span-2">
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Ubicacion:
+                </label>
+                <input
+                id="ubicacion"
+                  list="data"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value={formik.values.ubicacion}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  placeholder="Ubicacion del equipo"
+                  required
+                />
+                <datalist
+                  id="data"
+                  className="bg-white"
+                >
+                  {data.map((op, i) => (
+                    <option key={i} value={op} />
+                  ))}
+                </datalist>
+              </div>
             </div>
             <div className="flex gap-2 mt-4">
               <button
                 type="submit "
-                class="text-white w-1/2 h-full bg-gradient-to-r from-green-600 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
+                className="text-white  w-1/2 h-full bg-gradient-to-r from-green-600 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-0 py-2.5 text-center "
               >
                 Agregar Incidencia
               </button>
@@ -203,8 +253,7 @@ export default function ModalAddIncidencia({ items }) {
               <button
                 type="button"
                 onClick={onCloseModal}
-
-                class="w-1/2 text-white bg-gradient-to-br from-red-500 to-orange-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
+                className="w-1/2 text-white bg-gradient-to-br from-red-500 to-orange-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
               >
                 Cancelar
               </button>

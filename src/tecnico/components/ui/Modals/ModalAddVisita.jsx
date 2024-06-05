@@ -88,6 +88,7 @@ export default function ModalAddVisita({ items }) {
         incidencia?.id_operador?.unidad_medica +
         " Equipo " +
         incidencia?.id_equipo?.no_serie,
+        centro_medico:user.centroMedico._id
     });
   }, [incidencia, user]);
 
@@ -161,7 +162,7 @@ export default function ModalAddVisita({ items }) {
             <div className="flex gap-2 mt-4">
               <button
                 type="submit "
-                class="text-white w-1/2 h-full bg-gradient-to-r from-green-600 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-2 py-2.5 text-center  "
+                className="text-white w-1/2 h-full bg-gradient-to-r from-green-600 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-2 py-2.5 text-center  "
               >
                 Agregar Incidencia
               </button>
@@ -170,7 +171,7 @@ export default function ModalAddVisita({ items }) {
                 type="button"
                 onClick={onCloseModal}
 
-                class="w-1/2 text-white bg-gradient-to-br from-red-500 to-orange-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
+                className="w-1/2 text-white bg-gradient-to-br from-red-500 to-orange-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
               >
                 Cancelar
               </button>

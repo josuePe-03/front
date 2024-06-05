@@ -1,9 +1,16 @@
-import {  IconUsers,IconDeviceImac,IconTools,IconMapPin2, IconSettings,IconCalendarEvent} from "@tabler/icons-react";
+import {
+  IconUsers,
+  IconDeviceImac,
+  IconTools,
+  IconMapPin2,
+  IconSettings,
+  IconCalendarEvent,
+  IconMapPin,
+} from "@tabler/icons-react";
 import { ButtonLink } from "./ButtonLink";
 import { useUiNavbarStore } from "../../../hooks";
 
 export default function LinksAdmin() {
-
   const { closeNavbar } = useUiNavbarStore();
 
   return (
@@ -24,7 +31,7 @@ export default function LinksAdmin() {
       </li>
       <li className="">
         <ButtonLink onToggle={closeNavbar} to="/equipos">
-          <IconDeviceImac className="text-gray-600" size={20}/>
+          <IconDeviceImac className="text-gray-600" size={20} />
         </ButtonLink>
       </li>
       <li>
@@ -34,24 +41,29 @@ export default function LinksAdmin() {
       </li>
       <li>
         <ButtonLink onToggle={closeNavbar} to="/tecnicos">
-          <IconTools   className="text-gray-600"size={20} />
+          <IconTools className="text-gray-600" size={20} />
         </ButtonLink>
       </li>
       <li>
-        <ButtonLink  onToggle={closeNavbar} to="/agenda">
-          <IconCalendarEvent   className="text-gray-600"size={20} />
+        <ButtonLink onToggle={closeNavbar} to="/agenda">
+          <IconCalendarEvent className="text-gray-600" size={20} />
         </ButtonLink>
       </li>
       <li>
-        <ButtonLink  onToggle={closeNavbar} to="/incidencias">
-          <IconSettings   className="text-gray-600"size={20} />
+        <ButtonLink onToggle={closeNavbar} to="/incidencias">
+          <IconSettings className="text-gray-600" size={20} />
         </ButtonLink>
       </li>
       <li>
-        <ButtonLink  onToggle={closeNavbar} to="/visitas">
-          <IconMapPin2   className="text-gray-600"size={20} />
+        <ButtonLink onToggle={closeNavbar} to="/visitas">
+          <IconMapPin2 className="text-gray-600" size={20} />
+        </ButtonLink>
+      </li>
+      <li>
+        <ButtonLink onToggle={closeNavbar} to="/ubicaciones-hospital">
+          <IconMapPin className="text-gray-600" size={20} />
         </ButtonLink>
       </li>
     </>
-  )
+  );
 }

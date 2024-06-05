@@ -16,6 +16,9 @@ export const visitaTecnicaSlice = createSlice({
         visitaProxima:[
 
         ],
+        visitaTecnicaAgenda:[
+
+        ],
         filtros:[
 
         ],
@@ -59,9 +62,9 @@ export const visitaTecnicaSlice = createSlice({
         //VISITA
         onLoadVisitaTecnica: (state, { payload = [] }) => {
             state.isLoadingVisitasTecnicas = false;
+            state.visitaTecnicaAgenda = [payload];
             state.visitaTecnica = payload;
             state.visitaProxima      = [];
-
         },
 
         //VISITA PROXIMA

@@ -81,14 +81,14 @@ export default function AdminVisitasTecnicas() {
             <Titulo texto={"Administrador de Visitas"} />
           </div>
           <section className="h-[85vh] w-full">
-            <div class="">
+            <div className="">
               {/* <!-- Start coding here --> */}
-              <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-                <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+              <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+                <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                   {/* SEARCH */}
-                  <div class="w-full md:w-1/2">
-                    <form class="flex items-center">
-                      <label for="simple-search" class="sr-only">
+                  <div className="w-full md:w-1/2">
+                    <form className="flex items-center">
+                      <label className="sr-only">
                         Search
                       </label>
                       {/* <div class="relative w-full">
@@ -104,7 +104,7 @@ export default function AdminVisitasTecnicas() {
                       </div> */}
                     </form>
                   </div>
-                  <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                  <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                     {/* <div class="flex items-center space-x-3 w-full md:w-auto">
                       <Dropdow
                         options={options}
@@ -124,9 +124,9 @@ export default function AdminVisitasTecnicas() {
                     </div> */}
                   </div>
                 </div>
-                <div class="overflow-x-auto h-[22rem]">
-                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <div className="overflow-x-auto h-[22rem]">
+                  <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <TrVisitaTecnica items={visitasTecnicas} />
                     </thead>
                     <tbody>

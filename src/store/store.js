@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { visitaTecnicaSlice,uiSlice, calendarSlice, authSlice,uiNavbarSlice,operadorSlice,uiModalAddUserSlice,tecnicoSlice,equipoSlice,incidenciaSlice } from './';
+import { visitaTecnicaSlice,uiSlice, calendarSlice, authSlice,uiNavbarSlice,operadorSlice,uiModalAddUserSlice,tecnicoSlice,equipoSlice,incidenciaSlice, administradoresSlice, centroMedicoSlice } from './';
+import { ubicacionSlice } from './admin/ubicacionSlice';
 
 
 export const store = configureStore({
@@ -11,6 +12,8 @@ export const store = configureStore({
         adminOperador: operadorSlice.reducer,
         adminTecnico: tecnicoSlice.reducer,
         adminEquipo: equipoSlice.reducer,
+        adminUbicacion: ubicacionSlice.reducer,
+
         //ui
         uiNavbar: uiNavbarSlice.reducer,
         modalAdd : uiModalAddUserSlice.reducer,
@@ -18,6 +21,12 @@ export const store = configureStore({
         incidencia : incidenciaSlice.reducer,
         //tecncico
         visitaTecnica : visitaTecnicaSlice.reducer,
+        
+        // superadministrador
+        administradores : administradoresSlice.reducer,
+        centroMedico : centroMedicoSlice.reducer,
+
+
         
         
 

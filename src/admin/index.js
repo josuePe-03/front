@@ -5,5 +5,7 @@ export {default as AdminTecnicosPage} from './pages/AdminTecnicosPage'
 export {default as AdminAgenda} from './pages/AdminAgenda'
 export {default as AdminIncidencias} from './pages/AdminIncidencias'
 export {default as AdminVisitasTecnicas} from './pages/AdminVisitasTecnicas'
+export {default as AdminUbicacionHospitalPage} from './pages/AdminUbicacionHospitalPage'
+
 
 

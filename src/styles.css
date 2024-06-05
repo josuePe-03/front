@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: "Roboto", sans-serif;
+}
+
 /* Modal */
 .ReactModalPortal > div{
   opacity: 0;
@@ -62,3 +66,4 @@
   width: 70px;
   height: 70px;
 }
+

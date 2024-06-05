@@ -22,6 +22,7 @@ export const useVisitaTecnicaStore = () => {
     visitasTecnicas,
     visitasTecnicasIncidencia,
     visitaTecnica,
+    visitaTecnicaAgenda, 
     filtros,
     activeVisitaTecnica,
   } = useSelector((state) => state.visitaTecnica);
@@ -37,7 +38,7 @@ export const useVisitaTecnicaStore = () => {
     try {
       // Creando
       const { data } = await clienteAxios.post(
-        "/tecnico/visita-incidencia/agregar-visita",
+        "/visita-incidencia/agregar-visita",
         visitaTecnica
       );
       dispatch(onAddNewVisitaTecnica({ ...visitaTecnica }));
@@ -48,24 +49,12 @@ export const useVisitaTecnicaStore = () => {
     }
   };
 
-  const startDeletingVisitaTecnica = async (id) => {
-    // Todo: Llegar al backend
-    try {
-      await clienteAxios.put(`/admin/tecnico/eliminar-tecnico/${id}`);
-      dispatch(onDeleteVisitaTecnica());
-      startLoadingVisitasTecnicas();
-    } catch (error) {
-      console.log(error);
-      Swal.fire("Error al eliminar", error.response.data.msg, "error");
-    }
-  };
-
   //TERMINAR VISITA
   const startTerminarVisitaTecnica = async (visitaTecnica) => {
     // Todo: Llegar al backend
     try {
       await clienteAxios.put(
-        `/tecnico/visita-incidencia/terminar-visita/${visitaTecnica.id}`,
+        `/visita-incidencia/terminar-visita/${visitaTecnica.id}`,
         visitaTecnica
       );
 
@@ -85,7 +74,7 @@ export const useVisitaTecnicaStore = () => {
 
     try {
       const { data } = await clienteAxios.get(
-        `/tecnico/visita-incidencia/obtener-visitas?page=${page}&search=${search}`
+        `/visita-incidencia/obtener-visitas?page=${page}&search=${search}`
       );
       dispatch(onLoadVisitasTecnicas(data.visita));
       dispatch(
@@ -107,7 +96,7 @@ export const useVisitaTecnicaStore = () => {
   const startLoadingVisitasTecnicasIncidencia = async (incidencia) => {
     try {
       const { data } = await clienteAxios.get(
-        `/tecnico/visita-incidencia/obtener-visitas-incidencia/${incidencia}`
+        `/visita-incidencia/obtener-visitas-incidencia/${incidencia}`
       );
 
       dispatch(onLoadVisitasTecnicasIncidencia(data.visita_incidencia));
@@ -124,7 +113,7 @@ export const useVisitaTecnicaStore = () => {
   const startLoadingVisitasTecnicasProxima = async (operador) => {
     try {
       const { data } = await clienteAxios.get(
-        `/tecnico/visita-incidencia/visita-proxima/${operador}`
+        `/visita-incidencia/visita-proxima/${operador}`
       );
       dispatch(onLoadVisitaTecnicaProxima(data.visita_proxima));
 
@@ -138,10 +127,9 @@ export const useVisitaTecnicaStore = () => {
   const startLoadingVisitaTecnica = async (visitaTecnica) => {
     try {
       const { data } = await clienteAxios.get(
-        `/operador/incidencia/obtener-incidencia/${visitaTecnica}`
+        `/incidencia/obtener-incidencia/${visitaTecnica}`
       );
       dispatch(onLoadVisitaTecnica(data.visitaTecnica));
-      dispatch(onLogo(data.visitaTecnica));
 
       if (!data.ok) return dispatch(onLoadVisitasTecnicas(data.msg));
     } catch (error) {
@@ -158,6 +146,7 @@ export const useVisitaTecnicaStore = () => {
     //* Propiedades
     activeVisitaTecnica,
     visitaTecnica,
+    visitaTecnicaAgenda,
     visitasTecnicas,
     visitasTecnicasIncidencia,
     visitaProxima,
@@ -173,6 +162,5 @@ export const useVisitaTecnicaStore = () => {
     startSavingVisitaTecnica,
     startTerminarVisitaTecnica,
     startLogoutModal,
-    startDeletingVisitaTecnica,
   };
 };

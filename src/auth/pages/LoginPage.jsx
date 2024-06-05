@@ -62,7 +62,7 @@ export const LoginPage = () => {
         <div className="flex justify-center items-center h-full">
           <div className="shadow-gray-300 shadow-lg w-11/12 md:w-7/12 lg:grid lg:grid-cols-2 lg:w-7/12 2xl:w-5/12 rounded-xl lg:h-[25rem]">
             <div className="hidden lg:flex justify-center items-center">
-              <img className="w-[15rem]" src="../logo-angeles.png" alt="" />
+              <img className="w-[15rem]" src="../logo.png" alt="" />
             </div>
 
             <div className="p-6 space-y-4 md:space-y-6 lg:space-y-3 sm:p-8 relative flex justify-center flex-col ">

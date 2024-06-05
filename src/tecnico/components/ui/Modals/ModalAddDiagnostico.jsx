@@ -66,7 +66,6 @@ export default function ModalAddDiagnostico({ items }) {
     },
   ];
 
-
   useEffect(() => {
     startLoadingTecnicos(datos);
     // Función que se ejecutará cada 5 segundos
@@ -77,9 +76,6 @@ export default function ModalAddDiagnostico({ items }) {
     // Función de limpieza que se ejecutará cuando el componente se desmonte
     return () => clearInterval(interval);
   }, [filterArea,page,search]);
-
-
-
 
   const tecnicosDisponibles = tecnicos
     .filter((tecnico) => tecnico._id !== user.uid)
@@ -106,7 +102,9 @@ export default function ModalAddDiagnostico({ items }) {
     observacion: "",
     estado: "",
     lista_refacciones: "",
+    centro_medico:user.centroMedico._id
   });
+
 
   useEffect(() => {
     setEquipo({
@@ -114,6 +112,7 @@ export default function ModalAddDiagnostico({ items }) {
       id_incidencia: visitaTecnica.id_incidencia || "",
       observacion: "",
       estado: "",
+      centro_medico:user.centroMedico._id
     });
   }, [visitaTecnica, user]);
 
@@ -127,7 +126,6 @@ export default function ModalAddDiagnostico({ items }) {
             ...values,
             estado: "Visita Concluida",
           };
-
           startTerminarVisitaTecnica(updatedValues);
           setEstado("");
         } else if (estado == 2) {
@@ -300,7 +298,7 @@ export default function ModalAddDiagnostico({ items }) {
             <div className="flex gap-2 mt-4">
               <button
                 type="submit "
-                class="text-white w-1/2 h-full bg-gradient-to-r from-green-600 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
+                className="text-white w-1/2 h-full bg-gradient-to-r from-green-600 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
               >
                 Agregar Incidencia
               </button>
@@ -309,7 +307,7 @@ export default function ModalAddDiagnostico({ items }) {
                 type="button"
                 onClick={onCloseModal}
 
-                class="w-1/2 text-white bg-gradient-to-br from-red-500 to-orange-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
+                className="w-1/2 text-white bg-gradient-to-br from-red-500 to-orange-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
               >
                 Cancelar
               </button>

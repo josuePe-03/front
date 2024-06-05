@@ -190,18 +190,7 @@ export default function AdminPage() {
               alt=""
             />
           </div>
-          <div className="h-[10rem] flex px-16">
-            <div>
-              <div className="flex">
-                <IconMapPin2 className="-ml-10 mr-4" />
-                <p className="text-gray-500 text-sm mb-2">Ubicacion</p>
-              </div>
-              <p className="text-gray-500 text-bassic">
-                Av. Cto. Frida Kahlo 180, Valle Oriente, 66260 San Pedro Garza
-                García, N.L.
-              </p>
-            </div>
-          </div>
+
           <button
             onClick={()=>{startLogout()}}
             className="h-20 bg-gray-300 text-gray-400 w-full flex items-center justify-center space-x-2"
