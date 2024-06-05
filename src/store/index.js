@@ -16,5 +16,10 @@ export * from './ui/uiModalAddUser';
 export * from './operador/incidenciaSlice';
 export * from './tecnico/visitaTecnicaSlice';
 
+export * from './superAdmin/administradoresSlice';
+export * from './superAdmin/centroMedicoSlice';
+
+
+
 
 export * from './store';

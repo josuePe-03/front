@@ -65,14 +65,14 @@ export default function TecnicoVisitas() {
             <Titulo texto={"Visitas Tecnicas"}/>
 
             </div>
-            <div class="flex flex-col md:flex-row items-center justify-end space-y-3 md:space-y-0 md:space-x-4 mt-2 ">
+            <div className="flex flex-col md:flex-row items-center justify-end space-y-3 md:space-y-0 md:space-x-4 mt-2 ">
               {/* SEARCH */}
-              <div class="w-full md:w-1/4">
-                <form class="flex items-center">
-                  <label for="simple-search" class="sr-only">
+              <div className="w-full md:w-1/4">
+                <form className="flex items-center">
+                  <label className="sr-only">
                     Search
                   </label>
-                  <div class="relative w-full">
+                  <div className="relative w-full">
                     {/* <input
                       type="text"
                       id="simple-search"

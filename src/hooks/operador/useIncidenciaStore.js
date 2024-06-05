@@ -29,7 +29,7 @@ export const useIncidenciaStore = () => {
     try {
       // Creando
       const { data } = await clienteAxios.post(
-        "/operador/incidencia/agregar-incidencia",
+        "/incidencia/agregar-incidencia",
         incidencia
       );
       dispatch(onAddNewIncidencia({ ...incidencia }));
@@ -37,18 +37,6 @@ export const useIncidenciaStore = () => {
     } catch (error) {
       console.log(error);
       Swal.fire("Error al guardar", error.response.data.msg, "error");
-    }
-  };
-
-  const startDeletingIncidencia = async (id) => {
-    // Todo: Llegar al backend
-    try {
-      await clienteAxios.put(`/admin/tecnico/eliminar-tecnico/${id}`);
-      dispatch(onDeleteIncidencia());
-      startLoadingIncidencias();
-    } catch (error) {
-      console.log(error);
-      Swal.fire("Error al eliminar", error.response.data.msg, "error");
     }
   };
 
@@ -93,7 +81,7 @@ export const useIncidenciaStore = () => {
 
     try {
       const { data } = await clienteAxios.get(
-        `/operador/incidencia/obtener-incidencias?page=${page}&tipo_incidencia=${filterCategoria.toString()}&search=${search}`
+        `/incidencia/obtener-incidencias?page=${page}&tipo_incidencia=${filterCategoria.toString()}&search=${search}`
       );
       dispatch(onLoadIncidencias(data.incidencias));
 
@@ -113,7 +101,7 @@ export const useIncidenciaStore = () => {
   const startLoadingIncidencia = async (incidencia) => {
     try {
       const { data } = await clienteAxios.get(
-        `/operador/incidencia/obtener-incidencia/${incidencia}`
+        `/incidencia/obtener-incidencia/${incidencia}`
       );
       dispatch(onLoadIncidencia(data.incidencia));
 
@@ -143,6 +131,5 @@ export const useIncidenciaStore = () => {
     startSavingIncidencia,
     startTerminarIncidencia,
     startLogoutModal,
-    startDeletingIncidencia,
   };
 };

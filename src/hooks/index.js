@@ -20,5 +20,14 @@ export * from './operador/useIncidenciaStore';
 //VISITAS TECNICAS
 export * from './tecnico/useVisitaTecnicaStore';
 
+// SUPER ADMIN
+export * from './superAdmin/useOperadorSuperAdminStore';
+export * from './superAdmin/useTecnicoSuperAdminStore';
+export * from './superAdmin/useCentroMedicoStore';
+export * from './superAdmin/useAdministradoresStore';
+
+
+
+
 
 

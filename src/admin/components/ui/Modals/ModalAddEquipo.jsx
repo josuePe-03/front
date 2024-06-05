@@ -57,6 +57,7 @@ export default function ModalAddEquipo({ tecnico }) {
     fecha_fabricacion: "",
     id_admin: user.uid,
     is_delete: false,
+    centro_medico:user.centroMedico._id
   });
 
   const formik = useFormik({
@@ -93,7 +94,7 @@ export default function ModalAddEquipo({ tecnico }) {
         onClick={() => {
           openModel();
         }}
-        class="text-white h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
+        className="text-white h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
       >
         Agregar Equipo
       </button>
@@ -203,7 +204,7 @@ export default function ModalAddEquipo({ tecnico }) {
             </div>
             <button
               type="submit "
-              class="text-white mt-5 w-full h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
+              className="text-white mt-5 w-full h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
             >
               Agregar Equipo
             </button>

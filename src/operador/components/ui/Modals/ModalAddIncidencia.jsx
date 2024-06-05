@@ -91,6 +91,7 @@ export default function ModalAddIncidencia({ items }) {
       estado: "Pendiente",
       is_delete: false,
       ubicacion: "",
+      centro_medico:user.centroMedico._id
     });
   }, [incidencia, user]);
 
@@ -99,7 +100,6 @@ export default function ModalAddIncidencia({ items }) {
     enableReinitialize: true, // Allows Formik to reset when initialValues change
     onSubmit: async (values, { resetForm }) => {
       try {
-        console.log(values)
         await startSavingIncidencia(values);
         onCloseModal();
 
@@ -151,7 +151,6 @@ export default function ModalAddIncidencia({ items }) {
   })
 
 
-  console.log(data)
   return (
     <>
       <button
@@ -246,7 +245,7 @@ export default function ModalAddIncidencia({ items }) {
             <div className="flex gap-2 mt-4">
               <button
                 type="submit "
-                class="text-white  w-1/2 h-full bg-gradient-to-r from-green-600 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-0 py-2.5 text-center "
+                className="text-white  w-1/2 h-full bg-gradient-to-r from-green-600 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-0 py-2.5 text-center "
               >
                 Agregar Incidencia
               </button>
@@ -254,7 +253,7 @@ export default function ModalAddIncidencia({ items }) {
               <button
                 type="button"
                 onClick={onCloseModal}
-                class="w-1/2 text-white bg-gradient-to-br from-red-500 to-orange-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
+                className="w-1/2 text-white bg-gradient-to-br from-red-500 to-orange-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
               >
                 Cancelar
               </button>

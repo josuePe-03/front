@@ -22,7 +22,7 @@ export const useEquipoStore = () => {
     try {
       // Creando
       const { data } = await clienteAxios.post(
-        "/admin/equipo/agregar-equipo",
+        "/equipo/agregar-equipo",
         equipo
       );
       dispatch(onAddNewEquipo({ ...equipo }));
@@ -44,7 +44,7 @@ export const useEquipoStore = () => {
         confirmButtonText: "Si, borrar.",
       }).then((result) => {
         if (result.isConfirmed) {
-          clienteAxios.put(`/admin/equipo/eliminar-equipo/${id}`);
+          clienteAxios.put(`/equipo/eliminar-equipo/${id}`);
           dispatch(onDeleteEquipo());
         }
       });
@@ -58,7 +58,7 @@ export const useEquipoStore = () => {
     // Todo: Llegar al backend
     try {
       await clienteAxios.put(
-        `/admin/equipo/actualizar-equipo/${equipo.no_serie}`,
+        `/equipo/actualizar-equipo/${equipo.no_serie}`,
         equipo
       );
       dispatch(onUpdateEquipo({ ...equipo }));
@@ -68,7 +68,6 @@ export const useEquipoStore = () => {
     }
   };
 
-
   // OBTENER EQUIPOS
   const startLoadingEquipos = async (datos) => {
 
@@ -77,7 +76,7 @@ export const useEquipoStore = () => {
       const search = datos.map((items)=>items.search) 
 
     try {
-      const { data } = await clienteAxios.get( `/admin/equipo/obtener-equipos?page=${page}&categoria=${filterCategoria.toString()}&search=${search}`);
+      const { data } = await clienteAxios.get( `/equipo/obtener-equipos?page=${page}&categoria=${filterCategoria.toString()}&search=${search}`);
       dispatch(onLoadEquipos(data.equipos));
 
       dispatch(onLoadFiltrosEquipo({

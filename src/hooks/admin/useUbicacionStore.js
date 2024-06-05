@@ -17,7 +17,7 @@ export const useUbicacionStore = () => {
     try {
       // Creando
       const { data } = await clienteAxios.post(
-        "/admin/ubicaciones/agregar-ubicacion",
+        "/ubicaciones/agregar-ubicacion",
         ubicacion
       );
       startLoadingUbicaciones();
@@ -43,7 +43,7 @@ export const useUbicacionStore = () => {
         confirmButtonText: "Si, eliminar."
       }).then((result) => {
         if (result.isConfirmed) {
-          clienteAxios.delete(`/admin/ubicaciones/eliminar-ubicacion/${id}`);
+          clienteAxios.delete(`/ubicaciones/eliminar-ubicacion/${id}`);
           startLoadingUbicaciones();
         }
       });
@@ -59,7 +59,7 @@ export const useUbicacionStore = () => {
   const startLoadingUbicaciones = async (datos) => {
     try {
       const { data } = await clienteAxios.get(
-        `/admin/ubicaciones/obtener-ubicaciones`
+        `/ubicaciones/obtener-ubicaciones`
       );
       dispatch(onLoadUbicaciones(data.ubicaciones));
       if (!data.ok) return dispatch(onLoadUbicaciones(data.msg));
@@ -72,7 +72,7 @@ export const useUbicacionStore = () => {
   const startLoadingUbicacion = async (ubicacion) => {
     try {
       const { data } = await clienteAxios.get(
-        `/admin/ubicacion/obtener-ubicacion/${ubicacion}`
+        `/ubicacion/obtener-ubicacion/${ubicacion}`
       );
       dispatch(onLoadUbicacion(data.ubicacion));
 

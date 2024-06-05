@@ -11,7 +11,7 @@ import {
   AdminAgenda,
   AdminIncidencias,
   AdminVisitasTecnicas,
-  AdminUbicacionHospitalPage
+  AdminUbicacionHospitalPage,
 } from "../admin";
 import {
   OperadorPage,
@@ -19,9 +19,25 @@ import {
   OperadorEquipo,
   OperadorIncidencia,
   OperadorEquipoIncidencia,
-  OperadorVisitaIncidencia
+  OperadorVisitaIncidencia,
 } from "../operador";
-import { TecnicoPage,TecnicoAgenda,TecnicoEquipos,TecnicoIncidencia,TecnicoVisitas, TecnicoEquipoIncidencia } from "../tecnico";
+import {
+  TecnicoPage,
+  TecnicoAgenda,
+  TecnicoEquipos,
+  TecnicoIncidencia,
+  TecnicoVisitas,
+  TecnicoEquipoIncidencia,
+} from "../tecnico";
+
+import {
+  AdministradoresSuperAdminPage,
+  CompañiasSuperAdministradoresPage,
+  TecnicosSuperAdminPage,
+  OperadoresSuperAdminPage,
+  SuperAdminPage
+} from "../superAdmin"
+
 
 export const AppRouter = () => {
   const { user, status, checkAuthToken } = useAuthStore();
@@ -42,7 +58,21 @@ export const AppRouter = () => {
           <Route path="/auth/*" element={<LoginPage />} />
           <Route path="/*" element={<Navigate to="/auth/login" />} />
         </>
-      ) : status === "authenticated" && user.rol == 3 ? (
+      )
+      : status === "authenticated" && user.rol == 4 ? (
+        // SUPER ADMIN
+        <>
+          <Route path="/" element={<SuperAdminPage />} />
+          <Route path="/centros-medicos" element={<CompañiasSuperAdministradoresPage />} />
+          <Route path="/administradores" element={<AdministradoresSuperAdminPage/>} />
+          <Route path="/tecnicos" element={<TecnicosSuperAdminPage />} />
+          <Route path="/operadores" element={<OperadoresSuperAdminPage />} />
+
+
+          <Route path="/*" element={<Navigate to="/" />} />
+        </>
+      )
+       : status === "authenticated" && user.rol == 3 ? (
         // ADMIN
         <>
           <Route path="/" element={<AdminPage />} />
@@ -52,8 +82,10 @@ export const AppRouter = () => {
           <Route path="/agenda" element={<AdminAgenda />} />
           <Route path="/incidencias" element={<AdminIncidencias />} />
           <Route path="/visitas" element={<AdminVisitasTecnicas />} />
-          <Route path="/ubicaciones-hospital" element={<AdminUbicacionHospitalPage />} />
-
+          <Route
+            path="/ubicaciones-hospital"
+            element={<AdminUbicacionHospitalPage />}
+          />
 
           <Route path="/*" element={<Navigate to="/" />} />
         </>
@@ -65,8 +97,14 @@ export const AppRouter = () => {
           <Route path="/incidencias" element={<TecnicoIncidencia />} />
           <Route path="/equipos" element={<TecnicoEquipos />} />
           <Route path="/visitas" element={<TecnicoVisitas />} />
-          <Route path="/equipo-incidencia/:equipo"element={<TecnicoEquipoIncidencia />}/>
-          <Route path="/visita-incidencia/:incidencia"element={<OperadorVisitaIncidencia />}/>
+          <Route
+            path="/equipo-incidencia/:equipo"
+            element={<TecnicoEquipoIncidencia />}
+          />
+          <Route
+            path="/visita-incidencia/:incidencia"
+            element={<OperadorVisitaIncidencia />}
+          />
 
           <Route path="/*" element={<Navigate to="/" />} />
         </>
@@ -77,8 +115,14 @@ export const AppRouter = () => {
           <Route path="/equipos" element={<OperadorEquipo />} />
           <Route path="/incidencias" element={<OperadorIncidencia />} />
           <Route path="/agenda" element={<OperadorAgenda />} />
-          <Route path="/equipo-incidencia/:equipo"element={<OperadorEquipoIncidencia />}/>
-          <Route path="/visita-incidencia/:incidencia"element={<OperadorVisitaIncidencia />}/>
+          <Route
+            path="/equipo-incidencia/:equipo"
+            element={<OperadorEquipoIncidencia />}
+          />
+          <Route
+            path="/visita-incidencia/:incidencia"
+            element={<OperadorVisitaIncidencia />}
+          />
 
           <Route path="/*" element={<Navigate to="/" />} />
         </>

@@ -9,6 +9,7 @@ import {
   useOperadorStore,
   useUiStore,
   useTecnicoStore,
+  useAuthStore,
 } from "../../../../hooks";
 
 import Modal from "react-modal";
@@ -40,6 +41,7 @@ export default function ModalAddUser({ tecnico }) {
   const { isUserAddModalOpen, closeUserAddModal, openUserAddModal } =
     useUiStore();
 
+    const {user} = useAuthStore();
   const { startSavingOperador } = useOperadorStore();
   const { startSavingTecnico } = useTecnicoStore();
 
@@ -63,8 +65,9 @@ export default function ModalAddUser({ tecnico }) {
     password: "123456",
     rol: "",
     area: "",
-    unidad_medica: "Monterrey",
+    unidad_medica: user.centroMedico._id,
     is_delete: false,
+    centro_medico: user.centroMedico._id
   });
 
   const formik = useFormik({
@@ -75,12 +78,8 @@ export default function ModalAddUser({ tecnico }) {
         if (tecnico) {
           const rol = 2;
           const email =
-            values.nombre.replace(/ /g, "") +
-            values.apellidos.slice(0, 2) +
-            values.edad +
+          values.nombre.replace(/ /g, "") + user.centroMedico.nombre.replace(/ /g, "") +
             "@example.com";
-
-          // Create a new object that includes all the existing values and the new email
           const updatedValues = {
             ...values,
             email: email, // Add the dynamically generated email
@@ -91,11 +90,8 @@ export default function ModalAddUser({ tecnico }) {
         } else {
           const rol = 1;
           const email =
-            values.nombre +
-            values.apellidos.slice(0, 2) +
-            values.edad +
+            values.nombre.replace(/ /g, "") + user.centroMedico.nombre.replace(/ /g, "") +
             "@example.com";
-          // Create a new object that includes all the existing values and the new email
           const updatedValues = {
             ...values,
             email: email, // Add the dynamically generated email
@@ -125,7 +121,7 @@ export default function ModalAddUser({ tecnico }) {
         onClick={() => {
           openModel();
         }}
-        class="text-white h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
+        className="text-white h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
       >
         {tecnico ? "Agregar Tecnico" : "Agregar Operador"}
       </button>
@@ -221,7 +217,7 @@ export default function ModalAddUser({ tecnico }) {
             </div>
             <button
               type="submit "
-              class="text-white mt-5 w-full h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
+              className="text-white mt-5 w-full h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
             >
               {tecnico ? "Agregar Tecnico" : "Agregar Operador"}
             </button>

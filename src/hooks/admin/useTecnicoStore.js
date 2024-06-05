@@ -29,7 +29,7 @@ export const useTecnicoStore = () => {
     try {
       // Creando
       const { data } = await clienteAxios.post(
-        "/admin/tecnico/agregar-tecnico",
+        "/tecnico/agregar-tecnico",
         tecnico
       );
       dispatch(onAddNewTecnico({ ...tecnico }));
@@ -47,7 +47,7 @@ export const useTecnicoStore = () => {
   const startDeletingTecnico = async (id) => {
     // Todo: Llegar al backend
     try {
-      await clienteAxios.put(`/admin/tecnico/eliminar-tecnico/${id}`);
+      await clienteAxios.put(`/tecnico/eliminar-tecnico/${id}`);
       dispatch(onDeleteTecnico());
       startLoadingTecnicos();
     } catch (error) {
@@ -60,7 +60,7 @@ export const useTecnicoStore = () => {
     // Todo: Llegar al backend
     try {
       await clienteAxios.put(
-        `/admin/tecnico/actualizar-tecnico/${tecnico.id}`,
+        `/tecnico/actualizar-tecnico/${tecnico.id}`,
         tecnico
       );
       dispatch(onUpdateTecnico({ ...tecnico }));
@@ -79,7 +79,7 @@ export const useTecnicoStore = () => {
 
     try {
       const { data } = await clienteAxios.get(
-        `/admin/tecnico/obtener-tecnicos?page=${page}&area=${filterArea.toString()}&search=${search}`
+        `/tecnico/obtener-tecnicos?page=${page}&area=${filterArea.toString()}&search=${search}`
       );
       dispatch(onLoadTecnicos(data.tecnicos));
 
@@ -101,7 +101,7 @@ export const useTecnicoStore = () => {
   const startLoadingTecnico = async (tecnico) => {
     try {
       const { data } = await clienteAxios.get(
-        `/admin/tecnico/obtener-tecnico/${tecnico}`
+        `/tecnico/obtener-tecnico/${tecnico}`
       );
       dispatch(onLoadTecnico(data.tecnico));
 

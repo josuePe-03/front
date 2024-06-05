@@ -17,7 +17,7 @@ export default function AdminAgenda() {
   const localizer = dayjsLocalizer(dayjs);
   dayjs.locale("es");
 
-  const { visitasTecnicas, visitaTecnica, startLoadingVisitasTecnicas } =
+  const { visitasTecnicas, visitaTecnicaAgenda, startLoadingVisitasTecnicas } =
     useVisitaTecnicaStore();
 
   const [filterCategoria, setFilterCategoria] = useState([]);
@@ -48,7 +48,7 @@ export default function AdminAgenda() {
     visitasTecnicas === "Sin visitas existentes" ? [] : visitasTecnicas;
 
   let eventos =
-    visitaTecnica.length === 0 ? validateVisitasTecnicas : visitaTecnica;
+    visitaTecnicaAgenda.length === 0 ? validateVisitasTecnicas : visitaTecnicaAgenda;
 
   const events = eventos.map((item) => ({
     start: dayjs(item.fecha_visita).toDate(),
@@ -76,7 +76,7 @@ export default function AdminAgenda() {
             <div className=" flex  w-full gap-4 p-3 h-screen">
               <div className="">
                 <ListaVisitas visitasTecnicas={visitasTecnicas} />
-                <DetallesVisita visitaTecnica={visitaTecnica} />
+                <DetallesVisita visitaTecnica={visitaTecnicaAgenda} />
               </div>
               <div className="w-full ">
                 <Calendar

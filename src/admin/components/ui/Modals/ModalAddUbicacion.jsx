@@ -50,6 +50,7 @@ export default function ModalAddUbicacion({ tecnico }) {
   const [equipo, setEquipo] = useState({
     piso: "",
     no_sala: "",
+    centro_medico:user.centroMedico._id
   });
 
   const formik = useFormik({
@@ -70,7 +71,7 @@ export default function ModalAddUbicacion({ tecnico }) {
         onClick={() => {
           openModel();
         }}
-        class="text-white h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
+        className="text-white h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
       >
         Agregar Ubicacion
       </button>
@@ -121,7 +122,7 @@ export default function ModalAddUbicacion({ tecnico }) {
             </div>
             <button
               type="submit "
-              class="text-white mt-5 w-full h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
+              className="text-white mt-5 w-full h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
             >
               Agregar Ubicacion
             </button>
