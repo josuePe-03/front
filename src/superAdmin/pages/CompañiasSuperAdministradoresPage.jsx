@@ -44,7 +44,7 @@ export default function CompañiasSuperAdministradoresPage() {
         </header>
         <section className="px-4 pb-4 w-full sm:flex sm:justify-end">
           <Link
-            to="/agregar-producto"
+            to="/agregar-centro-medico"
             className="bg-[#388141] w-full sm:w-fit p-2 rounded-md text-white font-semibold flex justify-center items-center gap-2"
           >
             Agregar Compañia <IconPlus stroke={2} />

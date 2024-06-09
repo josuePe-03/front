@@ -63,10 +63,7 @@ export default function ModalAddUser({ tecnico }) {
     fecha_creacion: new Date(),
     email: "" + "@example.com",
     password: "123456",
-    rol: "",
     area: "",
-    unidad_medica: user.centroMedico._id,
-    is_delete: false,
     centro_medico: user.centroMedico._id
   });
 
@@ -76,26 +73,22 @@ export default function ModalAddUser({ tecnico }) {
     onSubmit: async (values, { resetForm }) => {
       try {
         if (tecnico) {
-          const rol = 2;
           const email =
           values.nombre.replace(/ /g, "") + user.centroMedico.nombre.replace(/ /g, "") +
             "@example.com";
           const updatedValues = {
             ...values,
             email: email, // Add the dynamically generated email
-            rol: rol,
           };
           // TODO:
           await startSavingTecnico(updatedValues);
         } else {
-          const rol = 1;
           const email =
             values.nombre.replace(/ /g, "") + user.centroMedico.nombre.replace(/ /g, "") +
             "@example.com";
           const updatedValues = {
             ...values,
             email: email, // Add the dynamically generated email
-            rol: rol,
           };
           // TODO:
           await startSavingOperador(updatedValues);

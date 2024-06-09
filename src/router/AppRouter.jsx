@@ -35,7 +35,9 @@ import {
   CompañiasSuperAdministradoresPage,
   TecnicosSuperAdminPage,
   OperadoresSuperAdminPage,
-  SuperAdminPage
+  SuperAdminPage,
+  AgregarCentroMedico,
+  EditarCentroMedico
 } from "../superAdmin"
 
 
@@ -63,7 +65,11 @@ export const AppRouter = () => {
         // SUPER ADMIN
         <>
           <Route path="/" element={<SuperAdminPage />} />
+          {/* COMPAÑIA */}
           <Route path="/centros-medicos" element={<CompañiasSuperAdministradoresPage />} />
+          <Route path="/agregar-centro-medico" element={<AgregarCentroMedico/>} />
+          <Route path="/editar-centro-medico/:id" element={<EditarCentroMedico/>} />
+
           <Route path="/administradores" element={<AdministradoresSuperAdminPage/>} />
           <Route path="/tecnicos" element={<TecnicosSuperAdminPage />} />
           <Route path="/operadores" element={<OperadoresSuperAdminPage />} />
