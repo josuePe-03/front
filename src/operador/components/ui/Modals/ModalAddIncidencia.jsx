@@ -45,7 +45,6 @@ const status = [
   { value: "Urgente", label: "Urgente" },
 ];
 
-
 export default function ModalAddIncidencia({ items }) {
   //redux
   const dispatch = useDispatch();
@@ -67,73 +66,57 @@ export default function ModalAddIncidencia({ items }) {
   const onCloseModal = () => {
     closeIncidenciaModal();
     startLogoutModal();
-    formik.resetForm();
   };
 
-  const [equipo, setEquipo] = useState({
-    id_equipo: incidencia._id || "",
-    id_operador: user.uid,
-    detalle: "",
-    fecha_registrada: new Date(),
-    status: "",
-    estado: "Pendiente",
-    is_delete: false,
-    ubicacion: "",
-  });
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [tipoIncidencia, setTipoIncidencia] = useState("");
+  const [detalle, setDetalle] = useState("");
+  const [statusIncidencia, setStatus] = useState("");
+  const [ubicacion, setUbicacion] = useState("");
 
-  useEffect(() => {
-    setEquipo({
-      id_equipo: incidencia._id || "",
-      id_operador: user.uid,
-      detalle: "",
-      fecha_registrada: new Date(),
-      status: "",
-      estado: "Pendiente",
-      is_delete: false,
-      ubicacion: "",
-      centro_medico:user.centroMedico._id
-    });
-  }, [incidencia, user]);
-
-  const formik = useFormik({
-    initialValues: equipo, // Bind Formik's initialValues to the fetched data state
-    enableReinitialize: true, // Allows Formik to reset when initialValues change
-    onSubmit: async (values, { resetForm }) => {
-      try {
-        await startSavingIncidencia(values);
-        onCloseModal();
-
-        Swal.fire({
-          title: "!Agregado Correctamente!",
-          icon: "success",
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  });
-
-  //DROPDONW TIPO INCIDENICIA
-  const handleDropdownChange = (selectedValue) => {
-    // Update the tipoVisita field with the selected value
-    formik.setValues({
-      ...formik.values, // Spread the current values to keep the other values intact
-      tipo_incidencia: selectedValue || "", // Set the tipoVisita to the selected value or an empty string if selectedValue is falsy
-    });
+  const handleDropdownTipoIncidencia = (selectedValue) => {
+    setTipoIncidencia(selectedValue);
   };
 
-  const handleDropdownStatus = (selectedValue) => {
-    // Update the tipoVisita field with the selected value
-    formik.setValues({
-      ...formik.values, // Spread the current values to keep the other values intact
-      status: selectedValue || "", // Set the tipoVisita to the selected value or an empty string if selectedValue is falsy
-    });
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+  const handleDetalle = (event) => {
+    setDetalle(event.target.value);
+  };
+  const handleStatus = (selectedValue) => {
+    setStatus(selectedValue);
+  };
+
+  const handleUbicacion = (event) => {
+    setUbicacion(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!selectedFile) return;
+
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+    formData.append("tipo_incidencia", tipoIncidencia);
+    formData.append("detalle", detalle);
+    formData.append("status", statusIncidencia);
+    formData.append("ubicacion", ubicacion);
+    formData.append("centro_medico", user.centroMedico._id);
+    formData.append("id_operador", user.uid);
+    formData.append("id_equipo", incidencia._id);
+    formData.append("fecha_registrada", new Date());
+
+    try {
+      startSavingIncidencia(formData);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
 
   //UBICACIONES
   const { ubicaciones, startLoadingUbicaciones } = useUbicacionStore();
-
 
   useEffect(() => {
     startLoadingUbicaciones();
@@ -146,11 +129,10 @@ export default function ModalAddIncidencia({ items }) {
     return () => clearInterval(interval);
   }, []);
 
-  const data = ubicaciones.map((items)=>{
-    return `${items.piso} - ${items.no_sala}`
-  })
-
-
+  const data = ubicaciones === "Sin ubicaciones existentes"? [ubicaciones] : ubicaciones.map(item => {
+    return `${item.piso} - ${item.no_sala}`;
+  });
+  
   return (
     <>
       <button
@@ -178,7 +160,7 @@ export default function ModalAddIncidencia({ items }) {
               {incidencia.modelo}
             </h3>
           </div>
-          <form onSubmit={formik.handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="grid md:grid-cols-2 grid-rows-2 gap-x-3 gap-y-2">
               <div>
                 <label className="block mt-2 mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -187,7 +169,7 @@ export default function ModalAddIncidencia({ items }) {
                 <DropdownIncidencia
                   options={tipoVisita}
                   texto={"Selecciona un problema"}
-                  onChange={handleDropdownChange}
+                  onChange={handleDropdownTipoIncidencia}
                 />
               </div>
               <div className="row-span-2">
@@ -197,9 +179,8 @@ export default function ModalAddIncidencia({ items }) {
                 <textarea
                   id="detalle"
                   type="text"
-                  value={formik.values.detalle}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
+                  value={detalle}
+                  onChange={handleDetalle}
                   placeholder="Detalle"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
@@ -214,7 +195,7 @@ export default function ModalAddIncidencia({ items }) {
                 <DropdownIncidencia
                   options={status}
                   texto={"Seleccione el status"}
-                  onChange={handleDropdownStatus}
+                  onChange={handleStatus}
                 />
               </div>
 
@@ -226,9 +207,8 @@ export default function ModalAddIncidencia({ items }) {
                 id="ubicacion"
                   list="data"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={formik.values.ubicacion}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
+                  value={ubicacion}
+                  onChange={handleUbicacion}
                   placeholder="Ubicacion del equipo"
                   required
                 />
@@ -241,6 +221,19 @@ export default function ModalAddIncidencia({ items }) {
                   ))}
                 </datalist>
               </div>
+
+              <div className="col-span-2">
+              <label className="block mb-2 text-sm font-medium text-gray-300 dark:text-[#16351b]">
+                Imagen
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2"
+                required
+              />
+            </div>
             </div>
             <div className="flex gap-2 mt-4">
               <button

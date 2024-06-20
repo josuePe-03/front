@@ -32,8 +32,11 @@ export const useIncidenciaStore = () => {
         "/incidencia/agregar-incidencia",
         incidencia
       );
-      dispatch(onAddNewIncidencia({ ...incidencia }));
       startLoadingIncidencias();
+      Swal.fire({
+        title: "!Agregado Correctamente!",
+        icon: "success",
+      });
     } catch (error) {
       console.log(error);
       Swal.fire("Error al guardar", error.response.data.msg, "error");
