@@ -27,7 +27,7 @@ export default function OperadorVisitaIncidencia() {
   }, [incidencia]);
 
   return (
-    <div className="w-full  md:h-screen  sm:flex bg-gray-200 ">
+    <div className="w-full  h-screen  sm:flex bg-gray-200 ">
       <Navbar mensaje={true} />
 
       <div className="w-full sm:pl-[3.9rem]">

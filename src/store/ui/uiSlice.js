@@ -16,8 +16,10 @@ export const uiSlice = createSlice({
     isDiagnosticoAddModalOpen: false,
 
     //INCIDENCIA OPTIONS
-    isIncidenciaOptionsOpen:false
-
+    isIncidenciaOptionsOpen:false,
+    //TOOGLE NAVBAR
+    isSidebarOpen: false,
+    
   },
   reducers: {
     //EQUIPO
@@ -69,6 +71,9 @@ export const uiSlice = createSlice({
     onToogleIncidenciasOption: (state) => {
       state.isIncidenciaOptionsOpen = !state.isIncidenciaOptionsOpen
     },
+    onToogleSidebar: (state) => {
+      state.isSidebarOpen = !state.isSidebarOpen;
+    },
   },
 });
 
@@ -94,5 +99,6 @@ export const {
   onCloseDiagnosticoAddModal,
   
   //INCIDECNIA OPTION
-  onToogleIncidenciasOption
+  onToogleIncidenciasOption,
+  onToogleSidebar
 } = uiSlice.actions;

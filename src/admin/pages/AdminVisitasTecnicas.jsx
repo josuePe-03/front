@@ -4,7 +4,7 @@ import {
   VisitaTecnica,
   Dropdow,
   Titulo,
-  Pagination
+  Pagination,
 } from "../components";
 import { useVisitaTecnicaStore } from "../../hooks";
 import { IconFilterCancel } from "@tabler/icons-react";
@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 // ];
 
 export default function AdminVisitasTecnicas() {
-  const { visitasTecnicas,filtros, startLoadingVisitasTecnicas } =
+  const { visitasTecnicas, filtros, startLoadingVisitasTecnicas } =
     useVisitaTecnicaStore();
 
   // FILTROS
@@ -37,7 +37,6 @@ export default function AdminVisitasTecnicas() {
     },
   ];
 
-
   useEffect(() => {
     startLoadingVisitasTecnicas(datos);
     const interval = setInterval(() => {
@@ -46,7 +45,7 @@ export default function AdminVisitasTecnicas() {
 
     // Función de limpieza que se ejecutará cuando el componente se desmonte
     return () => clearInterval(interval);
-  }, [ page, search]);
+  }, [page, search]);
 
   //FILTRADO CATEGORIAS
   const handleDropdownChange = (selectedValue) => {
@@ -76,21 +75,19 @@ export default function AdminVisitasTecnicas() {
       <Navbar />
 
       <div className="w-full sm:pl-[3rem] pt-[2rem] sm:pt-0 ">
-        <div className="px-12 pt-4  ">
-          <div className="h-[10vh]">
-            <Titulo texto={"Administrador de Visitas"} />
-          </div>
+        <div className="px-4 pt-8  ">
           <section className="h-[85vh] w-full">
             <div className="">
               {/* <!-- Start coding here --> */}
-              <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+              <div className="bg-white dark:bg-gray-800 relative shadow-md rounded-lg overflow-hidden">
                 <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+                  <div className="">
+                    <Titulo texto={"Administrador de Visitas"} />
+                  </div>
                   {/* SEARCH */}
                   <div className="w-full md:w-1/2">
                     <form className="flex items-center">
-                      <label className="sr-only">
-                        Search
-                      </label>
+                      <label className="sr-only">Search</label>
                       {/* <div class="relative w-full">
                         <input
                           type="text"
@@ -145,11 +142,11 @@ export default function AdminVisitasTecnicas() {
                   </table>
                   <div className="">
                     <Pagination
-                        page={page}
-                        limit={filtros.limit ? filtros.limit : 0}
-                        total={filtros.total ? filtros.total : 0}
-                        setPage={(page) => setPage(page)}
-                      /> 
+                      page={page}
+                      limit={filtros.limit ? filtros.limit : 0}
+                      total={filtros.total ? filtros.total : 0}
+                      setPage={(page) => setPage(page)}
+                    />
                   </div>
                 </div>
               </div>

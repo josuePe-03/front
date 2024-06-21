@@ -31,7 +31,7 @@ import {
     }, []);
   
     return (
-      <div className="w-full h-fit lg:h-screen sm:flex bg-gray-200 ">
+      <div className="w-full  h-screen sm:flex bg-gray-200 ">
         <Navbar mensaje={true} />
   
         <div className="w-full sm:pl-[3.9rem]">
@@ -116,7 +116,7 @@ import {
                         </PDFDownloadLink>
                       </div>
   
-                      <section className="mt-3 overflow-y-scroll   ">
+                      <section className="mt-3 relative  overflow-x-auto  ">
                         <div className=" flex justify-center">
                           <div className=" w-full  rounded-xl">
                             <table className="w-full text-sm ">

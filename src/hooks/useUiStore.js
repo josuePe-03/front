@@ -19,7 +19,8 @@ import {
   onOpenDiagnosticoAddModal,
   onCloseDiagnosticoAddModal,
   //incidencias option
-  onToogleIncidenciasOption
+  onToogleIncidenciasOption,
+  onToogleSidebar
 } from "../store";
 
 export const useUiStore = () => {
@@ -34,10 +35,16 @@ export const useUiStore = () => {
     isIncidenciaModalOpen,
     isVisitaAddModalOpen,
     isDiagnosticoAddModalOpen,
-    isIncidenciaOptionsOpen
+    isIncidenciaOptionsOpen,
+    isSidebarOpen
 
   } = useSelector((state) => state.ui);
 
+    // SIDEBAR
+    const toogleSidebar = () => {
+      dispatch(onToogleSidebar());
+    };
+    
   //EQUIPO
   const openEquipoModal = () => {
     dispatch(onOpenEquipoModal());
@@ -106,6 +113,7 @@ export const useUiStore = () => {
     isDiagnosticoAddModalOpen,
     //INCIDENCIAS OPTION
     isIncidenciaOptionsOpen,
+    isSidebarOpen,
     //* Métodos
     //equipo
     openEquipoModal,
@@ -127,5 +135,6 @@ export const useUiStore = () => {
     closeDiagnosticoAddModal,
     //INCIDENCIAS OPTION
     toogleIncidenciasOption,
+    toogleSidebar
   };
 };

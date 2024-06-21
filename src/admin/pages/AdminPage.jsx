@@ -67,15 +67,15 @@ export default function AdminPage() {
   const { startLogout } = useAuthStore();
 
   return (
-    <div className="w-full h-screen bg-gray-200 ">
+    <div className="w-full h-full bg-gray-200 ">
       <Navbar />
 
       <div className="w-full sm:pl-[3rem]  lg:pr-[20rem] pt-[2rem] sm:pt-0">
         <div className="p-4 lg:pr-[20rem]">
-          <div className="h-[10vh]">
+          <div className="h-[10vh] py-3">
             <Titulo texto={"Dashboard Administrador"} />
           </div>
-          <section className="h-[85vh] w-full relative z-20">
+          <section className="h-[85vh] w-full ">
             <div className="lg:grid lg:grid-rows-2 lg:grid-cols-2 lg:h-full space-y-4 lg:space-y-none lg:gap-y-6 pb-8">
               <div className="col-span-1 h-[20rem] lg:h-full flex justify-center items-center px-6 pb-8 lg:m-4 bg-white shadow shadow-gray-300 rounded-xl">
                 <ResponsiveContainer width="100%" height="80%" className="">

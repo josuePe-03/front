@@ -64,21 +64,21 @@ export default function AdminAgenda() {
   }, []);
 
   return (
-    <div className="w-full  md:h-screen  sm:flex bg-gray-100 ">
+    <div className="w-full  md:h-screen  sm:flex">
       <Navbar />
 
       <div className="w-full sm:pl-[3.9rem]">
         <div className=" h-screen ">
           <div className="flex items-center h-full pt-10 flex-col">
-            <div className="w-full pl-4">
+            <div className="w-full pl-4 pt-8 sm:pt-0">
               <Titulo texto="Agenda Tecnicos" />
             </div>
-            <div className=" flex  w-full gap-4 p-3 h-screen">
+            <div className=" flex flex-col md:flex-row w-full gap-4 p-3 h-screen">
               <div className="">
                 <ListaVisitas visitasTecnicas={visitasTecnicas} />
                 <DetallesVisita visitaTecnica={visitaTecnicaAgenda} />
               </div>
-              <div className="w-full ">
+              <div className="w-full h-[50vh] ">
                 <Calendar
                   localizer={localizer}
                   className="shadow-gray-300 shadow-xl px-4 pb-4 rounded-xl "

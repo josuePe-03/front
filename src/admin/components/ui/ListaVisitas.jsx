@@ -7,7 +7,7 @@ export default function ListaVisitas({ visitasTecnicas }) {
   const dispatch = useDispatch();
   
   return (
-    <div className="shadow-gray-300 shadow-xl p-3 rounded-xl w-[20rem] h-1/2">
+    <div className="shadow-gray-300 shadow-xl p-3 rounded-xl md:w-[20rem] md:h-1/2">
       <header>
         <h3 className="text-xl font-medium">Lista de visitas</h3>
       </header>
@@ -15,7 +15,7 @@ export default function ListaVisitas({ visitasTecnicas }) {
       <div className="mt-2">
         {visitasTecnicas === "Sin visitas existentes" ? (
           <tr>
-            <td className="px-6 py-4 text-center " colSpan={9}>
+            <td className="  text-center " colSpan={9}>
               {visitasTecnicas}
             </td>
           </tr>

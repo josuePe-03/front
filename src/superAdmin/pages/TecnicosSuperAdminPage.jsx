@@ -41,16 +41,16 @@ export default function TecnicosSuperAdminPage() {
         <header className="px-4 sm:pt-5">
           <h1 className="text-4xl text-[#16351b] font-bold">Tecnicos</h1>
         </header>
-        <section className="p-4 pt-5">
+        <section className="px-4 pt-3">
           <input
             type="text"
             placeholder="Buscar empleados"
-            className="isolate py-3 w-full px-3 text-[#16351b] font-medium rounded-md bg-white/10 shadow-lg ring-1 ring-black/5"
+            className="isolate py-2.5 w-full  lg:w-1/2 px-3 text-[#16351b] font-medium rounded-md bg-white/10 shadow-lg ring-1 ring-black/5"
             // value={search || ""}
             // onChange={handleChange}
           />
         </section>
-        <div className="relative overflow-x-auto p-4 rounded-md">
+        <div className="relative overflow-x-auto px-4 pt-3 rounded-md pb-4">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 shadow-lg ring-1 ring-black/5 rounded-md">
             <thead className="text-xs text-gray-700 uppercase  ">
               <tr>
