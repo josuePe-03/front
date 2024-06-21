@@ -67,7 +67,7 @@ export default function TecnicoPage() {
   const { startLogout } = useAuthStore();
 
   return (
-    <div className="w-full h-screen bg-gray-200 ">
+    <div className="w-full ">
       <Navbar />
 
       <div className="w-full sm:pl-[3rem]  lg:pr-[20rem] pt-[2rem] sm:pt-0">

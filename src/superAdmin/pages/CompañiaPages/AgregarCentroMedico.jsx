@@ -33,7 +33,7 @@ export default function AgregarCompañia() {
 
       <article className="m-4 isolate w-fit text-[#16351b]  bg-white/10 shadow-lg ring-1 ring-black/5 p-5 rounded-md">
         <header className="mb-4">
-          <h1 className="text-4xl text-[#16351b] font-bold">
+          <h1 className="text-3xl  text-[#16351b] font-bold">
             Agregar Centro Medico
           </h1>
         </header>
@@ -89,10 +89,10 @@ export default function AgregarCompañia() {
 
             </div>
           </div>
-          <div className="flex flex-col">
+          <div className="flex  flex-col">
             <button
               type="submit "
-              className="text-white w-full mt-5 h-full bg-gradient-to-r from-green-600 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
+              className="text-white w-full mt-4 h-full bg-gradient-to-r from-green-600 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
             >
               Agregar centro medico
             </button>

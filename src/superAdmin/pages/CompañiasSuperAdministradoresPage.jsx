@@ -37,12 +37,12 @@ export default function CompañiasSuperAdministradoresPage() {
     <div className="bg-[#f3faf3] h-screen sm:pl-[14rem]">
       {/* SIDEBAR */}
       {/* INPUT TEXT */}
-      <article>
+      <article className="h-full">
         <Sidebar productos={true} />
         <header className="px-4 sm:pt-5">
           <h1 className="text-4xl text-[#16351b] font-bold">Compañias</h1>
         </header>
-        <section className="px-4 pb-4 w-full sm:flex sm:justify-end">
+        <section className="px-4 py-3 w-full sm:flex sm:justify-end">
           <Link
             to="/agregar-centro-medico"
             className="bg-[#388141] w-full sm:w-fit p-2 rounded-md text-white font-semibold flex justify-center items-center gap-2"
@@ -54,12 +54,12 @@ export default function CompañiasSuperAdministradoresPage() {
           <input
             type="text"
             placeholder="Buscar Compañia"
-            className="isolate py-3 w-full px-3 text-[#16351b] font-medium rounded-md bg-white/10 shadow-lg ring-1 ring-black/5"
+            className="isolate py-2.5 w-full lg:w-1/2 px-3 text-[#16351b] font-medium rounded-md bg-white/10 shadow-lg ring-1 ring-black/5"
             // value={search || ""}
             // onChange={handleChange}
           />
         </section>
-        <div className="relative overflow-x-auto p-4 rounded-md">
+        <div className="relative overflow-x-auto px-4 rounded-md pb-4">
           <table className=" text-sm text-left rtl:text-right text-gray-500 shadow-lg ring-1 ring-black/5 rounded-md">
             <thead className="text-xs text-gray-700 uppercase  ">
               <tr>

@@ -6,13 +6,13 @@ import {
   Usuarios,
   TrUsuarios,
   Dropdow,
-  Pagination
+  Pagination,
 } from "../components";
 import { useOperadorStore, useUiStore } from "../../hooks";
 import { useEffect, useState } from "react";
 
 export default function AdminOperadoresPage() {
-  const { operadores, filtros,startLoadingOperadores } = useOperadorStore();
+  const { operadores, filtros, startLoadingOperadores } = useOperadorStore();
 
   //FILTROS
   const [page, setPage] = useState(1);
@@ -35,7 +35,7 @@ export default function AdminOperadoresPage() {
 
     // Función de limpieza que se ejecutará cuando el componente se desmonte
     return () => clearInterval(interval);
-  }, [ search, page]);
+  }, [search, page]);
 
   //filtadro busqueda
   const handleChange = (e) => {
@@ -46,21 +46,19 @@ export default function AdminOperadoresPage() {
       <Navbar />
 
       <div className="w-full sm:pl-[3rem] pt-[2rem] sm:pt-0 ">
-        <div className="px-12 pt-4  ">
-          <div className="h-[10vh]">
-            <Titulo texto={"Administrador de Operadores"} />
-          </div>
-          <section className="h-[85vh] w-full">
+        <div className="px-4 pt-8">
+          <section className=" w-full">
             <div className=" ">
               {/* <!-- Start coding here --> */}
-              <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-                <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+              <div className="bg-white dark:bg-gray-800 relative shadow-md rounded-lg overflow-hidden">
+              <div className="flex flex-col md:flex-row items-center md:items-end justify-between space-y-3 md:space-y-0 md:space-x-4 px-3 py-3">
+                  <div className="">
+                    <Titulo texto={"Administrador de Operadores"} />
+                  </div>
                   {/* SEARCH */}
                   <div className="w-full md:w-1/2">
                     <form className="flex items-center">
-                      <label className="sr-only">
-                        Search
-                      </label>
+                      <label className="sr-only">Search</label>
                       <div className="relative w-full">
                         <input
                           type="text"

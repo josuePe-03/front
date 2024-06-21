@@ -19,12 +19,8 @@ export default function Sidebar({
   const sidebarRef = useRef(null);
   const navigate = useNavigate();
 
-  const handleSidebar = (home) => {
-    // toogleSidebar();
-
-    if (!home) {
-      localStorage.setItem("PaginaExterna", true);
-    }
+  const handleSidebar = () => {
+    toogleSidebar();
   };
 
   useEffect(() => {
@@ -45,12 +41,12 @@ export default function Sidebar({
   }, [isSidebarOpen, toogleSidebar]); // Añade isSidebarOpen y toogleSidebar al array de dependencias
 
   return (
-    <header className="h-[8vh] sm:h-0">
+    <header className="sm:h-0">
       <nav>
-        <div className="flex justify-between bottom-0 items-center py-5 px-3">
+        <div className="flex justify-between bottom-0 items-center py-3 px-3">
           <div className="flex items-center">
             <button
-              onClick={() => handleSidebar("home")}
+              onClick={() => handleSidebar()}
               data-drawer-target="default-sidebar"
               data-drawer-toggle="default-sidebar"
               aria-controls="default-sidebar"

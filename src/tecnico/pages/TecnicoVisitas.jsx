@@ -55,7 +55,7 @@ export default function TecnicoVisitas() {
   ];
 
   return (
-    <div className="w-full  md:h-screen  sm:flex bg-gray-200 ">
+    <div className="w-full h-screen  sm:flex bg-gray-200 ">
       <Navbar mensaje={true} />
 
       <div className="w-full sm:pl-[3.9rem] pt-12 md:pt-0 ">

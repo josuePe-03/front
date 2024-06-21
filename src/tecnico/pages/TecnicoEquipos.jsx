@@ -62,7 +62,7 @@ export default function TecnicoEquipos() {
               <div className="text-3xl font-bold">
                 <Titulo texto={"Equipos"}/>
               </div>
-              <div class="flex flex-col md:flex-row items-center justify-end space-y-3 md:space-y-0 md:space-x-4 mt-2 ">
+              <div class="flex flex-col md:flex-row items-center justify-end space-y-3 md:space-y-0 md:space-x-4 my-2 ">
                 {/* SEARCH */}
                 <div class="w-full md:w-1/4">
                   <form class="flex items-center">

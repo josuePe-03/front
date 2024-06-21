@@ -3,7 +3,7 @@ import { obtenerFechaHora } from "../../../helpers";
 export default function DetallesVisita({ visitaTecnica }) {
 
   return (
-    <div className="shadow-gray-300 shadow-xl p-3 rounded-xl w-[20rem] h-1/2">
+    <div className="shadow-gray-300 shadow-xl p-3 rounded-xl md:w-[20rem] h-1/2">
       <header>
         <h3 className="text-xl font-medium">Detalle Visita</h3>
       </header>

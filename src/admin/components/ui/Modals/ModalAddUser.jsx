@@ -114,7 +114,7 @@ export default function ModalAddUser({ tecnico }) {
         onClick={() => {
           openModel();
         }}
-        className="text-white h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
+        className="text-white h-full bg-gradient-to-r from-cyan-400 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
       >
         {tecnico ? "Agregar Tecnico" : "Agregar Operador"}
       </button>
