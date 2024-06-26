@@ -33,7 +33,6 @@ export const useTecnicoStore = () => {
         tecnico
       );
       dispatch(onAddNewTecnico({ ...tecnico }));
-      startLoadingTecnicos();
       Swal.fire({
         title: "!Agregado Correctamente!",
         icon: "success",
@@ -49,7 +48,6 @@ export const useTecnicoStore = () => {
     try {
       await clienteAxios.put(`/tecnico/eliminar-tecnico/${id}`);
       dispatch(onDeleteTecnico());
-      startLoadingTecnicos();
     } catch (error) {
       console.log(error);
       Swal.fire("Error al eliminar", error.response.data.msg, "error");
@@ -64,7 +62,6 @@ export const useTecnicoStore = () => {
         tecnico
       );
       dispatch(onUpdateTecnico({ ...tecnico }));
-      startLoadingTecnicos();
     } catch (error) {
       console.log(error);
       Swal.fire("Error al eliminar", error.response.data.msg, "error");
