@@ -6,6 +6,7 @@ import {
   Equipos,
   Dropdow,
   Pagination,
+  DropdowOption,
 } from "../components";
 import { useEquipoStore, useUiStore } from "../../hooks";
 import { useEffect, useState } from "react";
@@ -107,7 +108,7 @@ export default function AdminOperadoresPage() {
                     <ModalAddEquipo />
 
                     <div className="flex items-center space-x-3 w-full md:w-auto h-full">
-                      <Dropdow
+                      <DropdowOption
                         options={options}
                         texto={"Categoria"}
                         onChange={handleDropdownChange}

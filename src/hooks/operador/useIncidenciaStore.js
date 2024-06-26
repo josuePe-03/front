@@ -11,6 +11,7 @@ import {
   onLogoutModalIncidencia,
   onLoadFiltrosIncidencias
 } from "../../store";
+import { useUiStore } from "../useUiStore";
 
 export const useIncidenciaStore = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,10 @@ export const useIncidenciaStore = () => {
     dispatch(onSetActiveIncidencia(calendarEvent));
   };
 
+  //useUiStore
+  const {closeIncidenciaModal } =
+  useUiStore();
+
   const startSavingIncidencia = async (incidencia) => {
     try {
       // Creando
@@ -32,11 +37,12 @@ export const useIncidenciaStore = () => {
         "/incidencia/agregar-incidencia",
         incidencia
       );
-      startLoadingIncidencias();
       Swal.fire({
         title: "!Agregado Correctamente!",
         icon: "success",
       });
+      closeIncidenciaModal()
+
     } catch (error) {
       console.log(error);
       Swal.fire("Error al guardar", error.response.data.msg, "error");

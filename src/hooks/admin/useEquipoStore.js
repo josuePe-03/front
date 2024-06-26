@@ -95,13 +95,12 @@ export const useEquipoStore = () => {
   const startLoadingEquipo = async (equipo) => {
     try {
       const { data } = await clienteAxios.get(
-        `/admin/equipo/obtener-equipo/${equipo}`
+        `/equipo/obtener-equipo/${equipo}`
       );
       dispatch(onLoadEquipo(data.equipo));
 
       if (!data.ok) return dispatch(onLoadEquipos(data.msg));
     } catch (error) {
-      console.log("Error cargando equipos");
       console.log(error);
     }
   };

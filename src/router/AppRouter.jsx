@@ -40,6 +40,8 @@ import {
   EditarCentroMedico
 } from "../superAdmin"
 
+import Loading from "./Loading/Loading";
+
 
 export const AppRouter = () => {
   const { user, status, checkAuthToken } = useAuthStore();
@@ -50,7 +52,7 @@ export const AppRouter = () => {
   }, []);
 
   if (status === "checking") {
-    return <h3>Cargando...</h3>;
+    return <Loading/>;
   }
 
   return (
@@ -68,7 +70,7 @@ export const AppRouter = () => {
           {/* COMPAÑIA */}
           <Route path="/centros-medicos" element={<CompañiasSuperAdministradoresPage />} />
           <Route path="/agregar-centro-medico" element={<AgregarCentroMedico/>} />
-          <Route path="/editar-centro-medico/:id" element={<EditarCentroMedico/>} />
+          <Route path="/editar-centro-medico" element={<EditarCentroMedico/>} />
 
           <Route path="/administradores" element={<AdministradoresSuperAdminPage/>} />
           <Route path="/tecnicos" element={<TecnicosSuperAdminPage />} />

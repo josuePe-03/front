@@ -32,7 +32,6 @@ export const useOperadorStore = () => {
         operador
       );
       dispatch(onAddNewOperador({ ...operador }));
-      startLoadingOperadores();
       Swal.fire({
         title: "!Agregado Correctamente!",
         icon: "success",
@@ -48,7 +47,6 @@ export const useOperadorStore = () => {
     try {
       await clienteAxios.put(`/operador/eliminar-operador/${id}`);
       dispatch(onDeleteOperador());
-      startLoadingOperadores();
     } catch (error) {
       console.log(error);
       Swal.fire("Error al eliminar", error.response.data.msg, "error");
@@ -63,7 +61,6 @@ export const useOperadorStore = () => {
         operador
       );
       dispatch(onUpdateOperador({ ...operador }));
-      startLoadingOperadores();
     } catch (error) {
       console.log(error);
       Swal.fire("Error al eliminar", error.response.data.msg, "error");
