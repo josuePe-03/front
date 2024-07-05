@@ -5,8 +5,8 @@ import {
   Titulo,
   Usuarios,
   TrUsuarios,
-  Dropdow,
   Pagination,
+  DropdowOption,
 } from "../components";
 import { useTecnicoStore, useUiStore } from "../../hooks";
 import { useEffect, useState } from "react";
@@ -69,7 +69,7 @@ export default function AdminOperadoresPage() {
   const handleClear = () => {
     setSearch("");
     setClearDropdown(true);
-    setFilterCategoria([]);
+    setFilterArea([]);
   };
   // Resetear el estado de clearDropdown después de limpiar para permitir limpiezas futuras
   useEffect(() => {
@@ -113,7 +113,7 @@ export default function AdminOperadoresPage() {
                     <ModalAddUser tecnico={true} />
 
                     <div className="flex items-center space-x-3 w-full md:w-auto">
-                      <Dropdow
+                      <DropdowOption
                         options={options}
                         texto={"Categoria"}
                         onChange={handleDropdownChange}

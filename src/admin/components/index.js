@@ -31,6 +31,8 @@ export {default as ListaVisitas} from './ui/ListaVisitas'
 export {default as DetallesVisita} from './ui/DetallesVisita'
 
 export {default as Ubicaciones} from './ui/Ubicaciones'
+export {default as DropdowOption} from './ui/DropdowOption'
+
 
 
 

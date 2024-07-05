@@ -78,7 +78,7 @@ export default function AdminAgenda() {
                 <ListaVisitas visitasTecnicas={visitasTecnicas} />
                 <DetallesVisita visitaTecnica={visitaTecnicaAgenda} />
               </div>
-              <div className="w-full h-[50vh] ">
+              <div className="w-full h-[50vh] md:h-full">
                 <Calendar
                   localizer={localizer}
                   className="shadow-gray-300 shadow-xl px-4 pb-4 rounded-xl "

@@ -5,6 +5,7 @@ import {
   Incidencias,
   TrIncidencia,
   Pagination,
+  DropdowOption,
 } from "../components";
 import { useEquipoStore, useIncidenciaStore } from "../../hooks";
 import { useEffect, useState } from "react";
@@ -108,7 +109,7 @@ export default function AdminIncidencias() {
                   </div>
                   <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                     <div className="flex items-center space-x-3 w-full md:w-auto">
-                      <Dropdow
+                      <DropdowOption
                         options={options}
                         texto={"Tipo de incidencia"}
                         onChange={handleDropdownChange}

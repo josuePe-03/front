@@ -15,7 +15,7 @@ import {
 import Modal from "react-modal";
 
 import Titulo from "../Titulo";
-import Dropdown from "../Dropdow";
+import DropdownOption from "../DropdowOption";
 
 const customStyles = {
   content: {
@@ -183,7 +183,7 @@ export default function ModalAddUser({ tecnico }) {
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Area
                   </label>
-                  <Dropdown
+                  <DropdownOption
                     options={areas}
                     texto={"Selecciona una area"}
                     onChange={handleDropdownArea}

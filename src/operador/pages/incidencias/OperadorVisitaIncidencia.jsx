@@ -53,8 +53,8 @@ export default function OperadorVisitaIncidencia() {
                   />
                 </div>
 
-                <div className="mt-10 sm:w-full h-[15rem] md:h-[100%] bg-white p-6 rounded-xl md:col-span-2 relative w-[90vw] ">
-                  <div className="flex justify-between items-center">
+                <div className="mt-10 sm:w-full h-[15rem] md:h-[100%] bg-white  rounded-xl md:col-span-2 relative w-[90vw] ">
+                  <div className="flex justify-between items-center p-4">
                     <h1 className="text-lg text-gray-400 font-bold">
                       Visitas Tecnicas
                     </h1>

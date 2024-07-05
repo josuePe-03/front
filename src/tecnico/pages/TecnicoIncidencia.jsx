@@ -67,11 +67,11 @@ export default function TecnicoIncidencia() {
 
       <div className="w-full sm:pl-[3.9rem] pt-12 md:pt-0 ">
         <div className="w-full font-semibold ">
-          <div className="m-4 p-4 bg-white rounded-xl shadow shadow-gray-200">
-            <div className="mt-2 md:flex justify-between">
+          <div className="m-4  bg-white rounded-xl shadow shadow-gray-200">
+            <div className="mt-2 md:flex justify-between px-4 pt-4">
               <Titulo texto={"Incidencias"}/>
             </div>
-            <div className="flex flex-col md:flex-row items-center justify-end space-y-3 md:space-y-0 md:space-x-4 mt-2 ">
+            <div className="flex flex-col md:flex-row items-center justify-end space-y-3 md:space-y-0 md:space-x-4 mt-2 px-4">
               {/* SEARCH */}
               <div className="w-full md:w-1/4">
                 <form className="flex items-center">
@@ -102,9 +102,9 @@ export default function TecnicoIncidencia() {
               </div> */}
             </div>
 
-            <div className="mt-3  flex justify-center shadow shadow-gray-300  rounded-xl">
-              <div className="relative  overflow-x-auto w-full h-[29rem]  rounded-xl">
-                <table className="w-full">
+
+            <div className="relative overflow-x-auto h-[22rem]">
+            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <thead className="text-[12px] text-gray-400">
                     <TrIncidencia />
                   </thead>
@@ -130,7 +130,6 @@ export default function TecnicoIncidencia() {
                 />
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>

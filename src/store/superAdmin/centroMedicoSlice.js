@@ -30,7 +30,8 @@ export const centroMedicoSlice = createSlice({
     },
 
     onLogoutCentroMedico: (state) => {
-      (state.isLoadingCentroMedico = true), (state.centrosMedicos = []);
+      state.isLoadingCentroMedico = true;
+       state.centroMedico = [];
     },
   },
 });

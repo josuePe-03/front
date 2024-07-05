@@ -1,15 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { clienteAxios } from "../../api";
-import {
-  onLoadUbicaciones,
-  onLoadUbicacion,
-} from "../../store";
+import { onLoadUbicaciones, onLoadUbicacion } from "../../store";
 
 export const useUbicacionStore = () => {
   const dispatch = useDispatch();
 
-  const { ubicaciones, ubicacion, } = useSelector(
+  const { ubicaciones, ubicacion } = useSelector(
     (state) => state.adminUbicacion
   );
   // AGREGAR TECNICOS
@@ -40,15 +37,13 @@ export const useUbicacionStore = () => {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Si, eliminar."
+        confirmButtonText: "Si, eliminar.",
       }).then((result) => {
         if (result.isConfirmed) {
           clienteAxios.delete(`/ubicaciones/eliminar-ubicacion/${id}`);
           startLoadingUbicaciones();
         }
       });
-
-
     } catch (error) {
       console.log(error);
       Swal.fire("Error al eliminar", error.response.data.msg, "error");

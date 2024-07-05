@@ -81,7 +81,7 @@ export default function EmpleadosSuperAdminPage() {
                     className="px-6 py-4 text-center text-[#16351b] font-semibold"
                     colSpan={7}
                   >
-                    {operadores} :(
+                    {operadores}
                   </div>
                 </div>
               ) : (

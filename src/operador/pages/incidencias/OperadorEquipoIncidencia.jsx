@@ -28,7 +28,7 @@ export default function OperadorIncidencia() {
 
     // Función de limpieza que se ejecutará cuando el componente se desmonte
     return () => clearInterval(interval);
-  }, []);
+  }, [id_equipo]);
 
   return (
     <div className="w-full h-fit lg:h-screen sm:flex bg-gray-200 ">
@@ -71,8 +71,8 @@ export default function OperadorIncidencia() {
 
                 {/* MAIN */}
                 <main className="grid md:grid-cols-2 md:h-[72vh] gap-y-4 md:gap-y-4 md:gap-x-4">
-                  <div className=" sm:w-full h-[28rem]  bg-white p-6 rounded-xl md:col-span-2 relative  ">
-                    <div className="flex justify-between items-center">
+                  <div className=" sm:w-full h-[28rem]  bg-white  rounded-xl md:col-span-2 relative  ">
+                    <div className="flex justify-between items-center p-4">
                       <h1 className="text-lg text-gray-400 font-bold">
                         Incidencias
                       </h1>
@@ -86,7 +86,7 @@ export default function OperadorIncidencia() {
                           ) : (
                             <button
                               type="button"
-                              class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                              className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                             >
                               Generar Reporte
                             </button>
@@ -103,12 +103,24 @@ export default function OperadorIncidencia() {
                               <TrIncidenciasEquipo />
                             </thead>
                             <tbody className="text-xs text-gray-800">
-                              {incidencia.map((incidencia, i) => (
-                                <IncidenciasEquipo
-                                  key={i}
-                                  incidencias={incidencia}
-                                />
-                              ))}
+                              {incidencia ===
+                              "La incidencia no existe en el sistema" ? (
+                                <tr>
+                                  <td
+                                    className="px-6 py-4 text-center "
+                                    colSpan={9}
+                                  >
+                                    {incidencia}
+                                  </td>
+                                </tr>
+                              ) : (
+                                incidencia.map((items, i) => (
+                                  <IncidenciasEquipo
+                                    key={i}
+                                    incidencias={items}
+                                  />
+                                ))
+                              )}
                             </tbody>
                           </table>
                         </div>

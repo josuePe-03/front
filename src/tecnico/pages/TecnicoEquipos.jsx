@@ -1,6 +1,13 @@
 import { useEquipoStore } from "../../hooks";
 
-import { Navbar, Dropdow, TrEquipos, Equipos, Pagination,Titulo } from "../components";
+import {
+  Navbar,
+  Dropdow,
+  TrEquipos,
+  Equipos,
+  Pagination,
+  Titulo,
+} from "../components";
 
 import { useEffect, useState } from "react";
 
@@ -56,11 +63,11 @@ export default function TecnicoEquipos() {
       <Navbar />
 
       <div className="w-full sm:pl-[3.9rem] pt-12 md:pt-0">
-        <div className="bg-white rounded-xl shadow shadow-gray-200 m-4 p-4">
-          <div className="w-full font-semibold">
+        <div className="bg-white rounded-xl shadow shadow-gray-200 m-4 ">
+          <div className="w-full font-semibold px-4 pt-4">
             <div className="w-full ">
               <div className="text-3xl font-bold">
-                <Titulo texto={"Equipos"}/>
+                <Titulo texto={"Equipos"} />
               </div>
               <div class="flex flex-col md:flex-row items-center justify-end space-y-3 md:space-y-0 md:space-x-4 my-2 ">
                 {/* SEARCH */}
@@ -95,31 +102,29 @@ export default function TecnicoEquipos() {
             </div>
           </div>
 
-          <div className="lg:mt-5  flex justify-center shadow shadow-gray-300 bg-white rounded-xl">
-            <div className="relative  overflow-x-auto w-full h-[29rem]  rounded-xl">
-              <table className="w-full text-sm ">
-                <thead className="text-[12px] text-gray-400">
-                  <TrEquipos />
-                </thead>
-                <tbody>
-                  {equipos === "Sin equipos existentes" ? (
-                    <tr>
-                      <td className="px-6 py-4 text-center " colSpan={9}>
-                        {equipos}
-                      </td>
-                    </tr>
-                  ) : (
-                    equipos.map((items, i) => <Equipos key={i} items={items} />)
-                  )}
-                </tbody>
-              </table>
-              <Pagination
-                page={page}
-                limit={filtros.limit ? filtros.limit : 0}
-                total={filtros.total ? filtros.total : 0}
-                setPage={(page) => setPage(page)}
-              />
-            </div>
+          <div className="relative overflow-x-auto h-[22rem]">
+            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <thead className="text-[12px] text-gray-400">
+                <TrEquipos />
+              </thead>
+              <tbody>
+                {equipos === "Sin equipos existentes" ? (
+                  <tr>
+                    <td className="px-6 py-4 text-center " colSpan={9}>
+                      {equipos}
+                    </td>
+                  </tr>
+                ) : (
+                  equipos.map((items, i) => <Equipos key={i} items={items} />)
+                )}
+              </tbody>
+            </table>
+            <Pagination
+              page={page}
+              limit={filtros.limit ? filtros.limit : 0}
+              total={filtros.total ? filtros.total : 0}
+              setPage={(page) => setPage(page)}
+            />
           </div>
         </div>
       </div>
