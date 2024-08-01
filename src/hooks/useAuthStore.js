@@ -2,11 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearErrorMessage, onChecking, onLogin, onLogout,onLogoutIncidencia,onLogoutNavbar } from '../store';
 import Swal from 'sweetalert2';
 import { clienteAxios } from '../api';
+import { useNavigate } from 'react-router-dom';
 
 export const useAuthStore = () => {
 
     const { status, user, errorMessage } = useSelector( state => state.auth );
     const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const startLogin = async({ email, password }) => {
         dispatch( onChecking() );
@@ -70,7 +72,7 @@ export const useAuthStore = () => {
                 dispatch( onLogout() );
                 dispatch( onLogoutNavbar() );
                 dispatch( onLogoutIncidencia() );
-                
+                navigate("/")
             }
           });
     }

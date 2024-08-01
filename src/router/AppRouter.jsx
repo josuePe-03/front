@@ -41,6 +41,7 @@ import {
 } from "../superAdmin"
 
 import Loading from "./Loading/Loading";
+import {Home} from "../public";
 
 
 export const AppRouter = () => {
@@ -60,7 +61,9 @@ export const AppRouter = () => {
       {status === "not-authenticated" ? (
         <>
           <Route path="/auth/*" element={<LoginPage />} />
-          <Route path="/*" element={<Navigate to="/auth/login" />} />
+          <Route path="/" element={<Home/>} />
+
+          {/* <Route path="/*" element={<Navigate to="/auth/login" />} /> */}
         </>
       )
       : status === "authenticated" && user.rol == 4 ? (
